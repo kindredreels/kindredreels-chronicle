@@ -8,8 +8,13 @@ import { readFileSync, readdirSync, statSync, existsSync } from 'fs';
 import { join } from 'path';
 import { shouldExclude } from './categorizer.js';
 
-// Repository root (one level up from code-chronicle)
-export const REPO_ROOT = join(import.meta.dirname, '../..');
+// Repository root — set via KINDRED_REELS_REPO_PATH env var
+if (!process.env.KINDRED_REELS_REPO_PATH) {
+  console.error('Error: KINDRED_REELS_REPO_PATH environment variable is required.');
+  console.error('Set it to the path of your Kindred Reels repository.');
+  process.exit(1);
+}
+export const REPO_ROOT = process.env.KINDRED_REELS_REPO_PATH;
 
 /**
  * Execute a git command and return the output
