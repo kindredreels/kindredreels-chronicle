@@ -1,0 +1,135 @@
+[
+  {
+    "id": "phase-0",
+    "title": "Genesis",
+    "subtitle": "From zero to a full-stack app in 33 days, all through direct commits",
+    "dateRange": {
+      "start": "2025-10-19",
+      "end": "2025-11-21"
+    },
+    "narrative": "Before there were pull requests, before there was a PR workflow, there was a founder and an AI pair-programming partner building as fast as they could. In 33 days and 29 direct-to-main commits, Kindred Reels went from an empty repository to a fully functional full-stack application with cloud infrastructure.\n\nThe journey started on October 19 with a LICENSE file and a Vite/Express skeleton. Three weeks of intense building followed: a working photo upload and voice recording app with SQLite (Nov 9), migration to DynamoDB and S3 for cloud-native storage (Nov 10), AWS Lambda deployment with GitHub Actions CI/CD (Nov 11), Google OAuth authentication via Cognito (Nov 11), per-user project authorization (Nov 15), a Python video generation pipeline with Ken Burns effects (Nov 19), cloud video processing through SQS and Lambda containers (Nov 19), and finally the migration to EC2 Spot instances when Lambda's 15-minute timeout proved insufficient (Nov 21).\n\nEvery commit was pushed directly to main — no branches, no reviews, just rapid iteration. The commit messages were informal and raw: 'whole mess of claude contributions..', 'fixed frontend action hopefully', 'lots of github action secrets for oauth.' This was the bootstrapping era, where speed mattered more than process. By November 21, the PR workflow would be adopted, but the architectural foundations laid in this phase — the monorepo structure, DynamoDB single-table design, S3 media storage, Lambda API, EC2 video processing — would persist throughout the project's evolution.",
+    "entryIds": [
+      "commits-2025-10-19-project-genesis",
+      "commits-2025-11-09-first-working-app",
+      "commit-21d3bc7",
+      "commits-2025-11-11-lambda-deploy",
+      "commits-2025-11-11-google-oauth",
+      "commits-2025-11-15-user-auth",
+      "commits-2025-11-19-video-generation",
+      "commits-2025-11-19-video-cloud",
+      "commits-2025-11-21-ec2-spot"
+    ],
+    "color": "#F97316"
+  },
+  {
+    "id": "phase-1",
+    "title": "The Spark",
+    "subtitle": "Building the foundation for a family storytelling platform",
+    "dateRange": {
+      "start": "2025-11-22",
+      "end": "2025-11-30"
+    },
+    "narrative": "In less than ten days, a solo founder and an AI coding assistant built the skeleton of an entirely new kind of family product. The very first PR introduced shareable contribution links — the defining interaction of the platform, where family members could record voice memories for photos without creating an account. Within a week, the codebase had video generation with beat-synced music, multi-method authentication through AWS Cognito, an admin panel, GPU-accelerated processing on EC2, and AWS Rekognition face detection guiding cinematic Ken Burns camera movements.\n\nThe pace was extraordinary: 26 PRs merged in 9 days, establishing the full-stack architecture (React, Node.js/Lambda, Python processing, DynamoDB) and the core product loop of upload → organize → record → generate. The project was renamed from 'Loomed Memories' to 'Kindred Reels' during this sprint. Most remarkably, the backend API, frontend UI, and video processing pipeline were all functional from the start — not built incrementally, but shipped as a cohesive system.\n\nAlongside the PRs, direct commits continued for quick fixes and operational tasks: a refreshed landing page with example videos, updated EC2 and CI/CD documentation, font rendering fixes for Linux, handling of corrupted video records, an upgrade to 4K video resolution, and a batch of production fixes including the missing image processor Lambda. This phase proved the feasibility of building a production-grade application through AI-assisted development at a pace that would normally require a team of engineers working for months.",
+    "entryIds": [
+      "pr-3", "pr-4", "pr-5", "pr-6", "pr-7", "pr-8", "pr-9", "pr-10",
+      "pr-11", "pr-12", "pr-13", "pr-14", "pr-15", "pr-16", "pr-17", "pr-18",
+      "pr-19", "pr-20", "pr-21", "pr-22", "pr-23", "pr-24", "pr-25", "pr-26",
+      "pr-27", "pr-28",
+      "commits-2025-11-25-landing-page",
+      "commits-2025-11-26-docs-infra",
+      "commits-2025-11-27-video-fixes",
+      "commits-2025-11-28-4k-rendering",
+      "commits-2025-11-29-prod-fixes"
+    ],
+    "color": "#6366F1"
+  },
+  {
+    "id": "phase-2",
+    "title": "Finding the Voice",
+    "subtitle": "Evolving the core data model around Memories and mobile-first contribution",
+    "dateRange": {
+      "start": "2025-12-01",
+      "end": "2025-12-10"
+    },
+    "narrative": "With the technical foundation in place, the project turned inward to discover its true conceptual model. The biggest breakthrough was the evolution from 'photo groups' to 'Memories' — the realization that the atomic unit of the product wasn't a photo or a recording, but a memory: a voice narration attached to one to five photos that becomes a segment in the final video. This conceptual shift touched nearly every layer of the system and required multiple PRs to fully realize.\n\nSimultaneously, the mobile experience was overhauled to make contribution feel natural on a phone: compact recording UI, volume visualization, auto-playing slideshow previews, and focused recording mode that minimizes distractions. The production deployment pipeline shipped with email and SMS invitations, making the platform usable by real families for the first time. A comprehensive frontend test suite of 1,742 tests was generated in a single AI-assisted session.\n\nThe Video Builder emerged as a drag-and-drop timeline editor with sections, and the color scheme was standardized across the entire UI. A quick package-lock fix and release script were pushed directly to main. By the end of this phase, Kindred Reels had found its voice — both literally (voice memories) and conceptually (the Memories model that would define the product).",
+    "entryIds": [
+      "pr-29", "pr-30", "pr-31", "pr-32", "pr-33", "pr-34", "pr-35", "pr-36",
+      "pr-37", "pr-38", "pr-39", "pr-40", "pr-41", "pr-42", "pr-43", "pr-44",
+      "pr-45", "pr-46", "pr-47", "pr-48", "pr-49", "pr-50", "pr-51",
+      "commits-2025-12-08-maintenance"
+    ],
+    "color": "#8B5CF6"
+  },
+  {
+    "id": "phase-3",
+    "title": "The Intelligence Layer",
+    "subtitle": "AI transforms photo curation from manual work into assisted storytelling",
+    "dateRange": {
+      "start": "2025-12-11",
+      "end": "2025-12-25"
+    },
+    "narrative": "This phase marked the pivot from a manual curation tool to an AI-powered storytelling platform. The AI Producer evolved through three generations: v1 prototyped with Gemini for basic photo analysis, v2 integrated Rekognition face clustering with the Gemini Files API for richer understanding, and the improvements phase added pre-upload optimization and face deduplication. The music system gained multi-track support with automatic audio ducking — background music that gracefully dips when voice recordings play.\n\nThe frontend underwent its own transformation with a major state management refactor from prop drilling to React Query and Zustand, establishing the architectural patterns for everything that followed. A photo enhancement pipeline brought Google Cloud Storage, Gemini-powered quality analysis, and Cloud Run GPU restoration. The landing page was redesigned for legitimacy with team photos and social proof.\n\nThe Timeline Contributor Flow launched, letting invited family members browse the entire project timeline rather than just their assigned photos. Google Photos integration via the Picker API eliminated the friction of photo uploads. The CodeChronicle codebase analytics dashboard — the ancestor of this very project — was added to the main repo. A year-end cleanup removed old test data files. By Christmas, the platform could intelligently analyze, organize, and present family photo collections with AI assistance.",
+    "entryIds": [
+      "pr-52", "pr-53", "pr-54", "pr-55", "pr-56", "pr-57", "pr-58", "pr-59",
+      "pr-60", "pr-61", "pr-62", "pr-63", "pr-64", "pr-65", "pr-66", "pr-67",
+      "pr-68", "pr-69", "pr-70", "pr-71", "pr-72",
+      "commits-2025-12-23-cleanup"
+    ],
+    "color": "#EC4899"
+  },
+  {
+    "id": "phase-4",
+    "title": "Cinematic Quality",
+    "subtitle": "Professional video output with HTML slides, themes, and caption rendering",
+    "dateRange": {
+      "start": "2026-01-03",
+      "end": "2026-01-15"
+    },
+    "narrative": "The new year opened with a laser focus on video output quality. The AI Producer was refactored into a clean 4-stage workflow with extensively engineered Gemini prompts, dramatically improving the narrative structures it generated. HTML-based slides replaced static images for title screens, credits, and section dividers — rendered through Playwright into crisp, resolution-independent frames with rich typography.\n\nThe timeline UX went through a six-stage improvement sprint, making the editor feel polished and responsive. Whisper AI transcription brought closed captions to generated videos, with an editor modal for hosts to correct the AI's transcriptions. The music system gained track metadata, a table-based admin library, and audio ducking refinements. Video rendering improvements included attribution slides, fade-to-black outros, and the first named video theme: 'noir-elegant.'\n\nDeployment infrastructure matured with unified EC2 deployment structures and upgraded processing instances. Direct-to-main fixes addressed recording bugs, production configuration issues, S3 bucket mismatches, a missing sharp Lambda layer, and AI Producer re-run capability. This was the phase where Kindred Reels' output started looking truly professional — the kind of videos families would be proud to share.",
+    "entryIds": [
+      "pr-73", "pr-74", "pr-75", "pr-77", "pr-78", "pr-79", "pr-80", "pr-81",
+      "pr-82", "pr-83", "pr-84", "pr-85", "pr-86", "pr-87", "pr-88", "pr-89",
+      "pr-90", "pr-91", "pr-92", "pr-93", "pr-94", "pr-95", "pr-96", "pr-97",
+      "pr-98", "pr-99", "pr-100", "pr-101",
+      "commit-fcc9484",
+      "commits-2026-01-05-tooling",
+      "commits-2026-01-06-prod-fixes",
+      "commits-2026-01-07-lambda-fixes",
+      "commit-e207814"
+    ],
+    "color": "#F59E0B"
+  },
+  {
+    "id": "phase-5",
+    "title": "Events & Occasions",
+    "subtitle": "Expanding beyond tributes to weddings, reunions, and celebrations",
+    "dateRange": {
+      "start": "2026-01-20",
+      "end": "2026-02-07"
+    },
+    "narrative": "Kindred Reels had proven itself for tribute videos — heartfelt compilations for birthdays, retirements, and memorials. But the product vision was broader: any gathering where photos and stories intersect. This phase introduced Event projects alongside the existing Tribute type, designed for weddings, parties, and reunions where multiple people contribute photos in real-time.\n\nThe Event Organizer flow was the centerpiece — an AI-powered pipeline that analyzes hundreds of event photos, detects temporal clusters (moments), identifies key people through face detection, and generates a timeline with named sections. Deferred Rekognition was introduced to avoid expensive face detection at upload time for events where hundreds of photos arrive rapidly. The 28-template theme system launched, offering five aesthetic families from elegant to cinematic, all rendered through Playwright with credits customization.\n\nEnd-to-end Playwright tests were added for the first time, covering authentication and project lifecycle. The Playwright npm dependencies were pushed directly to main to support this testing effort. The review modal was removed from the Event Organizer after user testing showed it added friction without value. This phase expanded the product's addressable market from personal tributes to any family occasion worth remembering.",
+    "entryIds": [
+      "pr-102", "pr-103", "pr-104", "pr-106", "pr-107", "pr-108", "pr-109",
+      "pr-110", "pr-111",
+      "commit-e617eae"
+    ],
+    "color": "#10B981"
+  },
+  {
+    "id": "phase-6",
+    "title": "Refinement at Scale",
+    "subtitle": "Performance, polish, and the AI-assisted curation experience",
+    "dateRange": {
+      "start": "2026-02-07",
+      "end": "2026-02-17"
+    },
+    "narrative": "With the feature set largely complete, this final phase focused on making everything work beautifully at scale. The organization mode UX overhaul was the largest single effort — a professional photo curation experience with full-screen lightbox, side-by-side comparison for similar photos, AI-detected cluster visualization, and comprehensive photo management tools. Optimistic updates made photo replacement feel instant.\n\nA critical performance fix eliminated N+1 DynamoDB queries that were causing 13-second page loads for projects with hundreds of photos, bringing load times down to 1-2 seconds. The visual clustering pipeline brought computer vision-based photo grouping. The project creation flow was unified so all projects follow the same path regardless of type, with AI behavior driven by the project description rather than rigid type categories.\n\nThe music system got its own overhaul with a curated library organized by mood and AI-powered automatic track selection. A public Technology page was added to showcase the platform's engineering. The repository was migrated to the kindredreels organization on GitHub. Production fixes addressed GCS bucket routing, Vertex AI credential loading, and SQS configuration. The code-chronicle tool was extracted from the main repo into its own project. After nearly four months of development starting from Genesis, the codebase had grown to over 100,000 lines — all written through AI-assisted development, without the founder writing code directly.",
+    "entryIds": [
+      "pr-112", "pr-113", "pr-115", "pr-117", "pr-118", "pr-119", "pr-120",
+      "pr-121",
+      "commit-9b45c5c",
+      "commits-2026-02-17-cleanup"
+    ],
+    "color": "#0EA5E9"
+  }
+]

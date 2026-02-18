@@ -1,13 +1,17 @@
 import { useState } from 'react'
 import TabBar from './TabBar'
 import type { Tab } from './TabBar'
-import PlaceholderView from '../shared/PlaceholderView'
 import CodeStatsView from '../code-stats/CodeStatsView'
+import TimelineView from '../timeline/TimelineView'
+import ChaptersView from '../chapters/ChaptersView'
+import GrowthView from '../growth/GrowthView'
 import { useSnapshotsData } from '../../hooks/useSnapshotsData'
+import { useChronicleData } from '../../hooks/useChronicleData'
 
 export default function AppShell() {
   const [activeTab, setActiveTab] = useState<Tab>('Code Stats')
   const data = useSnapshotsData()
+  const chronicleData = useChronicleData()
 
   const lastUpdated = data.generatedAt
     ? new Date(data.generatedAt).toLocaleDateString() + ' ' + new Date(data.generatedAt).toLocaleTimeString()
@@ -32,11 +36,10 @@ export default function AppShell() {
       </div>
 
       <main className="max-w-7xl mx-auto p-6">
-        {activeTab === 'Code Stats' ? (
-          <CodeStatsView data={data} />
-        ) : (
-          <PlaceholderView tabName={activeTab} />
-        )}
+        {activeTab === 'Code Stats' && <CodeStatsView data={data} />}
+        {activeTab === 'Timeline' && <TimelineView data={chronicleData} />}
+        {activeTab === 'Chapters' && <ChaptersView data={chronicleData} />}
+        {activeTab === 'Growth' && <GrowthView data={chronicleData} />}
       </main>
 
       <footer className="border-t border-gray-700 mt-12 py-6 text-center text-gray-500 text-sm">

@@ -8,7 +8,14 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "collect": "node --env-file=.env scripts/collect-stats.js"
+    "collect": "node --env-file=.env scripts/collect-stats.js",
+    "extract": "node --env-file=.env scripts/extract-prs.js",
+    "build-data": "node --env-file=.env scripts/build-data.js",
+    "extract-orphans": "node --env-file=.env scripts/extract-orphan-commits.js",
+    "generate-entries": "node scripts/generate-entries.js",
+    "generate-orphans": "node scripts/generate-orphan-entries.js",
+    "generate-doc": "node scripts/generate-doc.js",
+    "update": "node --env-file=.env scripts/update.js"
   },
   "dependencies": {
     "react": "^19.2.0",

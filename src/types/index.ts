@@ -37,3 +37,86 @@ export interface ComparisonResult {
   toLines: number
   delta: number
 }
+
+// Chronicle types
+
+export type EntryCategory =
+  | 'frontend'
+  | 'backend'
+  | 'processing'
+  | 'infrastructure'
+  | 'ai'
+  | 'design'
+  | 'docs'
+  | 'devops'
+
+export type EntrySignificance = 'major' | 'moderate' | 'minor'
+
+export interface ChronicleEntry {
+  id: string
+  prNumber: number | null
+  date: string
+  mergedAt: string
+  title: string
+  branch: string
+  summary: string
+  detail: string
+  category: EntryCategory
+  tags: string[]
+  significance: EntrySignificance
+  stats: {
+    additions: number
+    deletions: number
+    changedFiles: number
+  }
+  filesChanged: {
+    path: string
+    additions: number
+    deletions: number
+  }[]
+  commitMessages: string[]
+}
+
+export interface ChroniclePhase {
+  id: string
+  title: string
+  subtitle: string
+  dateRange: {
+    start: string
+    end: string
+  }
+  narrative: string
+  entryIds: string[]
+  color: string
+}
+
+export interface CodeStatDay {
+  totalLines: number
+  totalFiles: number
+  byCategory: Record<string, { lines: number; files: number }>
+}
+
+export interface GrowthChartPoint {
+  date: string
+  totalLines: number
+  markerLines?: number
+  entryId?: string
+  entryTitle?: string
+  entrySummary?: string
+  entryCategory?: EntryCategory
+}
+
+export interface ChronicleData {
+  entries: ChronicleEntry[]
+  phases: ChroniclePhase[]
+  codeStats: Record<string, CodeStatDay>
+  metadata: {
+    generatedAt: string
+    totalEntries: number
+    dateRange: {
+      start: string
+      end: string
+    }
+    repo: string
+  }
+}
