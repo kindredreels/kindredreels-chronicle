@@ -16,11 +16,11 @@ export default function TimeSeriesChart({ data }: TimeSeriesChartProps) {
 
   return (
     <Card>
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between flex-wrap gap-2 mb-4">
         <h2 className="text-xl font-semibold">Lines of Code Over Time</h2>
         <PeriodToggle value={view} onChange={setView} />
       </div>
-      <div className="h-80">
+      <div className="h-56 sm:h-80">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={chartData}>
             <CartesianGrid strokeDasharray="3 3" stroke="#374151" />

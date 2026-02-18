@@ -75,3 +75,12 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* Hide scrollbar but keep scrollable */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

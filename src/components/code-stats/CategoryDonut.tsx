@@ -25,12 +25,12 @@ export default function CategoryDonut({ data }: CategoryDonutProps) {
   return (
     <Card>
       <h2 className="text-xl font-semibold mb-4">Category Breakdown</h2>
-      <div className="h-64">
+      <div className="h-48 sm:h-64">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
               data={chartData}
-              cx="40%"
+              cx="50%"
               cy="50%"
               innerRadius={50}
               outerRadius={90}
@@ -47,9 +47,9 @@ export default function CategoryDonut({ data }: CategoryDonutProps) {
               formatter={(value: number, name: string) => [formatNumber(value) + ' lines', name]}
             />
             <Legend
-              layout="vertical"
-              align="right"
-              verticalAlign="middle"
+              layout="horizontal"
+              align="center"
+              verticalAlign="bottom"
               wrapperStyle={{ color: '#E5E7EB', fontSize: '13px' }}
             />
           </PieChart>

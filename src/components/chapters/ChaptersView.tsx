@@ -23,7 +23,7 @@ export default function ChaptersView({ data }: ChaptersViewProps) {
   }
 
   return (
-    <div className="flex gap-6">
+    <div className="flex flex-col lg:flex-row gap-6">
       <div className="w-70 shrink-0 hidden lg:block sticky top-4 self-start max-h-[calc(100vh-120px)] overflow-y-auto">
         <ChapterSidebar
           phases={data.phases}

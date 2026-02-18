@@ -95,7 +95,7 @@ export default function TimelineFilterBar({
           type="text"
           placeholder="Search entries..."
           onChange={handleSearch}
-          className="px-3 py-1 text-sm bg-gray-700 border border-gray-600 rounded text-gray-200 placeholder-gray-500 focus:outline-none focus:border-blue-500 w-48"
+          className="px-3 py-1 text-sm bg-gray-700 border border-gray-600 rounded text-gray-200 placeholder-gray-500 focus:outline-none focus:border-blue-500 w-full sm:w-48"
         />
       </div>
     </div>

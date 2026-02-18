@@ -5,11 +5,12 @@ import CodeStatsView from '../code-stats/CodeStatsView'
 import TimelineView from '../timeline/TimelineView'
 import ChaptersView from '../chapters/ChaptersView'
 import GrowthView from '../growth/GrowthView'
+import OverviewView from '../overview/OverviewView'
 import { useSnapshotsData } from '../../hooks/useSnapshotsData'
 import { useChronicleData } from '../../hooks/useChronicleData'
 
 export default function AppShell() {
-  const [activeTab, setActiveTab] = useState<Tab>('Code Stats')
+  const [activeTab, setActiveTab] = useState<Tab>('Overview')
   const data = useSnapshotsData()
   const chronicleData = useChronicleData()
 
@@ -19,26 +20,27 @@ export default function AppShell() {
 
   return (
     <div className="bg-gray-900 text-white min-h-screen">
-      <header className="bg-gray-800 border-b border-gray-700 px-6 py-4">
+      <header className="bg-gray-800 border-b border-gray-700 px-4 py-3 sm:px-6 sm:py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold">Kindred Reels Chronicle</h1>
+            <h1 className="text-xl sm:text-2xl font-bold">Kindred Reels Chronicle</h1>
             <p className="text-gray-400 text-sm">Codebase analytics &amp; storytelling</p>
           </div>
           {lastUpdated && (
-            <div className="text-gray-500 text-sm">Last updated: {lastUpdated}</div>
+            <div className="hidden sm:block text-gray-500 text-sm">Last updated: {lastUpdated}</div>
           )}
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-6 pt-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-4">
         <TabBar activeTab={activeTab} onTabChange={setActiveTab} />
       </div>
 
-      <main className="max-w-7xl mx-auto p-6">
+      <main className="max-w-7xl mx-auto p-4 sm:p-6">
+        {activeTab === 'Overview' && <OverviewView data={data} chronicleData={chronicleData} />}
         {activeTab === 'Code Stats' && <CodeStatsView data={data} />}
         {activeTab === 'Timeline' && <TimelineView data={chronicleData} />}
-        {activeTab === 'Chapters' && <ChaptersView data={chronicleData} />}
+        {activeTab === 'Story' && <ChaptersView data={chronicleData} />}
         {activeTab === 'Growth' && <GrowthView data={chronicleData} />}
       </main>
 

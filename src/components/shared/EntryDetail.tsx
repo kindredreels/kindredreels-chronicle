@@ -83,7 +83,7 @@ export default function EntryDetail({ entry }: EntryDetailProps) {
             {showFiles ? '▾' : '▸'} Files changed ({entry.filesChanged.length})
           </button>
           {showFiles && (
-            <div className="mt-2 max-h-64 overflow-y-auto">
+            <div className="mt-2 max-h-64 overflow-y-auto overflow-x-auto">
               <table className="w-full text-xs">
                 <thead>
                   <tr className="text-gray-500 border-b border-gray-700">

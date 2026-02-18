@@ -45,7 +45,7 @@ export default function GrowthChart({ data, phases, onBrushChange, onMarkerClick
           </span>
         ))}
       </div>
-      <div className="h-96">
+      <div className="h-64 sm:h-96">
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart data={data} margin={{ top: 20, right: 10, bottom: 10, left: 10 }}>
             <defs>
@@ -151,6 +151,7 @@ export default function GrowthChart({ data, phases, onBrushChange, onMarkerClick
               height={30}
               stroke="#4B5563"
               fill="#1F2937"
+              className="hidden sm:block"
               tickFormatter={(d: string) => {
                 const parts = d.split('-')
                 return `${parts[1]}/${parts[2]}`
