@@ -1,0 +1,16 @@
+{
+  "name": "code-chronicle",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Codebase analytics dashboard for Kindred Reels",
+  "scripts": {
+    "collect": "node src/collector.js",
+    "serve": "npx serve . -p 3002",
+    "update-and-serve": "npm run collect && npm run serve"
+  },
+  "keywords": ["analytics", "git", "visualization"],
+  "license": "ISC",
+  "devDependencies": {
+    "serve": "^14.2.0"
+  }
+}
