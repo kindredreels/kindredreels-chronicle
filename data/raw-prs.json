@@ -15170,5 +15170,715 @@
         "oid": "8602819665563dfe140f368ebd7e5bac4ee67956"
       }
     ]
+  },
+  {
+    "additions": 1200,
+    "body": "…ader buttons\r\n\r\nMerge Timeline Settings into Project Settings as collapsible sections (Video Settings, Sections). Remove dead TimelineSettingsModal wiring from VideoBuilder. Remove AI Producer route/tab, blocked photos section, visual signature display, and stale spec docs. Make Edit button primary blue CTA with larger sizing.",
+    "changedFiles": 15,
+    "deletions": 2166,
+    "files": [
+      {
+        "path": "docs/CREATE_TIMELINE_FLOW_IMPROVEMENTS.md",
+        "additions": 0,
+        "deletions": 177
+      },
+      {
+        "path": "docs/SPEC_music_system_overhaul.md",
+        "additions": 0,
+        "deletions": 506
+      },
+      {
+        "path": "docs/UNIFIED_FLOW_PROMPT_REFACTOR.md",
+        "additions": 0,
+        "deletions": 397
+      },
+      {
+        "path": "docs/ff-ui-cleanup-spec.md",
+        "additions": 205,
+        "deletions": 0
+      },
+      {
+        "path": "docs/progress.md",
+        "additions": 31,
+        "deletions": 0
+      },
+      {
+        "path": "docs/visual-clustering.md",
+        "additions": 0,
+        "deletions": 494
+      },
+      {
+        "path": "frontend/src/App.tsx",
+        "additions": 0,
+        "deletions": 2
+      },
+      {
+        "path": "frontend/src/components/modals/ProjectSettingsModal.tsx",
+        "additions": 888,
+        "deletions": 253
+      },
+      {
+        "path": "frontend/src/components/modals/StandalonePhotoModal.tsx",
+        "additions": 0,
+        "deletions": 6
+      },
+      {
+        "path": "frontend/src/components/photos/PhotoLibrary.tsx",
+        "additions": 48,
+        "deletions": 178
+      },
+      {
+        "path": "frontend/src/components/video/VideoBuilder.tsx",
+        "additions": 20,
+        "deletions": 79
+      },
+      {
+        "path": "frontend/src/pages/ProjectDashboard/PhotoLibraryTab.tsx",
+        "additions": 3,
+        "deletions": 30
+      },
+      {
+        "path": "frontend/src/pages/ProjectDashboard/ProjectLayout.tsx",
+        "additions": 5,
+        "deletions": 39
+      },
+      {
+        "path": "frontend/src/pages/ProjectDashboard/TimelineTab.tsx",
+        "additions": 0,
+        "deletions": 4
+      },
+      {
+        "path": "frontend/src/pages/ProjectDashboard/index.ts",
+        "additions": 0,
+        "deletions": 1
+      }
+    ],
+    "headRefName": "dimitri/ui-broken-feature-cleanup",
+    "labels": [],
+    "mergedAt": "2026-02-19T19:13:19Z",
+    "number": 122,
+    "title": "feat: consolidate settings modals, remove broken features, restyle he…",
+    "commits": [
+      {
+        "authoredDate": "2026-02-19T19:10:57Z",
+        "authors": [
+          {
+            "email": "dbilenkin@gmail.com",
+            "id": "MDQ6VXNlcjExMTA3NTQ=",
+            "login": "dbilenkin",
+            "name": "Dimitri Bilenkin"
+          },
+          {
+            "email": "noreply@anthropic.com",
+            "id": "MDQ6VXNlcjgxODQ3",
+            "login": "claude",
+            "name": "Claude Opus 4.6"
+          }
+        ],
+        "committedDate": "2026-02-19T19:10:57Z",
+        "messageBody": "…ader buttons\n\nMerge Timeline Settings into Project Settings as collapsible sections (Video Settings, Sections).\nRemove dead TimelineSettingsModal wiring from VideoBuilder. Remove AI Producer route/tab,\nblocked photos section, visual signature display, and stale spec docs. Make Edit button\nprimary blue CTA with larger sizing.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+        "messageHeadline": "feat: consolidate settings modals, remove broken features, restyle he…",
+        "oid": "a128df782a4801e2542adab18146510c2165dad5"
+      }
+    ]
+  },
+  {
+    "additions": 2250,
+    "body": "…ated mobile timeline, inline settings\r\n\r\n- Add ProjectSidebar (full-height, collapsible, logo, nav items with counts)\r\n- Add MobileBottomNav (fixed bottom tabs: Photos, Timeline, Videos, Settings)\r\n- Add MobileTimelineView (read-only timeline with photo grids, section-scoped lightbox, Generate Video)\r\n- Add SettingsTab with inline project details, video settings, sections management, danger zone\r\n- Redesign Video Settings: 16:9 cover photo preview, fix broken cover photo picker (switch from usePhotos to useVideoBuilder for correct section-photo mapping)\r\n- Remove all mobile conditionals from VideoBuilder (clean desktop-only component)\r\n- Full-viewport project workspace layout (no navbar/footer inside projects)\r\n- Route renames: /library → /photos, /contributors → /people\r\n- Add useIsMobile hook, viewport-fit=cover for iPhone safe areas\r\n- Update README.md and frontend/README.md with new routes and architecture",
+    "changedFiles": 18,
+    "deletions": 250,
+    "files": [
+      {
+        "path": "README.md",
+        "additions": 13,
+        "deletions": 10
+      },
+      {
+        "path": "docs/navigation-overhaul-spec.md",
+        "additions": 325,
+        "deletions": 0
+      },
+      {
+        "path": "docs/progress.md",
+        "additions": 135,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/README.md",
+        "additions": 27,
+        "deletions": 12
+      },
+      {
+        "path": "frontend/index.html",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "frontend/src/App.tsx",
+        "additions": 22,
+        "deletions": 3
+      },
+      {
+        "path": "frontend/src/components/layout/MobileBottomNav.tsx",
+        "additions": 39,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/components/layout/ProjectSidebar.tsx",
+        "additions": 153,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/components/layout/index.ts",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/components/video/MobileTimelineView.tsx",
+        "additions": 330,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/components/video/index.ts",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/hooks/index.ts",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/hooks/useMediaQuery.ts",
+        "additions": 22,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/pages/PhotoDetail.tsx",
+        "additions": 3,
+        "deletions": 3
+      },
+      {
+        "path": "frontend/src/pages/ProjectDashboard/ProjectLayout.tsx",
+        "additions": 76,
+        "deletions": 181
+      },
+      {
+        "path": "frontend/src/pages/ProjectDashboard/SettingsTab.tsx",
+        "additions": 1069,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/pages/ProjectDashboard/TimelineTab.tsx",
+        "additions": 29,
+        "deletions": 40
+      },
+      {
+        "path": "frontend/src/pages/ProjectDashboard/index.ts",
+        "additions": 1,
+        "deletions": 0
+      }
+    ],
+    "headRefName": "dimitri/sidebar-mobile",
+    "labels": [],
+    "mergedAt": "2026-02-20T02:20:40Z",
+    "number": 123,
+    "title": "feat: navigation overhaul — desktop sidebar, mobile bottom nav, dedic…",
+    "commits": [
+      {
+        "authoredDate": "2026-02-20T02:20:16Z",
+        "authors": [
+          {
+            "email": "dbilenkin@gmail.com",
+            "id": "MDQ6VXNlcjExMTA3NTQ=",
+            "login": "dbilenkin",
+            "name": "Dimitri Bilenkin"
+          },
+          {
+            "email": "noreply@anthropic.com",
+            "id": "MDQ6VXNlcjgxODQ3",
+            "login": "claude",
+            "name": "Claude Opus 4.6"
+          }
+        ],
+        "committedDate": "2026-02-20T02:20:16Z",
+        "messageBody": "…ated mobile timeline, inline settings\n\n- Add ProjectSidebar (full-height, collapsible, logo, nav items with counts)\n- Add MobileBottomNav (fixed bottom tabs: Photos, Timeline, Videos, Settings)\n- Add MobileTimelineView (read-only timeline with photo grids, section-scoped lightbox, Generate Video)\n- Add SettingsTab with inline project details, video settings, sections management, danger zone\n- Redesign Video Settings: 16:9 cover photo preview, fix broken cover photo picker (switch from usePhotos to useVideoBuilder for correct section-photo mapping)\n- Remove all mobile conditionals from VideoBuilder (clean desktop-only component)\n- Full-viewport project workspace layout (no navbar/footer inside projects)\n- Route renames: /library → /photos, /contributors → /people\n- Add useIsMobile hook, viewport-fit=cover for iPhone safe areas\n- Update README.md and frontend/README.md with new routes and architecture\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+        "messageHeadline": "feat: navigation overhaul — desktop sidebar, mobile bottom nav, dedic…",
+        "oid": "fa7a34955b9e3df86e706eae48190dfea1b6681b"
+      }
+    ]
+  },
+  {
+    "additions": 3782,
+    "body": "Adds full video sharing feature (Phases 1-4):\r\n- Public watch page at /watch/:shareCode with video player and download\r\n- ShareVideoModal with copy link, Web Share API, QR code, and download\r\n- YouTube OAuth integration (connect/disconnect/token refresh)\r\n- Async YouTube upload Lambda that streams S3→YouTube via resumable upload\r\n- YouTube upload panel in share modal with polling status\r\n- YouTube badge on video cards linking to uploaded videos\r\n- Updated README, API.md, and FLOWS.md with sharing documentation",
+    "changedFiles": 28,
+    "deletions": 21,
+    "files": [
+      {
+        "path": "README.md",
+        "additions": 45,
+        "deletions": 3
+      },
+      {
+        "path": "backend/serverless.yml",
+        "additions": 9,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/db/users.js",
+        "additions": 64,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/db/videos.js",
+        "additions": 203,
+        "deletions": 3
+      },
+      {
+        "path": "backend/src/handlers/userHandler.js",
+        "additions": 3,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/handlers/videoHandler.js",
+        "additions": 30,
+        "deletions": 4
+      },
+      {
+        "path": "backend/src/handlers/videoShareHandler.js",
+        "additions": 223,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/handlers/youtubeHandler.js",
+        "additions": 307,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/lambdas/youtubeUploadWorker.js",
+        "additions": 168,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/server.js",
+        "additions": 25,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/services/youtubeService.js",
+        "additions": 237,
+        "deletions": 0
+      },
+      {
+        "path": "docs/API.md",
+        "additions": 125,
+        "deletions": 0
+      },
+      {
+        "path": "docs/FLOWS.md",
+        "additions": 126,
+        "deletions": 1
+      },
+      {
+        "path": "docs/progress.md",
+        "additions": 90,
+        "deletions": 0
+      },
+      {
+        "path": "docs/share-feature-spec.md",
+        "additions": 868,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/package-lock.json",
+        "additions": 33,
+        "deletions": 4
+      },
+      {
+        "path": "frontend/package.json",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/App.tsx",
+        "additions": 6,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/components/modals/ShareVideoModal.tsx",
+        "additions": 301,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/components/video/VideosList.tsx",
+        "additions": 59,
+        "deletions": 2
+      },
+      {
+        "path": "frontend/src/components/video/YouTubeUploadPanel.tsx",
+        "additions": 323,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/pages/ProjectDashboard/VideosTab.tsx",
+        "additions": 3,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/pages/WatchVideo.tsx",
+        "additions": 112,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/pages/YouTubeCallback.tsx",
+        "additions": 175,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/utils/api/index.ts",
+        "additions": 14,
+        "deletions": 2
+      },
+      {
+        "path": "frontend/src/utils/api/types.ts",
+        "additions": 25,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/utils/api/videos.ts",
+        "additions": 62,
+        "deletions": 1
+      },
+      {
+        "path": "frontend/src/utils/api/youtube.ts",
+        "additions": 144,
+        "deletions": 0
+      }
+    ],
+    "headRefName": "dimitri/video-sharing",
+    "labels": [],
+    "mergedAt": "2026-02-21T04:12:36Z",
+    "number": 124,
+    "title": "feat: video sharing with public watch page, QR codes, and YouTube upload",
+    "commits": [
+      {
+        "authoredDate": "2026-02-21T04:11:31Z",
+        "authors": [
+          {
+            "email": "dbilenkin@gmail.com",
+            "id": "MDQ6VXNlcjExMTA3NTQ=",
+            "login": "dbilenkin",
+            "name": "Dimitri Bilenkin"
+          },
+          {
+            "email": "noreply@anthropic.com",
+            "id": "MDQ6VXNlcjgxODQ3",
+            "login": "claude",
+            "name": "Claude Opus 4.6"
+          }
+        ],
+        "committedDate": "2026-02-21T04:11:31Z",
+        "messageBody": "Adds full video sharing feature (Phases 1-4):\n- Public watch page at /watch/:shareCode with video player and download\n- ShareVideoModal with copy link, Web Share API, QR code, and download\n- YouTube OAuth integration (connect/disconnect/token refresh)\n- Async YouTube upload Lambda that streams S3→YouTube via resumable upload\n- YouTube upload panel in share modal with polling status\n- YouTube badge on video cards linking to uploaded videos\n- Updated README, API.md, and FLOWS.md with sharing documentation\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+        "messageHeadline": "feat: video sharing with public watch page, QR codes, and YouTube upload",
+        "oid": "fd56792cbdda1096075d40789313c18bf7831fa1"
+      }
+    ]
+  },
+  {
+    "additions": 799,
+    "body": "Users can now specify section count (1-8) and per-section descriptions to guide the AI architect. Collapsible panel in Step 3 of the modal — full version for 40+ photos, simpler single-description for 20-39. Backend validates sectionConfig, threads it through the architect prompt, and respects user's exact count (including allowing 2 sections).",
+    "changedFiles": 11,
+    "deletions": 159,
+    "files": [
+      {
+        "path": "backend/src/handlers/eventOrganizerHandler.js",
+        "additions": 19,
+        "deletions": 3
+      },
+      {
+        "path": "backend/src/services/eventOrganizer/constants.js",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/services/eventOrganizer/organizeStage.js",
+        "additions": 277,
+        "deletions": 45
+      },
+      {
+        "path": "docs/FLOWS.md",
+        "additions": 24,
+        "deletions": 3
+      },
+      {
+        "path": "docs/PARKING_LOT.md",
+        "additions": 50,
+        "deletions": 100
+      },
+      {
+        "path": "docs/progress.md",
+        "additions": 22,
+        "deletions": 0
+      },
+      {
+        "path": "docs/section-customization-spec.md",
+        "additions": 215,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/components/modals/CreateTimelineModal.tsx",
+        "additions": 161,
+        "deletions": 6
+      },
+      {
+        "path": "frontend/src/utils/api/eventOrganizer.ts",
+        "additions": 7,
+        "deletions": 1
+      },
+      {
+        "path": "processing/src/ec2_handler.py",
+        "additions": 15,
+        "deletions": 0
+      },
+      {
+        "path": "processing/src/process_queue.py",
+        "additions": 8,
+        "deletions": 0
+      }
+    ],
+    "headRefName": "dimitri/video-sections",
+    "labels": [],
+    "mergedAt": "2026-02-21T17:54:32Z",
+    "number": 125,
+    "title": "feat: optional section customization in Create Timeline flow",
+    "commits": [
+      {
+        "authoredDate": "2026-02-21T17:53:35Z",
+        "authors": [
+          {
+            "email": "dbilenkin@gmail.com",
+            "id": "MDQ6VXNlcjExMTA3NTQ=",
+            "login": "dbilenkin",
+            "name": "Dimitri Bilenkin"
+          },
+          {
+            "email": "noreply@anthropic.com",
+            "id": "MDQ6VXNlcjgxODQ3",
+            "login": "claude",
+            "name": "Claude Opus 4.6"
+          }
+        ],
+        "committedDate": "2026-02-21T17:53:35Z",
+        "messageBody": "Users can now specify section count (1-8) and per-section descriptions\nto guide the AI architect. Collapsible panel in Step 3 of the modal —\nfull version for 40+ photos, simpler single-description for 20-39.\nBackend validates sectionConfig, threads it through the architect prompt,\nand respects user's exact count (including allowing 2 sections).\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+        "messageHeadline": "feat: optional section customization in Create Timeline flow",
+        "oid": "e2521a212bde46887d2031da130028e6f352712d"
+      }
+    ]
+  },
+  {
+    "additions": 3665,
+    "body": "…, face matching\r\n\r\nReintegrates tribute/multi-person face recognition from the AI Producer into the main Create Timeline flow with major cost optimizations.\r\n\r\nPhase 1 — Deferred Face Detection:\r\n- Skip all Rekognition at upload time for all projects (~60-80% cost reduction)\r\n- Face detection now only at video generation (Ken Burns) or analysis (tribute)\r\n\r\nPhase 2 — Tribute Question + People Setup:\r\n- \"Is this a tribute?\" question in Create Timeline Step 1\r\n- Full-screen TributeSetup overlay: two-panel people management with form fields, reference photo picker, and inline face identification via FacePicker\r\n- Incremental face identification (only new photos re-identified)\r\n- Shared role definitions (honoree/featured/include) in personRoles.ts\r\n- TributePeopleSection for Settings tab display\r\n- Backend: birthYear on person update, face re-identification support\r\n\r\nPhase 3 — Face Matching in Analysis Pipeline:\r\n- faceMatchingStage: batch DetectFaces + SearchFacesByImage on candidate photos\r\n- chronologyStep: AI-powered date estimation and age-based ordering for scans\r\n- dateUtils: shared flexible date parsing\r\n- Atomic draft transitions to prevent concurrent apply race conditions\r\n- Analysis results show per-person face match counts in modal\r\n\r\nAlso: ReferencePhotoPicker scroll-to support, useUngroupMemory hook, elapsed timer during processing, updated docs (FLOWS.md, progress.md, README).",
+    "changedFiles": 34,
+    "deletions": 1107,
+    "files": [
+      {
+        "path": "backend/src/db/organizationDrafts.js",
+        "additions": 24,
+        "deletions": 7
+      },
+      {
+        "path": "backend/src/db/projects.js",
+        "additions": 4,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/handlers/eventOrganizerHandler.js",
+        "additions": 76,
+        "deletions": 11
+      },
+      {
+        "path": "backend/src/handlers/projectHandler.js",
+        "additions": 8,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/handlers/projectPersonHandler.js",
+        "additions": 24,
+        "deletions": 8
+      },
+      {
+        "path": "backend/src/lambdas/faceDetection.js",
+        "additions": 7,
+        "deletions": 65
+      },
+      {
+        "path": "backend/src/lambdas/imageProcessor.py",
+        "additions": 15,
+        "deletions": 13
+      },
+      {
+        "path": "backend/src/lambdas/photoProcessingWorker.js",
+        "additions": 11,
+        "deletions": 51
+      },
+      {
+        "path": "backend/src/services/aiProducer/promptBuilders.js",
+        "additions": 2,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/services/aiProducer/stages/chronologyStage.js",
+        "additions": 4,
+        "deletions": 115
+      },
+      {
+        "path": "backend/src/services/eventOrganizer/chronologyStep.js",
+        "additions": 240,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/services/eventOrganizer/faceMatchingStage.js",
+        "additions": 215,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/services/eventOrganizer/index.js",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/services/eventOrganizer/organizeStage.js",
+        "additions": 459,
+        "deletions": 167
+      },
+      {
+        "path": "backend/src/services/eventOrganizer/promptBuilders.js",
+        "additions": 32,
+        "deletions": 75
+      },
+      {
+        "path": "backend/src/shared/dateUtils.js",
+        "additions": 121,
+        "deletions": 0
+      },
+      {
+        "path": "docs/FLOWS.md",
+        "additions": 101,
+        "deletions": 27
+      },
+      {
+        "path": "docs/progress.md",
+        "additions": 77,
+        "deletions": 523
+      },
+      {
+        "path": "docs/tribute-flow-deferred-rekognition-spec.md",
+        "additions": 727,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/README.md",
+        "additions": 13,
+        "deletions": 1
+      },
+      {
+        "path": "frontend/src/components/aiProducer/ReferencePhotoPicker.tsx",
+        "additions": 56,
+        "deletions": 11
+      },
+      {
+        "path": "frontend/src/components/modals/CreateTimelineModal.tsx",
+        "additions": 170,
+        "deletions": 20
+      },
+      {
+        "path": "frontend/src/components/modals/TributeSetup.tsx",
+        "additions": 743,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/components/people/TributePeopleSection.tsx",
+        "additions": 330,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/components/people/index.ts",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/components/video/VideoBuilder.tsx",
+        "additions": 58,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/hooks/mutations/index.ts",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/hooks/mutations/useUngroupMemory.ts",
+        "additions": 77,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/pages/ProjectDashboard/ContributorsTab.tsx",
+        "additions": 22,
+        "deletions": 6
+      },
+      {
+        "path": "frontend/src/pages/ProjectDashboard/ProjectLayout.tsx",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "frontend/src/utils/api/eventOrganizer.ts",
+        "additions": 17,
+        "deletions": 4
+      },
+      {
+        "path": "frontend/src/utils/api/projects.ts",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/utils/api/types.ts",
+        "additions": 10,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/utils/personRoles.ts",
+        "additions": 15,
+        "deletions": 0
+      }
+    ],
+    "headRefName": "dimitri/tribute-reintegration",
+    "labels": [],
+    "mergedAt": "2026-02-24T04:18:55Z",
+    "number": 126,
+    "title": "feat: tribute flow reintegration — deferred Rekognition, people setup…",
+    "commits": [
+      {
+        "authoredDate": "2026-02-24T04:18:13Z",
+        "authors": [
+          {
+            "email": "dbilenkin@gmail.com",
+            "id": "MDQ6VXNlcjExMTA3NTQ=",
+            "login": "dbilenkin",
+            "name": "Dimitri Bilenkin"
+          },
+          {
+            "email": "noreply@anthropic.com",
+            "id": "MDQ6VXNlcjgxODQ3",
+            "login": "claude",
+            "name": "Claude Opus 4.6"
+          }
+        ],
+        "committedDate": "2026-02-24T04:18:13Z",
+        "messageBody": "…, face matching\n\nReintegrates tribute/multi-person face recognition from the AI Producer into the\nmain Create Timeline flow with major cost optimizations.\n\nPhase 1 — Deferred Face Detection:\n- Skip all Rekognition at upload time for all projects (~60-80% cost reduction)\n- Face detection now only at video generation (Ken Burns) or analysis (tribute)\n\nPhase 2 — Tribute Question + People Setup:\n- \"Is this a tribute?\" question in Create Timeline Step 1\n- Full-screen TributeSetup overlay: two-panel people management with form fields,\n  reference photo picker, and inline face identification via FacePicker\n- Incremental face identification (only new photos re-identified)\n- Shared role definitions (honoree/featured/include) in personRoles.ts\n- TributePeopleSection for Settings tab display\n- Backend: birthYear on person update, face re-identification support\n\nPhase 3 — Face Matching in Analysis Pipeline:\n- faceMatchingStage: batch DetectFaces + SearchFacesByImage on candidate photos\n- chronologyStep: AI-powered date estimation and age-based ordering for scans\n- dateUtils: shared flexible date parsing\n- Atomic draft transitions to prevent concurrent apply race conditions\n- Analysis results show per-person face match counts in modal\n\nAlso: ReferencePhotoPicker scroll-to support, useUngroupMemory hook,\nelapsed timer during processing, updated docs (FLOWS.md, progress.md, README).\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+        "messageHeadline": "feat: tribute flow reintegration — deferred Rekognition, people setup…",
+        "oid": "9bfc3325119545aa42e4cdd4dabeff043a482751"
+      }
+    ]
   }
 ]

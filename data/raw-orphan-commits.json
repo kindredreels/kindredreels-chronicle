@@ -17767,5 +17767,155 @@
         "deletions": 180
       }
     ]
+  },
+  {
+    "sha": "b147bd86f60a761a9e135464e912d4e4b6427510",
+    "date": "2026-02-20T08:48:54-05:00",
+    "headline": "fix: resolve git merge conflict markers in imageProcessor.py",
+    "body": "Unresolved stash pop left <<<<<<< / ======= / >>>>>>> markers in the\nEXIF extraction function, causing a Python SyntaxError that crashed\nevery imageProcessor Lambda invocation in prod (200 photos failed).\n\nMerged both sides: IFD enum approach with GPS sub-IFD + HEIC fallback.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+    "stats": {
+      "additions": 3,
+      "deletions": 23,
+      "changedFiles": 1
+    },
+    "filesChanged": [
+      {
+        "path": "backend/src/lambdas/imageProcessor.py",
+        "additions": 3,
+        "deletions": 23
+      }
+    ]
+  },
+  {
+    "sha": "c437f3d8e2f2bcb7e6bf4ca5dc01cd8830efe8e6",
+    "date": "2026-02-20T13:50:45-05:00",
+    "headline": "fix: prevent ghost photo records + mobile modal scroll issues",
+    "body": "Backend: Add ghost record guards to updatePhoto() and getPhotoById()\nto prevent Gemini-hallucinated photo IDs from creating phantom DynamoDB\nrecords that break video generation. Closes the gap where updatePhoto\nused DynamoDB UpdateItem (which creates records) without checking\nexistence first, while updatePhotoAIMetadata already had this guard.\n\nFrontend: Add mb-16 on mobile to GenerateVideoModal and ThemeBrowser\nso buttons aren't hidden behind the bottom nav bar. Disable theme\npreview on mobile (not rendering correctly).\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+    "stats": {
+      "additions": 25,
+      "deletions": 3,
+      "changedFiles": 3
+    },
+    "filesChanged": [
+      {
+        "path": "backend/src/db/photos.js",
+        "additions": 20,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/components/modals/GenerateVideoModal.tsx",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "frontend/src/components/video/ThemeBrowser.tsx",
+        "additions": 4,
+        "deletions": 2
+      }
+    ]
+  },
+  {
+    "sha": "382a74d14e8c5bfaae237b4befd03e498e34740f",
+    "date": "2026-02-20T14:00:50-05:00",
+    "headline": "fix: use calc-based max-height for mobile modals instead of margin",
+    "body": "mb-16 doesn't work because items-center re-centers the modal. Instead,\ncap modal height to calc(100vh - 5rem) on mobile to account for the\nbottom nav bar, so buttons are always reachable.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+    "stats": {
+      "additions": 2,
+      "deletions": 2,
+      "changedFiles": 2
+    },
+    "filesChanged": [
+      {
+        "path": "frontend/src/components/modals/GenerateVideoModal.tsx",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "frontend/src/components/video/ThemeBrowser.tsx",
+        "additions": 1,
+        "deletions": 1
+      }
+    ]
+  },
+  {
+    "sha": "e14230c9e5ce1ea07a2dd244a628f24db5b76a9d",
+    "date": "2026-02-20T17:36:03-05:00",
+    "headline": "fix: use dvh for viewport height to fix mobile browser chrome overlap",
+    "body": "100vh on mobile browsers (Chrome/Safari iOS) includes the area behind\nthe URL bar and bottom toolbar, making buttons unreachable. Switch to\n100dvh via CSS custom property --app-height with -webkit-fill-available\nfallback. Applied to app layout, project workspace, and modal max-heights.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+    "stats": {
+      "additions": 16,
+      "deletions": 5,
+      "changedFiles": 5
+    },
+    "filesChanged": [
+      {
+        "path": "frontend/src/App.tsx",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "frontend/src/components/modals/GenerateVideoModal.tsx",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "frontend/src/components/video/ThemeBrowser.tsx",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "frontend/src/index.css",
+        "additions": 11,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/pages/ProjectDashboard/ProjectLayout.tsx",
+        "additions": 2,
+        "deletions": 2
+      }
+    ]
+  },
+  {
+    "sha": "a60eb40c7c6dcac3c280e810b2bc187aa4cfad89",
+    "date": "2026-02-20T18:19:42-05:00",
+    "headline": "fix: mobile modal buttons hidden behind bottom nav and browser chrome",
+    "body": "- Add useViewportHeight hook that sets --app-height to window.innerHeight\n  (only reliable way to get actual visible viewport on iOS Safari)\n- On mobile, shift modal containers above MobileBottomNav by setting\n  bottom: var(--bottom-nav-h) on the fixed overlay\n- Restructure GenerateVideoModal to flex layout with sticky footer buttons\n  outside the scrollable content area\n- Add --bottom-nav-h CSS variable (56px + safe-area-inset-bottom)\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+    "stats": {
+      "additions": 67,
+      "deletions": 14,
+      "changedFiles": 6
+    },
+    "filesChanged": [
+      {
+        "path": "frontend/src/App.tsx",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/components/modals/GenerateVideoModal.tsx",
+        "additions": 27,
+        "deletions": 12
+      },
+      {
+        "path": "frontend/src/components/video/ThemeBrowser.tsx",
+        "additions": 9,
+        "deletions": 2
+      },
+      {
+        "path": "frontend/src/hooks/index.ts",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/hooks/useViewportHeight.ts",
+        "additions": 25,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/index.css",
+        "additions": 2,
+        "deletions": 0
+      }
+    ]
   }
 ]
