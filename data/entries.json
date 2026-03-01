@@ -17179,5 +17179,1657 @@
       "getting more exif changes",
       "removed code-chronicle from main repo"
     ]
+  },
+  {
+    "id": "pr-122",
+    "prNumber": 122,
+    "date": "2026-02-19",
+    "mergedAt": "2026-02-19T19:13:19Z",
+    "title": "feat: consolidate settings modals, remove broken features, restyle he…",
+    "branch": "dimitri/ui-broken-feature-cleanup",
+    "summary": "Consolidated settings modals, removed dead features, and restyled header buttons",
+    "detail": "Merged Timeline Settings into Project Settings as collapsible sections (Video Settings, Sections). Removed dead code including the AI Producer route/tab, blocked photos section, visual signature display, and stale spec docs. Restyled the Edit button as the primary blue CTA with larger sizing. A net deletion of ~1,000 lines — focused cleanup that removed wiring for features that had been superseded.",
+    "category": "frontend",
+    "tags": [
+      "settings-consolidation",
+      "dead-code-removal",
+      "UX-cleanup"
+    ],
+    "significance": "moderate",
+    "stats": {
+      "additions": 1200,
+      "deletions": 2166,
+      "changedFiles": 15
+    },
+    "filesChanged": [
+      {
+        "path": "docs/CREATE_TIMELINE_FLOW_IMPROVEMENTS.md",
+        "additions": 0,
+        "deletions": 177
+      },
+      {
+        "path": "docs/SPEC_music_system_overhaul.md",
+        "additions": 0,
+        "deletions": 506
+      },
+      {
+        "path": "docs/UNIFIED_FLOW_PROMPT_REFACTOR.md",
+        "additions": 0,
+        "deletions": 397
+      },
+      {
+        "path": "docs/ff-ui-cleanup-spec.md",
+        "additions": 205,
+        "deletions": 0
+      },
+      {
+        "path": "docs/progress.md",
+        "additions": 31,
+        "deletions": 0
+      },
+      {
+        "path": "docs/visual-clustering.md",
+        "additions": 0,
+        "deletions": 494
+      },
+      {
+        "path": "frontend/src/App.tsx",
+        "additions": 0,
+        "deletions": 2
+      },
+      {
+        "path": "frontend/src/components/modals/ProjectSettingsModal.tsx",
+        "additions": 888,
+        "deletions": 253
+      },
+      {
+        "path": "frontend/src/components/modals/StandalonePhotoModal.tsx",
+        "additions": 0,
+        "deletions": 6
+      },
+      {
+        "path": "frontend/src/components/photos/PhotoLibrary.tsx",
+        "additions": 48,
+        "deletions": 178
+      },
+      {
+        "path": "frontend/src/components/video/VideoBuilder.tsx",
+        "additions": 20,
+        "deletions": 79
+      },
+      {
+        "path": "frontend/src/pages/ProjectDashboard/PhotoLibraryTab.tsx",
+        "additions": 3,
+        "deletions": 30
+      },
+      {
+        "path": "frontend/src/pages/ProjectDashboard/ProjectLayout.tsx",
+        "additions": 5,
+        "deletions": 39
+      },
+      {
+        "path": "frontend/src/pages/ProjectDashboard/TimelineTab.tsx",
+        "additions": 0,
+        "deletions": 4
+      },
+      {
+        "path": "frontend/src/pages/ProjectDashboard/index.ts",
+        "additions": 0,
+        "deletions": 1
+      }
+    ],
+    "commitMessages": [
+      "feat: consolidate settings modals, remove broken features, restyle he…\n\n…ader buttons\n\nMerge Timeline Settings into Project Settings as collapsible sections (Video Settings, Sections).\nRemove dead TimelineSettingsModal wiring from VideoBuilder. Remove AI Producer route/tab,\nblocked photos section, visual signature display, and stale spec docs. Make Edit button\nprimary blue CTA with larger sizing.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+    ]
+  },
+  {
+    "id": "pr-123",
+    "prNumber": 123,
+    "date": "2026-02-20",
+    "mergedAt": "2026-02-20T02:20:40Z",
+    "title": "feat: navigation overhaul — desktop sidebar, mobile bottom nav, dedic…",
+    "branch": "dimitri/sidebar-mobile",
+    "summary": "Navigation overhaul — desktop sidebar, mobile bottom nav, and dedicated mobile timeline",
+    "detail": "Complete navigation redesign with a full-height collapsible ProjectSidebar for desktop and a fixed MobileBottomNav with tabs for Photos, Timeline, Videos, and Settings. Added a dedicated MobileTimelineView with read-only timeline, photo grids, section-scoped lightbox, and Generate Video button. Created an inline SettingsTab replacing modal-based settings. Redesigned Video Settings with 16:9 cover photo preview and fixed the broken cover photo picker. Removed all mobile conditionals from VideoBuilder for a clean desktop-only component. Full-viewport project workspace layout with no navbar/footer inside projects. Route renames from /library to /photos and /contributors to /people.",
+    "category": "frontend",
+    "tags": [
+      "sidebar",
+      "mobile-nav",
+      "mobile-timeline",
+      "navigation-redesign",
+      "responsive"
+    ],
+    "significance": "major",
+    "stats": {
+      "additions": 2250,
+      "deletions": 250,
+      "changedFiles": 18
+    },
+    "filesChanged": [
+      {
+        "path": "README.md",
+        "additions": 13,
+        "deletions": 10
+      },
+      {
+        "path": "docs/navigation-overhaul-spec.md",
+        "additions": 325,
+        "deletions": 0
+      },
+      {
+        "path": "docs/progress.md",
+        "additions": 135,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/README.md",
+        "additions": 27,
+        "deletions": 12
+      },
+      {
+        "path": "frontend/index.html",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "frontend/src/App.tsx",
+        "additions": 22,
+        "deletions": 3
+      },
+      {
+        "path": "frontend/src/components/layout/MobileBottomNav.tsx",
+        "additions": 39,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/components/layout/ProjectSidebar.tsx",
+        "additions": 153,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/components/layout/index.ts",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/components/video/MobileTimelineView.tsx",
+        "additions": 330,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/components/video/index.ts",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/hooks/index.ts",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/hooks/useMediaQuery.ts",
+        "additions": 22,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/pages/PhotoDetail.tsx",
+        "additions": 3,
+        "deletions": 3
+      },
+      {
+        "path": "frontend/src/pages/ProjectDashboard/ProjectLayout.tsx",
+        "additions": 76,
+        "deletions": 181
+      },
+      {
+        "path": "frontend/src/pages/ProjectDashboard/SettingsTab.tsx",
+        "additions": 1069,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/pages/ProjectDashboard/TimelineTab.tsx",
+        "additions": 29,
+        "deletions": 40
+      },
+      {
+        "path": "frontend/src/pages/ProjectDashboard/index.ts",
+        "additions": 1,
+        "deletions": 0
+      }
+    ],
+    "commitMessages": [
+      "feat: navigation overhaul — desktop sidebar, mobile bottom nav, dedic…\n\n…ated mobile timeline, inline settings\n\n- Add ProjectSidebar (full-height, collapsible, logo, nav items with counts)\n- Add MobileBottomNav (fixed bottom tabs: Photos, Timeline, Videos, Settings)\n- Add MobileTimelineView (read-only timeline with photo grids, section-scoped lightbox, Generate Video)\n- Add SettingsTab with inline project details, video settings, sections management, danger zone\n- Redesign Video Settings: 16:9 cover photo preview, fix broken cover photo picker (switch from usePhotos to useVideoBuilder for correct section-photo mapping)\n- Remove all mobile conditionals from VideoBuilder (clean desktop-only component)\n- Full-viewport project workspace layout (no navbar/footer inside projects)\n- Route renames: /library → /photos, /contributors → /people\n- Add useIsMobile hook, viewport-fit=cover for iPhone safe areas\n- Update README.md and frontend/README.md with new routes and architecture\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+    ]
+  },
+  {
+    "id": "commits-2026-02-20-mobile-fixes",
+    "prNumber": null,
+    "date": "2026-02-20",
+    "mergedAt": "2026-02-20T18:19:42-05:00",
+    "title": "Mobile modal and viewport fixes",
+    "branch": "main",
+    "summary": "Batch of fixes for mobile modal positioning, viewport height, and ghost photo records",
+    "detail": "Five rapid-fire fixes addressing mobile UX issues that surfaced after the navigation overhaul: resolved git merge conflict markers in imageProcessor.py, prevented ghost photo records from appearing in the UI, fixed mobile modal scroll issues with calc-based max-height instead of margin, switched to dvh units for viewport height to account for mobile browser chrome, and fixed modal buttons being hidden behind the bottom nav bar.",
+    "category": "frontend",
+    "tags": [
+      "mobile-fixes",
+      "viewport",
+      "modals",
+      "dvh",
+      "bottom-nav"
+    ],
+    "significance": "minor",
+    "stats": {
+      "additions": 113,
+      "deletions": 47,
+      "changedFiles": 9
+    },
+    "filesChanged": [
+      {
+        "path": "frontend/src/components/modals/GenerateVideoModal.tsx",
+        "additions": 30,
+        "deletions": 15
+      },
+      {
+        "path": "backend/src/lambdas/imageProcessor.py",
+        "additions": 3,
+        "deletions": 23
+      },
+      {
+        "path": "frontend/src/hooks/useViewportHeight.ts",
+        "additions": 25,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/components/video/ThemeBrowser.tsx",
+        "additions": 15,
+        "deletions": 6
+      },
+      {
+        "path": "backend/src/db/photos.js",
+        "additions": 20,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/index.css",
+        "additions": 13,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/App.tsx",
+        "additions": 3,
+        "deletions": 1
+      },
+      {
+        "path": "frontend/src/pages/ProjectDashboard/ProjectLayout.tsx",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "frontend/src/hooks/index.ts",
+        "additions": 2,
+        "deletions": 0
+      }
+    ],
+    "commitMessages": [
+      "fix: resolve git merge conflict markers in imageProcessor.py\n\nUnresolved stash pop left <<<<<<< / ======= / >>>>>>> markers in the\nEXIF extraction function, causing a Python SyntaxError that crashed\nevery imageProcessor Lambda invocation in prod (200 photos failed).\n\nMerged both sides: IFD enum approach with GPS sub-IFD + HEIC fallback.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "fix: prevent ghost photo records + mobile modal scroll issues\n\nBackend: Add ghost record guards to updatePhoto() and getPhotoById()\nto prevent Gemini-hallucinated photo IDs from creating phantom DynamoDB\nrecords that break video generation. Closes the gap where updatePhoto\nused DynamoDB UpdateItem (which creates records) without checking\nexistence first, while updatePhotoAIMetadata already had this guard.\n\nFrontend: Add mb-16 on mobile to GenerateVideoModal and ThemeBrowser\nso buttons aren't hidden behind the bottom nav bar. Disable theme\npreview on mobile (not rendering correctly).\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "fix: use calc-based max-height for mobile modals instead of margin\n\nmb-16 doesn't work because items-center re-centers the modal. Instead,\ncap modal height to calc(100vh - 5rem) on mobile to account for the\nbottom nav bar, so buttons are always reachable.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "fix: use dvh for viewport height to fix mobile browser chrome overlap\n\n100vh on mobile browsers (Chrome/Safari iOS) includes the area behind\nthe URL bar and bottom toolbar, making buttons unreachable. Switch to\n100dvh via CSS custom property --app-height with -webkit-fill-available\nfallback. Applied to app layout, project workspace, and modal max-heights.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "fix: mobile modal buttons hidden behind bottom nav and browser chrome\n\n- Add useViewportHeight hook that sets --app-height to window.innerHeight\n  (only reliable way to get actual visible viewport on iOS Safari)\n- On mobile, shift modal containers above MobileBottomNav by setting\n  bottom: var(--bottom-nav-h) on the fixed overlay\n- Restructure GenerateVideoModal to flex layout with sticky footer buttons\n  outside the scrollable content area\n- Add --bottom-nav-h CSS variable (56px + safe-area-inset-bottom)\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+    ]
+  },
+  {
+    "id": "pr-124",
+    "prNumber": 124,
+    "date": "2026-02-21",
+    "mergedAt": "2026-02-21T04:12:36Z",
+    "title": "feat: video sharing with public watch page, QR codes, and YouTube upload",
+    "branch": "dimitri/video-sharing",
+    "summary": "Video sharing with public watch page, QR codes, and YouTube upload integration",
+    "detail": "Full video sharing feature across four phases: a public watch page at /watch/:shareCode with video player and download, ShareVideoModal with copy link, Web Share API, QR code, and download button. Integrated YouTube OAuth (connect/disconnect/token refresh) with an async Lambda worker that streams S3 to YouTube via resumable upload. Added YouTube upload panel in the share modal with polling status and YouTube badges on video cards linking to uploaded videos.",
+    "category": "frontend",
+    "tags": [
+      "video-sharing",
+      "YouTube-upload",
+      "QR-codes",
+      "public-watch-page",
+      "OAuth"
+    ],
+    "significance": "major",
+    "stats": {
+      "additions": 3782,
+      "deletions": 21,
+      "changedFiles": 28
+    },
+    "filesChanged": [
+      {
+        "path": "README.md",
+        "additions": 45,
+        "deletions": 3
+      },
+      {
+        "path": "backend/serverless.yml",
+        "additions": 9,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/db/users.js",
+        "additions": 64,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/db/videos.js",
+        "additions": 203,
+        "deletions": 3
+      },
+      {
+        "path": "backend/src/handlers/userHandler.js",
+        "additions": 3,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/handlers/videoHandler.js",
+        "additions": 30,
+        "deletions": 4
+      },
+      {
+        "path": "backend/src/handlers/videoShareHandler.js",
+        "additions": 223,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/handlers/youtubeHandler.js",
+        "additions": 307,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/lambdas/youtubeUploadWorker.js",
+        "additions": 168,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/server.js",
+        "additions": 25,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/services/youtubeService.js",
+        "additions": 237,
+        "deletions": 0
+      },
+      {
+        "path": "docs/API.md",
+        "additions": 125,
+        "deletions": 0
+      },
+      {
+        "path": "docs/FLOWS.md",
+        "additions": 126,
+        "deletions": 1
+      },
+      {
+        "path": "docs/progress.md",
+        "additions": 90,
+        "deletions": 0
+      },
+      {
+        "path": "docs/share-feature-spec.md",
+        "additions": 868,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/package-lock.json",
+        "additions": 33,
+        "deletions": 4
+      },
+      {
+        "path": "frontend/package.json",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/App.tsx",
+        "additions": 6,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/components/modals/ShareVideoModal.tsx",
+        "additions": 301,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/components/video/VideosList.tsx",
+        "additions": 59,
+        "deletions": 2
+      },
+      {
+        "path": "frontend/src/components/video/YouTubeUploadPanel.tsx",
+        "additions": 323,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/pages/ProjectDashboard/VideosTab.tsx",
+        "additions": 3,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/pages/WatchVideo.tsx",
+        "additions": 112,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/pages/YouTubeCallback.tsx",
+        "additions": 175,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/utils/api/index.ts",
+        "additions": 14,
+        "deletions": 2
+      },
+      {
+        "path": "frontend/src/utils/api/types.ts",
+        "additions": 25,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/utils/api/videos.ts",
+        "additions": 62,
+        "deletions": 1
+      },
+      {
+        "path": "frontend/src/utils/api/youtube.ts",
+        "additions": 144,
+        "deletions": 0
+      }
+    ],
+    "commitMessages": [
+      "feat: video sharing with public watch page, QR codes, and YouTube upload\n\nAdds full video sharing feature (Phases 1-4):\n- Public watch page at /watch/:shareCode with video player and download\n- ShareVideoModal with copy link, Web Share API, QR code, and download\n- YouTube OAuth integration (connect/disconnect/token refresh)\n- Async YouTube upload Lambda that streams S3→YouTube via resumable upload\n- YouTube upload panel in share modal with polling status\n- YouTube badge on video cards linking to uploaded videos\n- Updated README, API.md, and FLOWS.md with sharing documentation\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+    ]
+  },
+  {
+    "id": "pr-125",
+    "prNumber": 125,
+    "date": "2026-02-21",
+    "mergedAt": "2026-02-21T17:54:32Z",
+    "title": "feat: optional section customization in Create Timeline flow",
+    "branch": "dimitri/video-sections",
+    "summary": "Optional section customization in Create Timeline flow for guided AI organization",
+    "detail": "Users can now specify section count (1-8) and per-section descriptions to guide the AI architect when creating timelines. Added a collapsible panel in Step 3 of the Create Timeline modal — full version for 40+ photos with per-section descriptions, simpler single-description for 20-39 photos. Backend validates sectionConfig, threads it through the architect prompt, and respects the user's exact section count.",
+    "category": "ai",
+    "tags": [
+      "section-customization",
+      "Create-Timeline",
+      "AI-architect",
+      "user-guidance"
+    ],
+    "significance": "moderate",
+    "stats": {
+      "additions": 799,
+      "deletions": 159,
+      "changedFiles": 11
+    },
+    "filesChanged": [
+      {
+        "path": "backend/src/handlers/eventOrganizerHandler.js",
+        "additions": 19,
+        "deletions": 3
+      },
+      {
+        "path": "backend/src/services/eventOrganizer/constants.js",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/services/eventOrganizer/organizeStage.js",
+        "additions": 277,
+        "deletions": 45
+      },
+      {
+        "path": "docs/FLOWS.md",
+        "additions": 24,
+        "deletions": 3
+      },
+      {
+        "path": "docs/PARKING_LOT.md",
+        "additions": 50,
+        "deletions": 100
+      },
+      {
+        "path": "docs/progress.md",
+        "additions": 22,
+        "deletions": 0
+      },
+      {
+        "path": "docs/section-customization-spec.md",
+        "additions": 215,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/components/modals/CreateTimelineModal.tsx",
+        "additions": 161,
+        "deletions": 6
+      },
+      {
+        "path": "frontend/src/utils/api/eventOrganizer.ts",
+        "additions": 7,
+        "deletions": 1
+      },
+      {
+        "path": "processing/src/ec2_handler.py",
+        "additions": 15,
+        "deletions": 0
+      },
+      {
+        "path": "processing/src/process_queue.py",
+        "additions": 8,
+        "deletions": 0
+      }
+    ],
+    "commitMessages": [
+      "feat: optional section customization in Create Timeline flow\n\nUsers can now specify section count (1-8) and per-section descriptions\nto guide the AI architect. Collapsible panel in Step 3 of the modal —\nfull version for 40+ photos, simpler single-description for 20-39.\nBackend validates sectionConfig, threads it through the architect prompt,\nand respects user's exact count (including allowing 2 sections).\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+    ]
+  },
+  {
+    "id": "pr-126",
+    "prNumber": 126,
+    "date": "2026-02-24",
+    "mergedAt": "2026-02-24T04:18:55Z",
+    "title": "feat: tribute flow reintegration — deferred Rekognition, people setup…",
+    "branch": "dimitri/tribute-reintegration",
+    "summary": "Tribute flow reintegration with deferred Rekognition, people setup, and face matching",
+    "detail": "Reintegrated the tribute/multi-person face recognition from the AI Producer into the main Create Timeline flow with major cost optimizations. Phase 1 deferred all Rekognition calls from upload time to video generation or analysis, achieving ~60-80% cost reduction. Phase 2 added a 'Is this a tribute?' question in Step 1, a full-screen TributeSetup overlay with two-panel people management, reference photo picker, and inline face identification. Phase 3 implemented a face matching stage with batch DetectFaces + SearchFacesByImage, AI-powered chronology estimation for date ordering of scanned photos, and atomic draft transitions to prevent concurrent race conditions.",
+    "category": "ai",
+    "tags": [
+      "tribute-flow",
+      "Rekognition",
+      "face-matching",
+      "cost-optimization",
+      "deferred-processing"
+    ],
+    "significance": "major",
+    "stats": {
+      "additions": 3665,
+      "deletions": 1107,
+      "changedFiles": 34
+    },
+    "filesChanged": [
+      {
+        "path": "backend/src/db/organizationDrafts.js",
+        "additions": 24,
+        "deletions": 7
+      },
+      {
+        "path": "backend/src/db/projects.js",
+        "additions": 4,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/handlers/eventOrganizerHandler.js",
+        "additions": 76,
+        "deletions": 11
+      },
+      {
+        "path": "backend/src/handlers/projectHandler.js",
+        "additions": 8,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/handlers/projectPersonHandler.js",
+        "additions": 24,
+        "deletions": 8
+      },
+      {
+        "path": "backend/src/lambdas/faceDetection.js",
+        "additions": 7,
+        "deletions": 65
+      },
+      {
+        "path": "backend/src/lambdas/imageProcessor.py",
+        "additions": 15,
+        "deletions": 13
+      },
+      {
+        "path": "backend/src/lambdas/photoProcessingWorker.js",
+        "additions": 11,
+        "deletions": 51
+      },
+      {
+        "path": "backend/src/services/aiProducer/promptBuilders.js",
+        "additions": 2,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/services/aiProducer/stages/chronologyStage.js",
+        "additions": 4,
+        "deletions": 115
+      },
+      {
+        "path": "backend/src/services/eventOrganizer/chronologyStep.js",
+        "additions": 240,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/services/eventOrganizer/faceMatchingStage.js",
+        "additions": 215,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/services/eventOrganizer/index.js",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/services/eventOrganizer/organizeStage.js",
+        "additions": 459,
+        "deletions": 167
+      },
+      {
+        "path": "backend/src/services/eventOrganizer/promptBuilders.js",
+        "additions": 32,
+        "deletions": 75
+      },
+      {
+        "path": "backend/src/shared/dateUtils.js",
+        "additions": 121,
+        "deletions": 0
+      },
+      {
+        "path": "docs/FLOWS.md",
+        "additions": 101,
+        "deletions": 27
+      },
+      {
+        "path": "docs/progress.md",
+        "additions": 77,
+        "deletions": 523
+      },
+      {
+        "path": "docs/tribute-flow-deferred-rekognition-spec.md",
+        "additions": 727,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/README.md",
+        "additions": 13,
+        "deletions": 1
+      },
+      {
+        "path": "frontend/src/components/aiProducer/ReferencePhotoPicker.tsx",
+        "additions": 56,
+        "deletions": 11
+      },
+      {
+        "path": "frontend/src/components/modals/CreateTimelineModal.tsx",
+        "additions": 170,
+        "deletions": 20
+      },
+      {
+        "path": "frontend/src/components/modals/TributeSetup.tsx",
+        "additions": 743,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/components/people/TributePeopleSection.tsx",
+        "additions": 330,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/components/people/index.ts",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/components/video/VideoBuilder.tsx",
+        "additions": 58,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/hooks/mutations/index.ts",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/hooks/mutations/useUngroupMemory.ts",
+        "additions": 77,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/pages/ProjectDashboard/ContributorsTab.tsx",
+        "additions": 22,
+        "deletions": 6
+      },
+      {
+        "path": "frontend/src/pages/ProjectDashboard/ProjectLayout.tsx",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "frontend/src/utils/api/eventOrganizer.ts",
+        "additions": 17,
+        "deletions": 4
+      },
+      {
+        "path": "frontend/src/utils/api/projects.ts",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/utils/api/types.ts",
+        "additions": 10,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/utils/personRoles.ts",
+        "additions": 15,
+        "deletions": 0
+      }
+    ],
+    "commitMessages": [
+      "feat: tribute flow reintegration — deferred Rekognition, people setup…\n\n…, face matching\n\nReintegrates tribute/multi-person face recognition from the AI Producer into the\nmain Create Timeline flow with major cost optimizations.\n\nPhase 1 — Deferred Face Detection:\n- Skip all Rekognition at upload time for all projects (~60-80% cost reduction)\n- Face detection now only at video generation (Ken Burns) or analysis (tribute)\n\nPhase 2 — Tribute Question + People Setup:\n- \"Is this a tribute?\" question in Create Timeline Step 1\n- Full-screen TributeSetup overlay: two-panel people management with form fields,\n  reference photo picker, and inline face identification via FacePicker\n- Incremental face identification (only new photos re-identified)\n- Shared role definitions (honoree/featured/include) in personRoles.ts\n- TributePeopleSection for Settings tab display\n- Backend: birthYear on person update, face re-identification support\n\nPhase 3 — Face Matching in Analysis Pipeline:\n- faceMatchingStage: batch DetectFaces + SearchFacesByImage on candidate photos\n- chronologyStep: AI-powered date estimation and age-based ordering for scans\n- dateUtils: shared flexible date parsing\n- Atomic draft transitions to prevent concurrent apply race conditions\n- Analysis results show per-person face match counts in modal\n\nAlso: ReferencePhotoPicker scroll-to support, useUngroupMemory hook,\nelapsed timer during processing, updated docs (FLOWS.md, progress.md, README).\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+    ]
+  },
+  {
+    "id": "pr-127",
+    "prNumber": 127,
+    "date": "2026-02-28",
+    "mergedAt": "2026-02-28T20:08:04Z",
+    "title": "Sadie/security audit",
+    "branch": "sadie/security-audit",
+    "summary": "Security audit — signed S3 URLs, error sanitization, PITR, and S3 versioning",
+    "detail": "Initial security audit work by Sadie covering four areas: switched to signed S3 URLs for all bucket access, sanitized API error messages by removing err.message from 63 error response calls across 8 handler files to prevent leaking internal details. Enabled DynamoDB Point-in-Time Recovery on both tables and S3 versioning with 30-day lifecycle on both uploads buckets. Server-side console.error logging retained for debugging.",
+    "category": "backend",
+    "tags": [
+      "security-audit",
+      "signed-URLs",
+      "error-sanitization",
+      "PITR",
+      "S3-versioning"
+    ],
+    "significance": "major",
+    "stats": {
+      "additions": 1570,
+      "deletions": 777,
+      "changedFiles": 31
+    },
+    "filesChanged": [
+      {
+        "path": "README.md",
+        "additions": 10,
+        "deletions": 6
+      },
+      {
+        "path": "backend/package-lock.json",
+        "additions": 28,
+        "deletions": 9
+      },
+      {
+        "path": "backend/package.json",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/__tests__/handlers/memoryHandler.test.js",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "backend/src/__tests__/handlers/projectHandler.test.js",
+        "additions": 104,
+        "deletions": 32
+      },
+      {
+        "path": "backend/src/__tests__/handlers/recordingHandler.test.js",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/__tests__/handlers/shareCodeHandler.test.js",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/db/contributors.js",
+        "additions": 24,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/db/restorationJobs.js",
+        "additions": 25,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/db/sections.js",
+        "additions": 24,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/db/shareCodes.js",
+        "additions": 31,
+        "deletions": 3
+      },
+      {
+        "path": "backend/src/db/videos.js",
+        "additions": 27,
+        "deletions": 3
+      },
+      {
+        "path": "backend/src/handlers/aiProducerHandler.js",
+        "additions": 22,
+        "deletions": 262
+      },
+      {
+        "path": "backend/src/handlers/eventOrganizerHandler.js",
+        "additions": 11,
+        "deletions": 22
+      },
+      {
+        "path": "backend/src/handlers/memoryHandler.js",
+        "additions": 20,
+        "deletions": 20
+      },
+      {
+        "path": "backend/src/handlers/musicTimelineHandler.js",
+        "additions": 7,
+        "deletions": 45
+      },
+      {
+        "path": "backend/src/handlers/photoHandler.js",
+        "additions": 119,
+        "deletions": 13
+      },
+      {
+        "path": "backend/src/handlers/projectHandler.js",
+        "additions": 172,
+        "deletions": 87
+      },
+      {
+        "path": "backend/src/handlers/projectPersonHandler.js",
+        "additions": 24,
+        "deletions": 124
+      },
+      {
+        "path": "backend/src/handlers/recordingHandler.js",
+        "additions": 25,
+        "deletions": 3
+      },
+      {
+        "path": "backend/src/handlers/sectionHandler.js",
+        "additions": 10,
+        "deletions": 67
+      },
+      {
+        "path": "backend/src/handlers/shareCodeHandler.js",
+        "additions": 13,
+        "deletions": 14
+      },
+      {
+        "path": "backend/src/handlers/userMusicHandler.js",
+        "additions": 7,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/server.js",
+        "additions": 63,
+        "deletions": 39
+      },
+      {
+        "path": "backend/src/shared/storage.js",
+        "additions": 73,
+        "deletions": 13
+      },
+      {
+        "path": "docs/progress.md",
+        "additions": 52,
+        "deletions": 0
+      },
+      {
+        "path": "docs/security-audit-spec.md",
+        "additions": 410,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/pages/ContributePhoto.tsx",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "frontend/src/utils/api/share.test.ts",
+        "additions": 4,
+        "deletions": 4
+      },
+      {
+        "path": "frontend/src/utils/api/share.ts",
+        "additions": 3,
+        "deletions": 3
+      },
+      {
+        "path": "security-audit-spec-sadie.md",
+        "additions": 255,
+        "deletions": 0
+      }
+    ],
+    "commitMessages": [
+      "pulled some changes",
+      "area 1 of security audit addressed",
+      "some more security audit changes",
+      "signature added to s3 bucket urls",
+      "Merge main into sadie/security-audit branch",
+      "changed s3 bucket links",
+      "security: sanitize API error messages, enable PITR + S3 versioning\n\nChunk 4 of security audit. Removes err.message from 63 error()\nresponse calls across 8 handler files so internal details (DynamoDB\nerrors, S3 paths, stack info) are never leaked to clients. Server-side\nconsole.error logging retained. Enables DynamoDB Point-in-Time Recovery\non both tables and S3 versioning with 30-day lifecycle on both uploads\nbuckets. Updates docs.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+    ]
+  },
+  {
+    "id": "pr-128",
+    "prNumber": 128,
+    "date": "2026-02-28",
+    "mergedAt": "2026-02-28T20:10:41Z",
+    "title": "security: route ownership middleware, CloudFront + OAC, risky change …",
+    "branch": "sadie/security-audit",
+    "summary": "Route ownership middleware, CloudFront + OAC, and risky change reverts",
+    "detail": "Chunks 1-3 of the security audit: migrated all project-scoped routes to per-router ownership middleware, eliminating redundant getProjectById calls. Added CloudFront with Origin Access Control for S3 uploads so buckets are now fully private. Reverted the async getFileUrl and in-memory rate limiting from PR #127 as they introduced issues. Updated tests and removed stale spec docs. A net deletion of ~3,800 lines through cleanup.",
+    "category": "backend",
+    "tags": [
+      "ownership-middleware",
+      "CloudFront",
+      "OAC",
+      "security-audit",
+      "route-auth"
+    ],
+    "significance": "major",
+    "stats": {
+      "additions": 771,
+      "deletions": 4617,
+      "changedFiles": 36
+    },
+    "filesChanged": [
+      {
+        "path": "backend/package-lock.json",
+        "additions": 10,
+        "deletions": 0
+      },
+      {
+        "path": "backend/serverless.yml",
+        "additions": 6,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/__tests__/handlers/admin/musicHandler.test.js",
+        "additions": 10,
+        "deletions": 6
+      },
+      {
+        "path": "backend/src/__tests__/handlers/aiProducerHandler.test.js",
+        "additions": 54,
+        "deletions": 106
+      },
+      {
+        "path": "backend/src/__tests__/handlers/backgroundMusicHandler.test.js",
+        "additions": 11,
+        "deletions": 52
+      },
+      {
+        "path": "backend/src/__tests__/handlers/googlePhotosHandler.test.js",
+        "additions": 8,
+        "deletions": 35
+      },
+      {
+        "path": "backend/src/__tests__/handlers/invitationHandler.test.js",
+        "additions": 27,
+        "deletions": 82
+      },
+      {
+        "path": "backend/src/__tests__/handlers/musicTimelineHandler.test.js",
+        "additions": 25,
+        "deletions": 90
+      },
+      {
+        "path": "backend/src/__tests__/handlers/projectHandler.test.js",
+        "additions": 66,
+        "deletions": 353
+      },
+      {
+        "path": "backend/src/__tests__/handlers/projectPersonHandler.test.js",
+        "additions": 52,
+        "deletions": 111
+      },
+      {
+        "path": "backend/src/__tests__/handlers/recordingHandler.test.js",
+        "additions": 45,
+        "deletions": 7
+      },
+      {
+        "path": "backend/src/__tests__/handlers/restorationHandler.test.js",
+        "additions": 20,
+        "deletions": 151
+      },
+      {
+        "path": "backend/src/__tests__/handlers/sectionHandler.test.js",
+        "additions": 34,
+        "deletions": 107
+      },
+      {
+        "path": "backend/src/__tests__/handlers/shareCodeHandler.test.js",
+        "additions": 13,
+        "deletions": 97
+      },
+      {
+        "path": "backend/src/__tests__/handlers/userMusicHandler.test.js",
+        "additions": 19,
+        "deletions": 35
+      },
+      {
+        "path": "backend/src/__tests__/handlers/videoHandler.test.js",
+        "additions": 17,
+        "deletions": 80
+      },
+      {
+        "path": "backend/src/handlers/admin/musicHandler.js",
+        "additions": 11,
+        "deletions": 40
+      },
+      {
+        "path": "backend/src/handlers/backgroundMusicHandler.js",
+        "additions": 20,
+        "deletions": 38
+      },
+      {
+        "path": "backend/src/handlers/googlePhotosHandler.js",
+        "additions": 0,
+        "deletions": 11
+      },
+      {
+        "path": "backend/src/handlers/invitationHandler.js",
+        "additions": 2,
+        "deletions": 39
+      },
+      {
+        "path": "backend/src/handlers/projectHandler.js",
+        "additions": 89,
+        "deletions": 172
+      },
+      {
+        "path": "backend/src/handlers/restorationHandler.js",
+        "additions": 1,
+        "deletions": 52
+      },
+      {
+        "path": "backend/src/handlers/shareCodeHandler.js",
+        "additions": 16,
+        "deletions": 76
+      },
+      {
+        "path": "backend/src/handlers/userMusicHandler.js",
+        "additions": 13,
+        "deletions": 34
+      },
+      {
+        "path": "backend/src/handlers/videoHandler.js",
+        "additions": 4,
+        "deletions": 26
+      },
+      {
+        "path": "backend/src/handlers/videoShareHandler.js",
+        "additions": 3,
+        "deletions": 8
+      },
+      {
+        "path": "backend/src/lambdas/photoProcessingWorker.js",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/middleware/authorize.js",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/server.js",
+        "additions": 182,
+        "deletions": 178
+      },
+      {
+        "path": "backend/src/shared/storage.js",
+        "additions": 11,
+        "deletions": 34
+      },
+      {
+        "path": "docs/ff-ui-cleanup-spec.md",
+        "additions": 0,
+        "deletions": 205
+      },
+      {
+        "path": "docs/navigation-overhaul-spec.md",
+        "additions": 0,
+        "deletions": 325
+      },
+      {
+        "path": "docs/section-customization-spec.md",
+        "additions": 0,
+        "deletions": 215
+      },
+      {
+        "path": "docs/security-audit-spec-sadie.md",
+        "additions": 0,
+        "deletions": 255
+      },
+      {
+        "path": "docs/share-feature-spec.md",
+        "additions": 0,
+        "deletions": 868
+      },
+      {
+        "path": "docs/tribute-flow-deferred-rekognition-spec.md",
+        "additions": 0,
+        "deletions": 727
+      }
+    ],
+    "commitMessages": [
+      "security: route ownership middleware, CloudFront + OAC, risky change …\n\n…reverts\n\nChunks 1-3 of security audit. Migrates all project-scoped routes to\nper-router ownership middleware, eliminates redundant getProjectById\ncalls, adds CloudFront + OAC for S3 uploads (buckets now private),\nreverts async getFileUrl and in-memory rate limiting from PR #127,\nupdates tests, and removes stale spec docs.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+    ]
+  },
+  {
+    "id": "pr-129",
+    "prNumber": 129,
+    "date": "2026-03-01",
+    "mergedAt": "2026-03-01T02:21:15Z",
+    "title": "backend: complete backend code hardening (phases 1-5)",
+    "branch": "dimitri/backend-cleanup",
+    "summary": "Complete backend code hardening across 5 phases — validation, testing, and refactoring",
+    "detail": "Comprehensive backend quality improvement: Phase 1 added CI gates, removed 4 unused deps, deleted dead files, added ESLint config. Phase 2 created a shared validation utility and standardized requireAuth across all handlers. Phase 3 added handler test coverage for photoHandler, eventOrganizer, videoShare, and YouTube. Phase 4 added middleware, shared utility, and DB layer tests. Phase 5 split the monolithic photoHandler into 3 files and organizeStage into 4 files, added service error handling, standardized DB null-return patterns, and cleaned up dead exports. Ended with 660 tests passing at 32% coverage with 0 lint errors.",
+    "category": "backend",
+    "tags": [
+      "code-hardening",
+      "testing",
+      "refactoring",
+      "CI-gates",
+      "validation"
+    ],
+    "significance": "major",
+    "stats": {
+      "additions": 9717,
+      "deletions": 8329,
+      "changedFiles": 57
+    },
+    "filesChanged": [
+      {
+        "path": ".github/workflows/deploy-backend.yml",
+        "additions": 9,
+        "deletions": 0
+      },
+      {
+        "path": ".github/workflows/deploy-prod.yml",
+        "additions": 9,
+        "deletions": 0
+      },
+      {
+        "path": ".gitignore",
+        "additions": 3,
+        "deletions": 0
+      },
+      {
+        "path": "backend/eslint.config.js",
+        "additions": 44,
+        "deletions": 0
+      },
+      {
+        "path": "backend/jest.config.js",
+        "additions": 5,
+        "deletions": 5
+      },
+      {
+        "path": "backend/package-lock.json",
+        "additions": 2313,
+        "deletions": 5907
+      },
+      {
+        "path": "backend/package.json",
+        "additions": 4,
+        "deletions": 5
+      },
+      {
+        "path": "backend/src/__tests__/db/memories.test.js",
+        "additions": 472,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/__tests__/db/photos.test.js",
+        "additions": 441,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/__tests__/db/projects.test.js",
+        "additions": 514,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/__tests__/handlers/aiProducerHandler.test.js",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/__tests__/handlers/eventOrganizerHandler.test.js",
+        "additions": 619,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/__tests__/handlers/googlePhotosHandler.test.js",
+        "additions": 5,
+        "deletions": 5
+      },
+      {
+        "path": "backend/src/__tests__/handlers/photoHandler.test.js",
+        "additions": 881,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/__tests__/handlers/userHandler.test.js",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "backend/src/__tests__/handlers/userMusicHandler.test.js",
+        "additions": 4,
+        "deletions": 4
+      },
+      {
+        "path": "backend/src/__tests__/handlers/videoShareHandler.test.js",
+        "additions": 352,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/__tests__/handlers/youtubeHandler.test.js",
+        "additions": 350,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/__tests__/middleware/auth.test.js",
+        "additions": 151,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/__tests__/middleware/authorize.test.js",
+        "additions": 117,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/__tests__/shared/responses.test.js",
+        "additions": 99,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/__tests__/shared/validation.test.js",
+        "additions": 215,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/db/contributors.js",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/db/memories.js",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/db/migrate.js",
+        "additions": 0,
+        "deletions": 51
+      },
+      {
+        "path": "backend/src/db/photos.js",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "backend/src/db/recordings.js",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/handlers/googlePhotosHandler.js",
+        "additions": 27,
+        "deletions": 46
+      },
+      {
+        "path": "backend/src/handlers/invitationHandler.js",
+        "additions": 7,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/handlers/memoryHandler.js",
+        "additions": 7,
+        "deletions": 2
+      },
+      {
+        "path": "backend/src/handlers/musicTimelineHandler.js",
+        "additions": 4,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/handlers/photoHandler.js",
+        "additions": 28,
+        "deletions": 1201
+      },
+      {
+        "path": "backend/src/handlers/photoLegacyUploadHandler.js",
+        "additions": 400,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/handlers/photoUploadHandler.js",
+        "additions": 809,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/handlers/projectHandler.js",
+        "additions": 6,
+        "deletions": 2
+      },
+      {
+        "path": "backend/src/handlers/recordingHandler.js",
+        "additions": 11,
+        "deletions": 3
+      },
+      {
+        "path": "backend/src/handlers/restorationHandler.js",
+        "additions": 5,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/handlers/shareCodeHandler.js",
+        "additions": 10,
+        "deletions": 3
+      },
+      {
+        "path": "backend/src/handlers/userHandler.js",
+        "additions": 4,
+        "deletions": 5
+      },
+      {
+        "path": "backend/src/handlers/userMusicHandler.js",
+        "additions": 13,
+        "deletions": 25
+      },
+      {
+        "path": "backend/src/handlers/videoHandler.js",
+        "additions": 17,
+        "deletions": 5
+      },
+      {
+        "path": "backend/src/handlers/videoShareHandler.js",
+        "additions": 10,
+        "deletions": 3
+      },
+      {
+        "path": "backend/src/handlers/youtubeHandler.js",
+        "additions": 16,
+        "deletions": 27
+      },
+      {
+        "path": "backend/src/middleware/optionalAuth.js",
+        "additions": 0,
+        "deletions": 81
+      },
+      {
+        "path": "backend/src/server.js",
+        "additions": 3,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/services/cloudRunService.js",
+        "additions": 28,
+        "deletions": 17
+      },
+      {
+        "path": "backend/src/services/eventOrganizer/architectStep.js",
+        "additions": 363,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/services/eventOrganizer/constants.js",
+        "additions": 0,
+        "deletions": 7
+      },
+      {
+        "path": "backend/src/services/eventOrganizer/curatorStep.js",
+        "additions": 242,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/services/eventOrganizer/index.js",
+        "additions": 0,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/services/eventOrganizer/organizeStage.js",
+        "additions": 4,
+        "deletions": 775
+      },
+      {
+        "path": "backend/src/services/eventOrganizer/promptBuilders.js",
+        "additions": 1,
+        "deletions": 128
+      },
+      {
+        "path": "backend/src/services/eventOrganizer/quickCuratorStep.js",
+        "additions": 200,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/services/openaiClient.js",
+        "additions": 20,
+        "deletions": 9
+      },
+      {
+        "path": "backend/src/shared/validation.js",
+        "additions": 72,
+        "deletions": 0
+      },
+      {
+        "path": "docs/backend-hardening-spec.md",
+        "additions": 730,
+        "deletions": 0
+      },
+      {
+        "path": "docs/progress.md",
+        "additions": 65,
+        "deletions": 0
+      }
+    ],
+    "commitMessages": [
+      "backend: complete backend code hardening (phases 1-5)\n\nComprehensive backend quality improvement across 5 phases:\n\nPhase 1: CI gates, removed 4 unused deps, deleted dead files, ESLint config\nPhase 2: Shared validation utility, standardized requireAuth across all handlers\nPhase 3: Handler test coverage (photoHandler, eventOrganizer, videoShare, youtube)\nPhase 4: Middleware, shared utility, and DB layer tests\nPhase 5: Split photoHandler (3 files), split organizeStage (4 files),\n         service error handling, DB null-return standardization, dead export cleanup\n\n660 tests passing, 32% coverage, 0 lint errors.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+    ]
+  },
+  {
+    "id": "pr-130",
+    "prNumber": 130,
+    "date": "2026-03-01",
+    "mergedAt": "2026-03-01T02:47:50Z",
+    "title": "backend: fix all 45 failing tests, make tests a hard CI gate",
+    "branch": "dimitri/backend-cleanup",
+    "summary": "Fixed all 45 failing backend tests and made tests a hard CI gate",
+    "detail": "Fixed env var issues across 4 test suites, error message mismatches, response shape mismatches, mock ordering, and dead tests. Found and fixed a real bug in statsHandler where 'complete' should have been 'completed' in the video status filter. Removed continue-on-error from CI workflows so tests now block deploys. Rewrote googlePhotosHandler import test for the async job pattern. Ended with 699 tests passing, 0 failures, 52 skipped (AI Producer tests deferred).",
+    "category": "backend",
+    "tags": [
+      "test-fixes",
+      "CI-gates",
+      "bug-fix",
+      "test-reliability"
+    ],
+    "significance": "moderate",
+    "stats": {
+      "additions": 159,
+      "deletions": 226,
+      "changedFiles": 14
+    },
+    "filesChanged": [
+      {
+        "path": ".github/workflows/deploy-backend.yml",
+        "additions": 0,
+        "deletions": 1
+      },
+      {
+        "path": ".github/workflows/deploy-prod.yml",
+        "additions": 0,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/__tests__/handlers/admin/musicHandler.test.js",
+        "additions": 5,
+        "deletions": 5
+      },
+      {
+        "path": "backend/src/__tests__/handlers/admin/processorHandler.test.js",
+        "additions": 3,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/__tests__/handlers/admin/projectsHandler.test.js",
+        "additions": 46,
+        "deletions": 37
+      },
+      {
+        "path": "backend/src/__tests__/handlers/admin/statsHandler.test.js",
+        "additions": 12,
+        "deletions": 2
+      },
+      {
+        "path": "backend/src/__tests__/handlers/admin/usersHandler.test.js",
+        "additions": 3,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/__tests__/handlers/googlePhotosHandler.test.js",
+        "additions": 36,
+        "deletions": 96
+      },
+      {
+        "path": "backend/src/__tests__/handlers/projectHandler.test.js",
+        "additions": 29,
+        "deletions": 18
+      },
+      {
+        "path": "backend/src/__tests__/handlers/projectPersonHandler.test.js",
+        "additions": 2,
+        "deletions": 59
+      },
+      {
+        "path": "backend/src/__tests__/handlers/shareCodeHandler.test.js",
+        "additions": 4,
+        "deletions": 2
+      },
+      {
+        "path": "backend/src/__tests__/handlers/userHandler.test.js",
+        "additions": 12,
+        "deletions": 4
+      },
+      {
+        "path": "backend/src/__tests__/utils/testHelpers.js",
+        "additions": 6,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/handlers/admin/statsHandler.js",
+        "additions": 1,
+        "deletions": 1
+      }
+    ],
+    "commitMessages": [
+      "backend: fix all 45 failing tests, make tests a hard CI gate\n\nFix env var issues (4 suites), error message mismatches, response shape\nmismatches, mock ordering, dead tests, and a handler bug. Remove\ncontinue-on-error from CI workflows so tests block deploys.\n\n- Fix statsHandler bug: 'complete' → 'completed' in video status filter\n- Add missing process.env setup for module-scoped constants\n- Update test expectations to match current handler response shapes\n- Remove dead tests for removed validation (honoree required, face limit)\n- Rewrite googlePhotosHandler import test for async job pattern\n- 699 tests passing, 0 failures, 52 skipped (AI Producer)\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+    ]
+  },
+  {
+    "id": "pr-131",
+    "prNumber": 131,
+    "date": "2026-03-01",
+    "mergedAt": "2026-03-01T03:08:45Z",
+    "title": "chore: upgrade Node.js to 22 across local, CI, and Lambda",
+    "branch": "dimitri/backend-cleanup",
+    "summary": "Upgraded Node.js to 22 across local dev, CI, and Lambda runtime",
+    "detail": "Added .nvmrc pinning Node 22 for local development consistency. Updated all GitHub Actions workflows to use node-version 22. Updated serverless.yml Lambda runtime to nodejs22.x. A small but important infrastructure change ensuring consistency across all environments.",
+    "category": "devops",
+    "tags": [
+      "Node-upgrade",
+      "Node-22",
+      "Lambda-runtime",
+      "CI"
+    ],
+    "significance": "minor",
+    "stats": {
+      "additions": 6,
+      "deletions": 5,
+      "changedFiles": 5
+    },
+    "filesChanged": [
+      {
+        "path": ".github/workflows/deploy-backend.yml",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": ".github/workflows/deploy-frontend.yml",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": ".github/workflows/deploy-prod.yml",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": ".nvmrc",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": "backend/serverless.yml",
+        "additions": 1,
+        "deletions": 1
+      }
+    ],
+    "commitMessages": [
+      "chore: upgrade Node.js to 22 across local, CI, and Lambda\n\n- Add .nvmrc pinning Node 22 for local development\n- Update all GitHub Actions workflows to node-version: '22'\n- Update serverless.yml Lambda runtime to nodejs22.x\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+    ]
+  },
+  {
+    "id": "pr-132",
+    "prNumber": 132,
+    "date": "2026-03-01",
+    "mergedAt": "2026-03-01T03:19:42Z",
+    "title": "fix: resolve exit code 1 from open handles after tests pass",
+    "branch": "dimitri/backend-cleanup",
+    "summary": "Fixed exit code 1 from open handles after tests pass",
+    "detail": "The Google Photos import test was using the local dev path which did a real dynamic import of the worker file, creating unmocked AWS clients that left open handles. Switched to the Lambda path with mocked clients. Added --forceExit to the jest command as a safety net for ESM open handle issues that can occur with dynamic imports.",
+    "category": "backend",
+    "tags": [
+      "test-fix",
+      "open-handles",
+      "ESM",
+      "jest"
+    ],
+    "significance": "minor",
+    "stats": {
+      "additions": 12,
+      "deletions": 9,
+      "changedFiles": 2
+    },
+    "filesChanged": [
+      {
+        "path": "backend/package.json",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/__tests__/handlers/googlePhotosHandler.test.js",
+        "additions": 11,
+        "deletions": 8
+      }
+    ],
+    "commitMessages": [
+      "fix: resolve exit code 1 from open handles after tests pass\n\n- Google Photos import test: use Lambda path (mocked client) instead of\n  local dev path that does a real dynamic import of the worker file,\n  creating unmocked AWS clients that leave open handles\n- Add --forceExit to jest command as safety net for ESM open handle issues\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+    ]
   }
 ]

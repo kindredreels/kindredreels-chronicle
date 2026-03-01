@@ -5,9 +5,7 @@ export const COLORS: Record<string, string> = {
   processing: '#8B5CF6',   // violet-500
   tests: '#EC4899',        // pink-500
   docs: '#06B6D4',         // cyan-500
-  cicd: '#6366F1',         // indigo-500
-  claudePlans: '#14B8A6',  // teal-500
-  codeChronicle: '#F97316' // orange-500
+  cicd: '#6366F1'           // indigo-500
 }
 
 export const CATEGORY_NAMES: Record<string, string> = {
@@ -17,9 +15,7 @@ export const CATEGORY_NAMES: Record<string, string> = {
   processing: 'Processing',
   tests: 'Tests',
   docs: 'Docs',
-  cicd: 'CI/CD',
-  claudePlans: 'Claude Plans',
-  codeChronicle: 'CodeChronicle'
+  cicd: 'CI/CD'
 }
 
 export const CATEGORY_KEYS = Object.keys(COLORS)

@@ -263,6 +263,16 @@ const groups = [
     category: "docs",
     tags: ["EXIF", "code-chronicle", "extraction", "cleanup"],
     significance: "minor"
+  },
+  {
+    indices: [59, 60, 61, 62, 63],
+    id: "commits-2026-02-20-mobile-fixes",
+    title: "Mobile modal and viewport fixes",
+    summary: "Batch of fixes for mobile modal positioning, viewport height, and ghost photo records",
+    detail: "Five rapid-fire fixes addressing mobile UX issues that surfaced after the navigation overhaul: resolved git merge conflict markers in imageProcessor.py, prevented ghost photo records from appearing in the UI, fixed mobile modal scroll issues with calc-based max-height instead of margin, switched to dvh units for viewport height to account for mobile browser chrome, and fixed modal buttons being hidden behind the bottom nav bar.",
+    category: "frontend",
+    tags: ["mobile-fixes", "viewport", "modals", "dvh", "bottom-nav"],
+    significance: "minor"
   }
 ];
 

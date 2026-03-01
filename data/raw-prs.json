@@ -15880,5 +15880,1036 @@
         "oid": "9bfc3325119545aa42e4cdd4dabeff043a482751"
       }
     ]
+  },
+  {
+    "additions": 1570,
+    "body": "These are my initial changes from all four areas of the security audit plus the code allowing signed s3 urls to be used. The signed s3 url code is already in the dev environment lambdas.",
+    "changedFiles": 31,
+    "deletions": 777,
+    "files": [
+      {
+        "path": "README.md",
+        "additions": 10,
+        "deletions": 6
+      },
+      {
+        "path": "backend/package-lock.json",
+        "additions": 28,
+        "deletions": 9
+      },
+      {
+        "path": "backend/package.json",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/__tests__/handlers/memoryHandler.test.js",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "backend/src/__tests__/handlers/projectHandler.test.js",
+        "additions": 104,
+        "deletions": 32
+      },
+      {
+        "path": "backend/src/__tests__/handlers/recordingHandler.test.js",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/__tests__/handlers/shareCodeHandler.test.js",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/db/contributors.js",
+        "additions": 24,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/db/restorationJobs.js",
+        "additions": 25,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/db/sections.js",
+        "additions": 24,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/db/shareCodes.js",
+        "additions": 31,
+        "deletions": 3
+      },
+      {
+        "path": "backend/src/db/videos.js",
+        "additions": 27,
+        "deletions": 3
+      },
+      {
+        "path": "backend/src/handlers/aiProducerHandler.js",
+        "additions": 22,
+        "deletions": 262
+      },
+      {
+        "path": "backend/src/handlers/eventOrganizerHandler.js",
+        "additions": 11,
+        "deletions": 22
+      },
+      {
+        "path": "backend/src/handlers/memoryHandler.js",
+        "additions": 20,
+        "deletions": 20
+      },
+      {
+        "path": "backend/src/handlers/musicTimelineHandler.js",
+        "additions": 7,
+        "deletions": 45
+      },
+      {
+        "path": "backend/src/handlers/photoHandler.js",
+        "additions": 119,
+        "deletions": 13
+      },
+      {
+        "path": "backend/src/handlers/projectHandler.js",
+        "additions": 172,
+        "deletions": 87
+      },
+      {
+        "path": "backend/src/handlers/projectPersonHandler.js",
+        "additions": 24,
+        "deletions": 124
+      },
+      {
+        "path": "backend/src/handlers/recordingHandler.js",
+        "additions": 25,
+        "deletions": 3
+      },
+      {
+        "path": "backend/src/handlers/sectionHandler.js",
+        "additions": 10,
+        "deletions": 67
+      },
+      {
+        "path": "backend/src/handlers/shareCodeHandler.js",
+        "additions": 13,
+        "deletions": 14
+      },
+      {
+        "path": "backend/src/handlers/userMusicHandler.js",
+        "additions": 7,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/server.js",
+        "additions": 63,
+        "deletions": 39
+      },
+      {
+        "path": "backend/src/shared/storage.js",
+        "additions": 73,
+        "deletions": 13
+      },
+      {
+        "path": "docs/progress.md",
+        "additions": 52,
+        "deletions": 0
+      },
+      {
+        "path": "docs/security-audit-spec.md",
+        "additions": 410,
+        "deletions": 0
+      },
+      {
+        "path": "frontend/src/pages/ContributePhoto.tsx",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "frontend/src/utils/api/share.test.ts",
+        "additions": 4,
+        "deletions": 4
+      },
+      {
+        "path": "frontend/src/utils/api/share.ts",
+        "additions": 3,
+        "deletions": 3
+      },
+      {
+        "path": "security-audit-spec-sadie.md",
+        "additions": 255,
+        "deletions": 0
+      }
+    ],
+    "headRefName": "sadie/security-audit",
+    "labels": [],
+    "mergedAt": "2026-02-28T20:08:04Z",
+    "number": 127,
+    "title": "Sadie/security audit",
+    "commits": [
+      {
+        "authoredDate": "2026-02-18T21:49:00Z",
+        "authors": [
+          {
+            "email": "sadiebilenkin@gmail.com",
+            "id": "MDQ6VXNlcjkxNTMwNzE=",
+            "login": "sbilenkin",
+            "name": "Sadie Bilenkin"
+          }
+        ],
+        "committedDate": "2026-02-18T21:49:00Z",
+        "messageBody": "",
+        "messageHeadline": "pulled some changes",
+        "oid": "f4e893d960c90bff029f862d49ffccbc0a9ec5e0"
+      },
+      {
+        "authoredDate": "2026-02-19T16:59:42Z",
+        "authors": [
+          {
+            "email": "sadiebilenkin@gmail.com",
+            "id": "MDQ6VXNlcjkxNTMwNzE=",
+            "login": "sbilenkin",
+            "name": "Sadie Bilenkin"
+          }
+        ],
+        "committedDate": "2026-02-19T16:59:42Z",
+        "messageBody": "",
+        "messageHeadline": "area 1 of security audit addressed",
+        "oid": "190e9cb90dfce445e6ff3f1b570b2aeea35ade8d"
+      },
+      {
+        "authoredDate": "2026-02-19T22:00:12Z",
+        "authors": [
+          {
+            "email": "sadiebilenkin@gmail.com",
+            "id": "MDQ6VXNlcjkxNTMwNzE=",
+            "login": "sbilenkin",
+            "name": "Sadie Bilenkin"
+          }
+        ],
+        "committedDate": "2026-02-19T22:00:12Z",
+        "messageBody": "",
+        "messageHeadline": "some more security audit changes",
+        "oid": "e0f7d5fe3e46d66c5e039a1b84a65fe913504183"
+      },
+      {
+        "authoredDate": "2026-02-24T19:09:43Z",
+        "authors": [
+          {
+            "email": "sadiebilenkin@gmail.com",
+            "id": "MDQ6VXNlcjkxNTMwNzE=",
+            "login": "sbilenkin",
+            "name": "Sadie Bilenkin"
+          }
+        ],
+        "committedDate": "2026-02-24T19:09:43Z",
+        "messageBody": "",
+        "messageHeadline": "signature added to s3 bucket urls",
+        "oid": "b71ca53cb7fb85fb0d41d859843ae9654979ac24"
+      },
+      {
+        "authoredDate": "2026-02-24T19:20:54Z",
+        "authors": [
+          {
+            "email": "sadiebilenkin@gmail.com",
+            "id": "MDQ6VXNlcjkxNTMwNzE=",
+            "login": "sbilenkin",
+            "name": "Sadie Bilenkin"
+          }
+        ],
+        "committedDate": "2026-02-24T19:20:54Z",
+        "messageBody": "",
+        "messageHeadline": "Merge main into sadie/security-audit branch",
+        "oid": "76a093242e8551abfd1bbb6965b315d41469efe1"
+      },
+      {
+        "authoredDate": "2026-02-24T21:32:23Z",
+        "authors": [
+          {
+            "email": "sadiebilenkin@gmail.com",
+            "id": "MDQ6VXNlcjkxNTMwNzE=",
+            "login": "sbilenkin",
+            "name": "Sadie Bilenkin"
+          }
+        ],
+        "committedDate": "2026-02-24T21:32:23Z",
+        "messageBody": "",
+        "messageHeadline": "changed s3 bucket links",
+        "oid": "23aa713a9be4fc0bfe9465e123ba14e507bc19ec"
+      },
+      {
+        "authoredDate": "2026-02-28T20:06:39Z",
+        "authors": [
+          {
+            "email": "dbilenkin@gmail.com",
+            "id": "MDQ6VXNlcjExMTA3NTQ=",
+            "login": "dbilenkin",
+            "name": "Dimitri Bilenkin"
+          },
+          {
+            "email": "noreply@anthropic.com",
+            "id": "MDQ6VXNlcjgxODQ3",
+            "login": "claude",
+            "name": "Claude Opus 4.6"
+          }
+        ],
+        "committedDate": "2026-02-28T20:06:39Z",
+        "messageBody": "Chunk 4 of security audit. Removes err.message from 63 error()\nresponse calls across 8 handler files so internal details (DynamoDB\nerrors, S3 paths, stack info) are never leaked to clients. Server-side\nconsole.error logging retained. Enables DynamoDB Point-in-Time Recovery\non both tables and S3 versioning with 30-day lifecycle on both uploads\nbuckets. Updates docs.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+        "messageHeadline": "security: sanitize API error messages, enable PITR + S3 versioning",
+        "oid": "60f1f312a91cd11786c3b91a1601b79acfe329a6"
+      }
+    ]
+  },
+  {
+    "additions": 771,
+    "body": "…reverts\r\n\r\nChunks 1-3 of security audit. Migrates all project-scoped routes to per-router ownership middleware, eliminates redundant getProjectById calls, adds CloudFront + OAC for S3 uploads (buckets now private), reverts async getFileUrl and in-memory rate limiting from PR #127, updates tests, and removes stale spec docs.",
+    "changedFiles": 36,
+    "deletions": 4617,
+    "files": [
+      {
+        "path": "backend/package-lock.json",
+        "additions": 10,
+        "deletions": 0
+      },
+      {
+        "path": "backend/serverless.yml",
+        "additions": 6,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/__tests__/handlers/admin/musicHandler.test.js",
+        "additions": 10,
+        "deletions": 6
+      },
+      {
+        "path": "backend/src/__tests__/handlers/aiProducerHandler.test.js",
+        "additions": 54,
+        "deletions": 106
+      },
+      {
+        "path": "backend/src/__tests__/handlers/backgroundMusicHandler.test.js",
+        "additions": 11,
+        "deletions": 52
+      },
+      {
+        "path": "backend/src/__tests__/handlers/googlePhotosHandler.test.js",
+        "additions": 8,
+        "deletions": 35
+      },
+      {
+        "path": "backend/src/__tests__/handlers/invitationHandler.test.js",
+        "additions": 27,
+        "deletions": 82
+      },
+      {
+        "path": "backend/src/__tests__/handlers/musicTimelineHandler.test.js",
+        "additions": 25,
+        "deletions": 90
+      },
+      {
+        "path": "backend/src/__tests__/handlers/projectHandler.test.js",
+        "additions": 66,
+        "deletions": 353
+      },
+      {
+        "path": "backend/src/__tests__/handlers/projectPersonHandler.test.js",
+        "additions": 52,
+        "deletions": 111
+      },
+      {
+        "path": "backend/src/__tests__/handlers/recordingHandler.test.js",
+        "additions": 45,
+        "deletions": 7
+      },
+      {
+        "path": "backend/src/__tests__/handlers/restorationHandler.test.js",
+        "additions": 20,
+        "deletions": 151
+      },
+      {
+        "path": "backend/src/__tests__/handlers/sectionHandler.test.js",
+        "additions": 34,
+        "deletions": 107
+      },
+      {
+        "path": "backend/src/__tests__/handlers/shareCodeHandler.test.js",
+        "additions": 13,
+        "deletions": 97
+      },
+      {
+        "path": "backend/src/__tests__/handlers/userMusicHandler.test.js",
+        "additions": 19,
+        "deletions": 35
+      },
+      {
+        "path": "backend/src/__tests__/handlers/videoHandler.test.js",
+        "additions": 17,
+        "deletions": 80
+      },
+      {
+        "path": "backend/src/handlers/admin/musicHandler.js",
+        "additions": 11,
+        "deletions": 40
+      },
+      {
+        "path": "backend/src/handlers/backgroundMusicHandler.js",
+        "additions": 20,
+        "deletions": 38
+      },
+      {
+        "path": "backend/src/handlers/googlePhotosHandler.js",
+        "additions": 0,
+        "deletions": 11
+      },
+      {
+        "path": "backend/src/handlers/invitationHandler.js",
+        "additions": 2,
+        "deletions": 39
+      },
+      {
+        "path": "backend/src/handlers/projectHandler.js",
+        "additions": 89,
+        "deletions": 172
+      },
+      {
+        "path": "backend/src/handlers/restorationHandler.js",
+        "additions": 1,
+        "deletions": 52
+      },
+      {
+        "path": "backend/src/handlers/shareCodeHandler.js",
+        "additions": 16,
+        "deletions": 76
+      },
+      {
+        "path": "backend/src/handlers/userMusicHandler.js",
+        "additions": 13,
+        "deletions": 34
+      },
+      {
+        "path": "backend/src/handlers/videoHandler.js",
+        "additions": 4,
+        "deletions": 26
+      },
+      {
+        "path": "backend/src/handlers/videoShareHandler.js",
+        "additions": 3,
+        "deletions": 8
+      },
+      {
+        "path": "backend/src/lambdas/photoProcessingWorker.js",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/middleware/authorize.js",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/server.js",
+        "additions": 182,
+        "deletions": 178
+      },
+      {
+        "path": "backend/src/shared/storage.js",
+        "additions": 11,
+        "deletions": 34
+      },
+      {
+        "path": "docs/ff-ui-cleanup-spec.md",
+        "additions": 0,
+        "deletions": 205
+      },
+      {
+        "path": "docs/navigation-overhaul-spec.md",
+        "additions": 0,
+        "deletions": 325
+      },
+      {
+        "path": "docs/section-customization-spec.md",
+        "additions": 0,
+        "deletions": 215
+      },
+      {
+        "path": "docs/security-audit-spec-sadie.md",
+        "additions": 0,
+        "deletions": 255
+      },
+      {
+        "path": "docs/share-feature-spec.md",
+        "additions": 0,
+        "deletions": 868
+      },
+      {
+        "path": "docs/tribute-flow-deferred-rekognition-spec.md",
+        "additions": 0,
+        "deletions": 727
+      }
+    ],
+    "headRefName": "sadie/security-audit",
+    "labels": [],
+    "mergedAt": "2026-02-28T20:10:41Z",
+    "number": 128,
+    "title": "security: route ownership middleware, CloudFront + OAC, risky change …",
+    "commits": [
+      {
+        "authoredDate": "2026-02-28T20:09:53Z",
+        "authors": [
+          {
+            "email": "dbilenkin@gmail.com",
+            "id": "MDQ6VXNlcjExMTA3NTQ=",
+            "login": "dbilenkin",
+            "name": "Dimitri Bilenkin"
+          },
+          {
+            "email": "noreply@anthropic.com",
+            "id": "MDQ6VXNlcjgxODQ3",
+            "login": "claude",
+            "name": "Claude Opus 4.6"
+          }
+        ],
+        "committedDate": "2026-02-28T20:09:53Z",
+        "messageBody": "…reverts\n\nChunks 1-3 of security audit. Migrates all project-scoped routes to\nper-router ownership middleware, eliminates redundant getProjectById\ncalls, adds CloudFront + OAC for S3 uploads (buckets now private),\nreverts async getFileUrl and in-memory rate limiting from PR #127,\nupdates tests, and removes stale spec docs.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+        "messageHeadline": "security: route ownership middleware, CloudFront + OAC, risky change …",
+        "oid": "ee92c112ada2255da9fb06ff0218fe2facde15a8"
+      }
+    ]
+  },
+  {
+    "additions": 9717,
+    "body": "Comprehensive backend quality improvement across 5 phases:\r\n\r\nPhase 1: CI gates, removed 4 unused deps, deleted dead files, ESLint config Phase 2: Shared validation utility, standardized requireAuth across all handlers Phase 3: Handler test coverage (photoHandler, eventOrganizer, videoShare, youtube) Phase 4: Middleware, shared utility, and DB layer tests Phase 5: Split photoHandler (3 files), split organizeStage (4 files),\r\n         service error handling, DB null-return standardization, dead export cleanup\r\n\r\n660 tests passing, 32% coverage, 0 lint errors.",
+    "changedFiles": 57,
+    "deletions": 8329,
+    "files": [
+      {
+        "path": ".github/workflows/deploy-backend.yml",
+        "additions": 9,
+        "deletions": 0
+      },
+      {
+        "path": ".github/workflows/deploy-prod.yml",
+        "additions": 9,
+        "deletions": 0
+      },
+      {
+        "path": ".gitignore",
+        "additions": 3,
+        "deletions": 0
+      },
+      {
+        "path": "backend/eslint.config.js",
+        "additions": 44,
+        "deletions": 0
+      },
+      {
+        "path": "backend/jest.config.js",
+        "additions": 5,
+        "deletions": 5
+      },
+      {
+        "path": "backend/package-lock.json",
+        "additions": 2313,
+        "deletions": 5907
+      },
+      {
+        "path": "backend/package.json",
+        "additions": 4,
+        "deletions": 5
+      },
+      {
+        "path": "backend/src/__tests__/db/memories.test.js",
+        "additions": 472,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/__tests__/db/photos.test.js",
+        "additions": 441,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/__tests__/db/projects.test.js",
+        "additions": 514,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/__tests__/handlers/aiProducerHandler.test.js",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/__tests__/handlers/eventOrganizerHandler.test.js",
+        "additions": 619,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/__tests__/handlers/googlePhotosHandler.test.js",
+        "additions": 5,
+        "deletions": 5
+      },
+      {
+        "path": "backend/src/__tests__/handlers/photoHandler.test.js",
+        "additions": 881,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/__tests__/handlers/userHandler.test.js",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "backend/src/__tests__/handlers/userMusicHandler.test.js",
+        "additions": 4,
+        "deletions": 4
+      },
+      {
+        "path": "backend/src/__tests__/handlers/videoShareHandler.test.js",
+        "additions": 352,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/__tests__/handlers/youtubeHandler.test.js",
+        "additions": 350,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/__tests__/middleware/auth.test.js",
+        "additions": 151,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/__tests__/middleware/authorize.test.js",
+        "additions": 117,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/__tests__/shared/responses.test.js",
+        "additions": 99,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/__tests__/shared/validation.test.js",
+        "additions": 215,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/db/contributors.js",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/db/memories.js",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/db/migrate.js",
+        "additions": 0,
+        "deletions": 51
+      },
+      {
+        "path": "backend/src/db/photos.js",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "backend/src/db/recordings.js",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/handlers/googlePhotosHandler.js",
+        "additions": 27,
+        "deletions": 46
+      },
+      {
+        "path": "backend/src/handlers/invitationHandler.js",
+        "additions": 7,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/handlers/memoryHandler.js",
+        "additions": 7,
+        "deletions": 2
+      },
+      {
+        "path": "backend/src/handlers/musicTimelineHandler.js",
+        "additions": 4,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/handlers/photoHandler.js",
+        "additions": 28,
+        "deletions": 1201
+      },
+      {
+        "path": "backend/src/handlers/photoLegacyUploadHandler.js",
+        "additions": 400,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/handlers/photoUploadHandler.js",
+        "additions": 809,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/handlers/projectHandler.js",
+        "additions": 6,
+        "deletions": 2
+      },
+      {
+        "path": "backend/src/handlers/recordingHandler.js",
+        "additions": 11,
+        "deletions": 3
+      },
+      {
+        "path": "backend/src/handlers/restorationHandler.js",
+        "additions": 5,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/handlers/shareCodeHandler.js",
+        "additions": 10,
+        "deletions": 3
+      },
+      {
+        "path": "backend/src/handlers/userHandler.js",
+        "additions": 4,
+        "deletions": 5
+      },
+      {
+        "path": "backend/src/handlers/userMusicHandler.js",
+        "additions": 13,
+        "deletions": 25
+      },
+      {
+        "path": "backend/src/handlers/videoHandler.js",
+        "additions": 17,
+        "deletions": 5
+      },
+      {
+        "path": "backend/src/handlers/videoShareHandler.js",
+        "additions": 10,
+        "deletions": 3
+      },
+      {
+        "path": "backend/src/handlers/youtubeHandler.js",
+        "additions": 16,
+        "deletions": 27
+      },
+      {
+        "path": "backend/src/middleware/optionalAuth.js",
+        "additions": 0,
+        "deletions": 81
+      },
+      {
+        "path": "backend/src/server.js",
+        "additions": 3,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/services/cloudRunService.js",
+        "additions": 28,
+        "deletions": 17
+      },
+      {
+        "path": "backend/src/services/eventOrganizer/architectStep.js",
+        "additions": 363,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/services/eventOrganizer/constants.js",
+        "additions": 0,
+        "deletions": 7
+      },
+      {
+        "path": "backend/src/services/eventOrganizer/curatorStep.js",
+        "additions": 242,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/services/eventOrganizer/index.js",
+        "additions": 0,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/services/eventOrganizer/organizeStage.js",
+        "additions": 4,
+        "deletions": 775
+      },
+      {
+        "path": "backend/src/services/eventOrganizer/promptBuilders.js",
+        "additions": 1,
+        "deletions": 128
+      },
+      {
+        "path": "backend/src/services/eventOrganizer/quickCuratorStep.js",
+        "additions": 200,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/services/openaiClient.js",
+        "additions": 20,
+        "deletions": 9
+      },
+      {
+        "path": "backend/src/shared/validation.js",
+        "additions": 72,
+        "deletions": 0
+      },
+      {
+        "path": "docs/backend-hardening-spec.md",
+        "additions": 730,
+        "deletions": 0
+      },
+      {
+        "path": "docs/progress.md",
+        "additions": 65,
+        "deletions": 0
+      }
+    ],
+    "headRefName": "dimitri/backend-cleanup",
+    "labels": [],
+    "mergedAt": "2026-03-01T02:21:15Z",
+    "number": 129,
+    "title": "backend: complete backend code hardening (phases 1-5)",
+    "commits": [
+      {
+        "authoredDate": "2026-03-01T02:20:42Z",
+        "authors": [
+          {
+            "email": "dbilenkin@gmail.com",
+            "id": "MDQ6VXNlcjExMTA3NTQ=",
+            "login": "dbilenkin",
+            "name": "Dimitri Bilenkin"
+          },
+          {
+            "email": "noreply@anthropic.com",
+            "id": "MDQ6VXNlcjgxODQ3",
+            "login": "claude",
+            "name": "Claude Opus 4.6"
+          }
+        ],
+        "committedDate": "2026-03-01T02:20:42Z",
+        "messageBody": "Comprehensive backend quality improvement across 5 phases:\n\nPhase 1: CI gates, removed 4 unused deps, deleted dead files, ESLint config\nPhase 2: Shared validation utility, standardized requireAuth across all handlers\nPhase 3: Handler test coverage (photoHandler, eventOrganizer, videoShare, youtube)\nPhase 4: Middleware, shared utility, and DB layer tests\nPhase 5: Split photoHandler (3 files), split organizeStage (4 files),\n         service error handling, DB null-return standardization, dead export cleanup\n\n660 tests passing, 32% coverage, 0 lint errors.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+        "messageHeadline": "backend: complete backend code hardening (phases 1-5)",
+        "oid": "fab03b6e5918a01002493e9238974d08272aeafa"
+      }
+    ]
+  },
+  {
+    "additions": 159,
+    "body": "Fix env var issues (4 suites), error message mismatches, response shape mismatches, mock ordering, dead tests, and a handler bug. Remove continue-on-error from CI workflows so tests block deploys.\r\n\r\n- Fix statsHandler bug: 'complete' → 'completed' in video status filter\r\n- Add missing process.env setup for module-scoped constants\r\n- Update test expectations to match current handler response shapes\r\n- Remove dead tests for removed validation (honoree required, face limit)\r\n- Rewrite googlePhotosHandler import test for async job pattern\r\n- 699 tests passing, 0 failures, 52 skipped (AI Producer)",
+    "changedFiles": 14,
+    "deletions": 226,
+    "files": [
+      {
+        "path": ".github/workflows/deploy-backend.yml",
+        "additions": 0,
+        "deletions": 1
+      },
+      {
+        "path": ".github/workflows/deploy-prod.yml",
+        "additions": 0,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/__tests__/handlers/admin/musicHandler.test.js",
+        "additions": 5,
+        "deletions": 5
+      },
+      {
+        "path": "backend/src/__tests__/handlers/admin/processorHandler.test.js",
+        "additions": 3,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/__tests__/handlers/admin/projectsHandler.test.js",
+        "additions": 46,
+        "deletions": 37
+      },
+      {
+        "path": "backend/src/__tests__/handlers/admin/statsHandler.test.js",
+        "additions": 12,
+        "deletions": 2
+      },
+      {
+        "path": "backend/src/__tests__/handlers/admin/usersHandler.test.js",
+        "additions": 3,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/__tests__/handlers/googlePhotosHandler.test.js",
+        "additions": 36,
+        "deletions": 96
+      },
+      {
+        "path": "backend/src/__tests__/handlers/projectHandler.test.js",
+        "additions": 29,
+        "deletions": 18
+      },
+      {
+        "path": "backend/src/__tests__/handlers/projectPersonHandler.test.js",
+        "additions": 2,
+        "deletions": 59
+      },
+      {
+        "path": "backend/src/__tests__/handlers/shareCodeHandler.test.js",
+        "additions": 4,
+        "deletions": 2
+      },
+      {
+        "path": "backend/src/__tests__/handlers/userHandler.test.js",
+        "additions": 12,
+        "deletions": 4
+      },
+      {
+        "path": "backend/src/__tests__/utils/testHelpers.js",
+        "additions": 6,
+        "deletions": 0
+      },
+      {
+        "path": "backend/src/handlers/admin/statsHandler.js",
+        "additions": 1,
+        "deletions": 1
+      }
+    ],
+    "headRefName": "dimitri/backend-cleanup",
+    "labels": [],
+    "mergedAt": "2026-03-01T02:47:50Z",
+    "number": 130,
+    "title": "backend: fix all 45 failing tests, make tests a hard CI gate",
+    "commits": [
+      {
+        "authoredDate": "2026-03-01T02:47:05Z",
+        "authors": [
+          {
+            "email": "dbilenkin@gmail.com",
+            "id": "MDQ6VXNlcjExMTA3NTQ=",
+            "login": "dbilenkin",
+            "name": "Dimitri Bilenkin"
+          },
+          {
+            "email": "noreply@anthropic.com",
+            "id": "MDQ6VXNlcjgxODQ3",
+            "login": "claude",
+            "name": "Claude Opus 4.6"
+          }
+        ],
+        "committedDate": "2026-03-01T02:47:05Z",
+        "messageBody": "Fix env var issues (4 suites), error message mismatches, response shape\nmismatches, mock ordering, dead tests, and a handler bug. Remove\ncontinue-on-error from CI workflows so tests block deploys.\n\n- Fix statsHandler bug: 'complete' → 'completed' in video status filter\n- Add missing process.env setup for module-scoped constants\n- Update test expectations to match current handler response shapes\n- Remove dead tests for removed validation (honoree required, face limit)\n- Rewrite googlePhotosHandler import test for async job pattern\n- 699 tests passing, 0 failures, 52 skipped (AI Producer)\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+        "messageHeadline": "backend: fix all 45 failing tests, make tests a hard CI gate",
+        "oid": "9e58594892f0def2f3b2e0fe7582546678b93760"
+      }
+    ]
+  },
+  {
+    "additions": 6,
+    "body": "- Add .nvmrc pinning Node 22 for local development\r\n- Update all GitHub Actions workflows to node-version: '22'\r\n- Update serverless.yml Lambda runtime to nodejs22.x",
+    "changedFiles": 5,
+    "deletions": 5,
+    "files": [
+      {
+        "path": ".github/workflows/deploy-backend.yml",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": ".github/workflows/deploy-frontend.yml",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": ".github/workflows/deploy-prod.yml",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": ".nvmrc",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": "backend/serverless.yml",
+        "additions": 1,
+        "deletions": 1
+      }
+    ],
+    "headRefName": "dimitri/backend-cleanup",
+    "labels": [],
+    "mergedAt": "2026-03-01T03:08:45Z",
+    "number": 131,
+    "title": "chore: upgrade Node.js to 22 across local, CI, and Lambda",
+    "commits": [
+      {
+        "authoredDate": "2026-03-01T03:07:55Z",
+        "authors": [
+          {
+            "email": "dbilenkin@gmail.com",
+            "id": "MDQ6VXNlcjExMTA3NTQ=",
+            "login": "dbilenkin",
+            "name": "Dimitri Bilenkin"
+          },
+          {
+            "email": "noreply@anthropic.com",
+            "id": "MDQ6VXNlcjgxODQ3",
+            "login": "claude",
+            "name": "Claude Opus 4.6"
+          }
+        ],
+        "committedDate": "2026-03-01T03:07:55Z",
+        "messageBody": "- Add .nvmrc pinning Node 22 for local development\n- Update all GitHub Actions workflows to node-version: '22'\n- Update serverless.yml Lambda runtime to nodejs22.x\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+        "messageHeadline": "chore: upgrade Node.js to 22 across local, CI, and Lambda",
+        "oid": "1f1cc0f47fda67aab2942f673563e08352aff6ff"
+      }
+    ]
+  },
+  {
+    "additions": 12,
+    "body": "- Google Photos import test: use Lambda path (mocked client) instead of local dev path that does a real dynamic import of the worker file, creating unmocked AWS clients that leave open handles\r\n- Add --forceExit to jest command as safety net for ESM open handle issues",
+    "changedFiles": 2,
+    "deletions": 9,
+    "files": [
+      {
+        "path": "backend/package.json",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "backend/src/__tests__/handlers/googlePhotosHandler.test.js",
+        "additions": 11,
+        "deletions": 8
+      }
+    ],
+    "headRefName": "dimitri/backend-cleanup",
+    "labels": [],
+    "mergedAt": "2026-03-01T03:19:42Z",
+    "number": 132,
+    "title": "fix: resolve exit code 1 from open handles after tests pass",
+    "commits": [
+      {
+        "authoredDate": "2026-03-01T03:17:41Z",
+        "authors": [
+          {
+            "email": "dbilenkin@gmail.com",
+            "id": "MDQ6VXNlcjExMTA3NTQ=",
+            "login": "dbilenkin",
+            "name": "Dimitri Bilenkin"
+          },
+          {
+            "email": "noreply@anthropic.com",
+            "id": "MDQ6VXNlcjgxODQ3",
+            "login": "claude",
+            "name": "Claude Opus 4.6"
+          }
+        ],
+        "committedDate": "2026-03-01T03:17:41Z",
+        "messageBody": "- Google Photos import test: use Lambda path (mocked client) instead of\n  local dev path that does a real dynamic import of the worker file,\n  creating unmocked AWS clients that leave open handles\n- Add --forceExit to jest command as safety net for ESM open handle issues\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+        "messageHeadline": "fix: resolve exit code 1 from open handles after tests pass",
+        "oid": "9b3fd1f9dc5a788c1fa34a9d586bec0ed09efbf0"
+      }
+    ]
   }
 ]

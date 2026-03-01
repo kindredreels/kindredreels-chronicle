@@ -1,14 +1,12 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-02-24T11:54:23.141Z",
+  "generatedAt": "2026-03-01T04:23:12.530Z",
   "repoStartDate": "2025-10-19",
   "days": {
     "2025-10-19": {
       "commit": "b64458b2272752479483f0e441bedf67bcd68ab4",
       "totals": {
         "tests": 0,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 0,
         "frontend": 54,
         "backend": 0,
@@ -18,8 +16,6 @@
       },
       "fileCount": {
         "tests": 0,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 0,
         "frontend": 2,
         "backend": 0,
@@ -32,8 +28,6 @@
       "commit": "778a903d6dd1a8a3c14bfec321b9ff267d00dcf9",
       "totals": {
         "tests": 0,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 0,
         "frontend": 3072,
         "backend": 1477,
@@ -43,8 +37,6 @@
       },
       "fileCount": {
         "tests": 0,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 0,
         "frontend": 19,
         "backend": 10,
@@ -57,8 +49,6 @@
       "commit": "21d3bc7486f25b936772cbef0525a0cfa4094daf",
       "totals": {
         "tests": 0,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 0,
         "frontend": 3161,
         "backend": 2494,
@@ -68,8 +58,6 @@
       },
       "fileCount": {
         "tests": 0,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 0,
         "frontend": 19,
         "backend": 14,
@@ -82,8 +70,6 @@
       "commit": "f0c0d149e497b0d633b822dad4cfaddc3278f346",
       "totals": {
         "tests": 0,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 96,
         "frontend": 3661,
         "backend": 2429,
@@ -93,8 +79,6 @@
       },
       "fileCount": {
         "tests": 0,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 2,
         "frontend": 24,
         "backend": 13,
@@ -107,8 +91,6 @@
       "commit": "cf109710034176b0e968a6fb2a3d9e9948eca774",
       "totals": {
         "tests": 0,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 100,
         "frontend": 3775,
         "backend": 2834,
@@ -118,8 +100,6 @@
       },
       "fileCount": {
         "tests": 0,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 2,
         "frontend": 24,
         "backend": 16,
@@ -132,8 +112,6 @@
       "commit": "bc361cdebd2f9f3977f6a77004285a873dc2fcca",
       "totals": {
         "tests": 0,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 100,
         "frontend": 4742,
         "backend": 3314,
@@ -143,8 +121,6 @@
       },
       "fileCount": {
         "tests": 0,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 2,
         "frontend": 29,
         "backend": 18,
@@ -157,8 +133,6 @@
       "commit": "26f2e60c710aceb741aaf43fc278874678c18f53",
       "totals": {
         "tests": 0,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 100,
         "frontend": 5371,
         "backend": 3939,
@@ -168,8 +142,6 @@
       },
       "fileCount": {
         "tests": 0,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 2,
         "frontend": 32,
         "backend": 22,
@@ -182,8 +154,6 @@
       "commit": "c4db4039148c15f494a617a83895945c830d15b6",
       "totals": {
         "tests": 0,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 100,
         "frontend": 5371,
         "backend": 3939,
@@ -193,8 +163,6 @@
       },
       "fileCount": {
         "tests": 0,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 2,
         "frontend": 32,
         "backend": 22,
@@ -207,8 +175,6 @@
       "commit": "5c2ed88cc1d49a35a2adeb37dfb5e528c84da5d6",
       "totals": {
         "tests": 360,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 100,
         "frontend": 5568,
         "backend": 4133,
@@ -218,8 +184,6 @@
       },
       "fileCount": {
         "tests": 2,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 2,
         "frontend": 32,
         "backend": 23,
@@ -232,8 +196,6 @@
       "commit": "8d0bc1be792f64723795cf528c5e093ad107b0f7",
       "totals": {
         "tests": 360,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 100,
         "frontend": 6923,
         "backend": 4487,
@@ -243,8 +205,6 @@
       },
       "fileCount": {
         "tests": 2,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 2,
         "frontend": 36,
         "backend": 23,
@@ -257,8 +217,6 @@
       "commit": "a0a93169a9ca7aaacd5c22a3c72fefb533051501",
       "totals": {
         "tests": 360,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 100,
         "frontend": 7980,
         "backend": 4875,
@@ -268,8 +226,6 @@
       },
       "fileCount": {
         "tests": 2,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 2,
         "frontend": 36,
         "backend": 25,
@@ -282,8 +238,6 @@
       "commit": "0c4a09399c87b2601100579620130f7bba65f3e6",
       "totals": {
         "tests": 360,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 226,
         "frontend": 8025,
         "backend": 4948,
@@ -293,8 +247,6 @@
       },
       "fileCount": {
         "tests": 2,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 3,
         "frontend": 36,
         "backend": 25,
@@ -307,8 +259,6 @@
       "commit": "73561561f3b1db9397d1249a0220ab0f4f8768a3",
       "totals": {
         "tests": 360,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 262,
         "frontend": 11444,
         "backend": 6708,
@@ -318,8 +268,6 @@
       },
       "fileCount": {
         "tests": 2,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 3,
         "frontend": 45,
         "backend": 35,
@@ -332,8 +280,6 @@
       "commit": "57fd6525c281b4305f38e02e8dd606160f6d46cc",
       "totals": {
         "tests": 360,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 265,
         "frontend": 11472,
         "backend": 6708,
@@ -343,8 +289,6 @@
       },
       "fileCount": {
         "tests": 2,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 3,
         "frontend": 45,
         "backend": 35,
@@ -357,8 +301,6 @@
       "commit": "3bb2dfa5a413c672d5c640d746b16a5fdd7e85e1",
       "totals": {
         "tests": 444,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 265,
         "frontend": 11164,
         "backend": 6889,
@@ -368,8 +310,6 @@
       },
       "fileCount": {
         "tests": 3,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 3,
         "frontend": 65,
         "backend": 36,
@@ -382,8 +322,6 @@
       "commit": "c04e10dd1bd543dcfe6d35d35ecacf9cbc6238ad",
       "totals": {
         "tests": 444,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 265,
         "frontend": 11946,
         "backend": 7356,
@@ -393,8 +331,6 @@
       },
       "fileCount": {
         "tests": 3,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 3,
         "frontend": 66,
         "backend": 38,
@@ -407,8 +343,6 @@
       "commit": "d232613a7cda8fb4fa36d1ec87aeaee2d70147c4",
       "totals": {
         "tests": 444,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 265,
         "frontend": 12384,
         "backend": 7356,
@@ -418,8 +352,6 @@
       },
       "fileCount": {
         "tests": 3,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 3,
         "frontend": 66,
         "backend": 38,
@@ -432,8 +364,6 @@
       "commit": "0b1038d83f97a1db0a65f528c58669bf871ae997",
       "totals": {
         "tests": 444,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 265,
         "frontend": 14136,
         "backend": 8010,
@@ -443,8 +373,6 @@
       },
       "fileCount": {
         "tests": 3,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 3,
         "frontend": 70,
         "backend": 40,
@@ -457,8 +385,6 @@
       "commit": "c96c0e4a5282ffb78d1dad09feb0e23720a6c290",
       "totals": {
         "tests": 444,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 265,
         "frontend": 14702,
         "backend": 8285,
@@ -468,8 +394,6 @@
       },
       "fileCount": {
         "tests": 3,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 3,
         "frontend": 72,
         "backend": 40,
@@ -482,8 +406,6 @@
       "commit": "6b7eb9ec2c14f4535d18f9dcaf00d5ae302bba3f",
       "totals": {
         "tests": 444,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 542,
         "frontend": 16266,
         "backend": 9623,
@@ -493,8 +415,6 @@
       },
       "fileCount": {
         "tests": 3,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 4,
         "frontend": 76,
         "backend": 43,
@@ -507,8 +427,6 @@
       "commit": "ba876979401864cd91a03cd8ac1872ce811b4715",
       "totals": {
         "tests": 444,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 542,
         "frontend": 18344,
         "backend": 10042,
@@ -518,8 +436,6 @@
       },
       "fileCount": {
         "tests": 3,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 4,
         "frontend": 79,
         "backend": 43,
@@ -532,8 +448,6 @@
       "commit": "2a3c929255a5fb088608d73effeae450c5bab265",
       "totals": {
         "tests": 710,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 265,
         "frontend": 11164,
         "backend": 6938,
@@ -543,8 +457,6 @@
       },
       "fileCount": {
         "tests": 3,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 3,
         "frontend": 65,
         "backend": 38,
@@ -557,8 +469,6 @@
       "commit": "47af5152f8505ec9e1bba24d32015aeaa0eb2b8c",
       "totals": {
         "tests": 718,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 542,
         "frontend": 18325,
         "backend": 10066,
@@ -568,8 +478,6 @@
       },
       "fileCount": {
         "tests": 3,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 4,
         "frontend": 79,
         "backend": 43,
@@ -582,8 +490,6 @@
       "commit": "a8ea6950f20b5fc7be232d1e6f597507b97964b0",
       "totals": {
         "tests": 718,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 542,
         "frontend": 19446,
         "backend": 10126,
@@ -593,8 +499,6 @@
       },
       "fileCount": {
         "tests": 3,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 4,
         "frontend": 84,
         "backend": 43,
@@ -607,8 +511,6 @@
       "commit": "ee19124bb16af1c15a26fac52ef26bef2b19a28a",
       "totals": {
         "tests": 1949,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 542,
         "frontend": 20561,
         "backend": 10714,
@@ -618,8 +520,6 @@
       },
       "fileCount": {
         "tests": 7,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 4,
         "frontend": 88,
         "backend": 45,
@@ -632,8 +532,6 @@
       "commit": "fc01e9be73f615f2d7758bfd42669b08e7a5fcf9",
       "totals": {
         "tests": 25139,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 542,
         "frontend": 20698,
         "backend": 10714,
@@ -643,8 +541,6 @@
       },
       "fileCount": {
         "tests": 58,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 4,
         "frontend": 89,
         "backend": 45,
@@ -657,8 +553,6 @@
       "commit": "cd5b6470c9434ee41dc67972931d4b702ff76cf4",
       "totals": {
         "tests": 25139,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 542,
         "frontend": 22144,
         "backend": 11061,
@@ -668,8 +562,6 @@
       },
       "fileCount": {
         "tests": 58,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 4,
         "frontend": 92,
         "backend": 46,
@@ -682,8 +574,6 @@
       "commit": "cd7701aaa2df427917809ca7670c58a6570d868e",
       "totals": {
         "tests": 25139,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 542,
         "frontend": 23748,
         "backend": 13283,
@@ -693,8 +583,6 @@
       },
       "fileCount": {
         "tests": 58,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 4,
         "frontend": 95,
         "backend": 50,
@@ -707,8 +595,6 @@
       "commit": "407437024c256767cf1cb8f0ef4a67db8e8d152a",
       "totals": {
         "tests": 25139,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 542,
         "frontend": 28302,
         "backend": 17360,
@@ -718,8 +604,6 @@
       },
       "fileCount": {
         "tests": 58,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 4,
         "frontend": 108,
         "backend": 54,
@@ -732,8 +616,6 @@
       "commit": "cc1b8aa6a609e164737f6861c15d3fcb3ceb7e92",
       "totals": {
         "tests": 25139,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 550,
         "frontend": 29466,
         "backend": 18978,
@@ -743,8 +625,6 @@
       },
       "fileCount": {
         "tests": 58,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 4,
         "frontend": 111,
         "backend": 69,
@@ -757,8 +637,6 @@
       "commit": "377b7aaddd8223e4b809791a8eb914af2e73617a",
       "totals": {
         "tests": 25139,
-        "codeChronicle": 0,
-        "claudePlans": 5641,
         "cicd": 550,
         "frontend": 30772,
         "backend": 19015,
@@ -768,8 +646,6 @@
       },
       "fileCount": {
         "tests": 58,
-        "codeChronicle": 0,
-        "claudePlans": 21,
         "cicd": 4,
         "frontend": 171,
         "backend": 69,
@@ -782,8 +658,6 @@
       "commit": "b21769cee815eb778dbfe668cc1bf4f426fd3123",
       "totals": {
         "tests": 25139,
-        "codeChronicle": 1236,
-        "claudePlans": 5641,
         "cicd": 550,
         "frontend": 31966,
         "backend": 19619,
@@ -793,8 +667,6 @@
       },
       "fileCount": {
         "tests": 58,
-        "codeChronicle": 7,
-        "claudePlans": 21,
         "cicd": 4,
         "frontend": 175,
         "backend": 72,
@@ -807,8 +679,6 @@
       "commit": "ac35dadf6514e82240342059b027a5b734942eed",
       "totals": {
         "tests": 25139,
-        "codeChronicle": 1279,
-        "claudePlans": 5641,
         "cicd": 550,
         "frontend": 32419,
         "backend": 20371,
@@ -818,8 +688,6 @@
       },
       "fileCount": {
         "tests": 58,
-        "codeChronicle": 7,
-        "claudePlans": 21,
         "cicd": 4,
         "frontend": 176,
         "backend": 74,
@@ -832,8 +700,6 @@
       "commit": "777cadf492d5d1b8a8f42c1f2de79111b4c60e2e",
       "totals": {
         "tests": 25139,
-        "codeChronicle": 1279,
-        "claudePlans": 5641,
         "cicd": 550,
         "frontend": 33702,
         "backend": 20398,
@@ -843,8 +709,6 @@
       },
       "fileCount": {
         "tests": 58,
-        "codeChronicle": 7,
-        "claudePlans": 21,
         "cicd": 4,
         "frontend": 181,
         "backend": 74,
@@ -857,8 +721,6 @@
       "commit": "2f5e0a9362e5f879c385e2b0ce63fa932ad8d5dc",
       "totals": {
         "tests": 25139,
-        "codeChronicle": 1279,
-        "claudePlans": 5641,
         "cicd": 550,
         "frontend": 33763,
         "backend": 20408,
@@ -868,8 +730,6 @@
       },
       "fileCount": {
         "tests": 58,
-        "codeChronicle": 7,
-        "claudePlans": 21,
         "cicd": 4,
         "frontend": 181,
         "backend": 74,
@@ -882,8 +742,6 @@
       "commit": "18dd7980aad054874dd993d654e0ebeeda637909",
       "totals": {
         "tests": 25139,
-        "codeChronicle": 1279,
-        "claudePlans": 5641,
         "cicd": 550,
         "frontend": 34842,
         "backend": 21278,
@@ -893,8 +751,6 @@
       },
       "fileCount": {
         "tests": 58,
-        "codeChronicle": 7,
-        "claudePlans": 21,
         "cicd": 4,
         "frontend": 187,
         "backend": 76,
@@ -907,8 +763,6 @@
       "commit": "9740abb883657693c904b338229b70da344539ca",
       "totals": {
         "tests": 25139,
-        "codeChronicle": 1279,
-        "claudePlans": 5641,
         "cicd": 550,
         "frontend": 34842,
         "backend": 21278,
@@ -918,8 +772,6 @@
       },
       "fileCount": {
         "tests": 58,
-        "codeChronicle": 7,
-        "claudePlans": 21,
         "cicd": 4,
         "frontend": 187,
         "backend": 76,
@@ -932,8 +784,6 @@
       "commit": "fcc948416a48ba28b71b1eeaeec569312bdc321e",
       "totals": {
         "tests": 25139,
-        "codeChronicle": 1279,
-        "claudePlans": 5641,
         "cicd": 550,
         "frontend": 34879,
         "backend": 21278,
@@ -943,8 +793,6 @@
       },
       "fileCount": {
         "tests": 58,
-        "codeChronicle": 7,
-        "claudePlans": 21,
         "cicd": 4,
         "frontend": 187,
         "backend": 76,
@@ -957,8 +805,6 @@
       "commit": "68225ad78ee706851399514cf68b458bb70039f1",
       "totals": {
         "tests": 25139,
-        "codeChronicle": 1279,
-        "claudePlans": 5641,
         "cicd": 550,
         "frontend": 35486,
         "backend": 21646,
@@ -968,8 +814,6 @@
       },
       "fileCount": {
         "tests": 58,
-        "codeChronicle": 7,
-        "claudePlans": 21,
         "cicd": 4,
         "frontend": 186,
         "backend": 76,
@@ -979,36 +823,30 @@
       }
     },
     "2026-01-05": {
-      "commit": "68225ad78ee706851399514cf68b458bb70039f1",
+      "commit": "71160fa6397f5e0ffc92facbed8a7cc2ce9465a3",
       "totals": {
         "tests": 25139,
-        "codeChronicle": 1279,
-        "claudePlans": 5641,
-        "cicd": 550,
-        "frontend": 35486,
-        "backend": 21646,
-        "scripts": 6074,
-        "processing": 8938,
-        "docs": 6962
+        "cicd": 553,
+        "frontend": 35413,
+        "backend": 22437,
+        "scripts": 6135,
+        "processing": 9311,
+        "docs": 7386
       },
       "fileCount": {
         "tests": 58,
-        "codeChronicle": 7,
-        "claudePlans": 21,
         "cicd": 4,
         "frontend": 186,
         "backend": 76,
         "scripts": 23,
         "processing": 29,
-        "docs": 17
+        "docs": 18
       }
     },
     "2026-01-06": {
       "commit": "42b4e62910dd1059da7972ee60d68f1a2cfcabc1",
       "totals": {
         "tests": 25139,
-        "codeChronicle": 1422,
-        "claudePlans": 5641,
         "cicd": 553,
         "frontend": 35491,
         "backend": 22435,
@@ -1018,8 +856,6 @@
       },
       "fileCount": {
         "tests": 58,
-        "codeChronicle": 7,
-        "claudePlans": 21,
         "cicd": 4,
         "frontend": 186,
         "backend": 76,
@@ -1032,8 +868,6 @@
       "commit": "9aa5c25922ca879111cfb66e0f073821a02b2a41",
       "totals": {
         "tests": 26507,
-        "codeChronicle": 1422,
-        "claudePlans": 5641,
         "cicd": 553,
         "frontend": 35651,
         "backend": 22656,
@@ -1043,8 +877,6 @@
       },
       "fileCount": {
         "tests": 58,
-        "codeChronicle": 7,
-        "claudePlans": 21,
         "cicd": 4,
         "frontend": 186,
         "backend": 77,
@@ -1057,8 +889,6 @@
       "commit": "8571026e8cbcedff3ebc28f01aec74213f462ac3",
       "totals": {
         "tests": 26507,
-        "codeChronicle": 1422,
-        "claudePlans": 5641,
         "cicd": 553,
         "frontend": 36589,
         "backend": 22762,
@@ -1068,8 +898,6 @@
       },
       "fileCount": {
         "tests": 58,
-        "codeChronicle": 7,
-        "claudePlans": 21,
         "cicd": 4,
         "frontend": 191,
         "backend": 77,
@@ -1082,8 +910,6 @@
       "commit": "c1a23b2836371edb96bb494a4b964b15bde975a7",
       "totals": {
         "tests": 26507,
-        "codeChronicle": 1422,
-        "claudePlans": 5641,
         "cicd": 553,
         "frontend": 36705,
         "backend": 22783,
@@ -1093,8 +919,6 @@
       },
       "fileCount": {
         "tests": 58,
-        "codeChronicle": 7,
-        "claudePlans": 21,
         "cicd": 4,
         "frontend": 191,
         "backend": 77,
@@ -1107,8 +931,6 @@
       "commit": "6fd5583f4aff5037d5345c32df8f960879376b52",
       "totals": {
         "tests": 26507,
-        "codeChronicle": 1422,
-        "claudePlans": 5641,
         "cicd": 556,
         "frontend": 37112,
         "backend": 22807,
@@ -1118,8 +940,6 @@
       },
       "fileCount": {
         "tests": 58,
-        "codeChronicle": 7,
-        "claudePlans": 21,
         "cicd": 4,
         "frontend": 192,
         "backend": 77,
@@ -1132,8 +952,6 @@
       "commit": "be396a3a5a6414981f53105eb0dc3fc278eaacac",
       "totals": {
         "tests": 26507,
-        "codeChronicle": 1422,
-        "claudePlans": 5641,
         "cicd": 617,
         "frontend": 37975,
         "backend": 23100,
@@ -1143,8 +961,6 @@
       },
       "fileCount": {
         "tests": 58,
-        "codeChronicle": 7,
-        "claudePlans": 21,
         "cicd": 4,
         "frontend": 194,
         "backend": 77,
@@ -1154,11 +970,9 @@
       }
     },
     "2026-01-12": {
-      "commit": "6eb976a44ad6bfda645c43de3ad249a32c67944d",
+      "commit": "151cd19236aef4641e45b8e5f12f96ea3165cee2",
       "totals": {
         "tests": 36458,
-        "codeChronicle": 1422,
-        "claudePlans": 5641,
         "cicd": 617,
         "frontend": 38123,
         "backend": 23380,
@@ -1168,8 +982,6 @@
       },
       "fileCount": {
         "tests": 78,
-        "codeChronicle": 7,
-        "claudePlans": 21,
         "cicd": 4,
         "frontend": 195,
         "backend": 79,
@@ -1179,11 +991,9 @@
       }
     },
     "2026-01-13": {
-      "commit": "f603e96217891ecdd8d5d4856bc78bb2619c7010",
+      "commit": "71f3d65fe8fd0c02a2765db92e294d13d8cbfa48",
       "totals": {
         "tests": 36458,
-        "codeChronicle": 1422,
-        "claudePlans": 5641,
         "cicd": 617,
         "frontend": 38345,
         "backend": 23385,
@@ -1193,8 +1003,27 @@
       },
       "fileCount": {
         "tests": 78,
-        "codeChronicle": 7,
-        "claudePlans": 21,
+        "cicd": 4,
+        "frontend": 196,
+        "backend": 79,
+        "scripts": 25,
+        "processing": 29,
+        "docs": 20
+      }
+    },
+    "2026-01-14": {
+      "commit": "22b8997a5ff3ed1e6e773a00014ffbc7f191ca85",
+      "totals": {
+        "tests": 36458,
+        "cicd": 617,
+        "frontend": 38345,
+        "backend": 23386,
+        "scripts": 6402,
+        "processing": 9681,
+        "docs": 7421
+      },
+      "fileCount": {
+        "tests": 78,
         "cicd": 4,
         "frontend": 196,
         "backend": 79,
@@ -1204,22 +1033,39 @@
       }
     },
     "2026-01-20": {
-      "commit": "8937318eb14d698f8157fac4c360c20250524103",
+      "commit": "2db3914fa009ceb0de13cad72295bd96767f1dd6",
       "totals": {
         "tests": 36458,
-        "codeChronicle": 1422,
-        "claudePlans": 9123,
         "cicd": 617,
         "frontend": 38540,
-        "backend": 23865,
+        "backend": 23866,
         "scripts": 6402,
-        "processing": 9641,
-        "docs": 4302
+        "processing": 9690,
+        "docs": 4377
       },
       "fileCount": {
         "tests": 78,
-        "codeChronicle": 7,
-        "claudePlans": 27,
+        "cicd": 4,
+        "frontend": 196,
+        "backend": 79,
+        "scripts": 25,
+        "processing": 29,
+        "docs": 17
+      }
+    },
+    "2026-01-22": {
+      "commit": "94d52b14b892b45691df358db542033b69b0ad7c",
+      "totals": {
+        "tests": 36490,
+        "cicd": 617,
+        "frontend": 38540,
+        "backend": 23866,
+        "scripts": 6402,
+        "processing": 9690,
+        "docs": 4377
+      },
+      "fileCount": {
+        "tests": 80,
         "cicd": 4,
         "frontend": 196,
         "backend": 79,
@@ -1229,22 +1075,18 @@
       }
     },
     "2026-01-24": {
-      "commit": "8937318eb14d698f8157fac4c360c20250524103",
+      "commit": "283268af1f88df24d4b1354cf59664654d9468e9",
       "totals": {
         "tests": 36458,
-        "codeChronicle": 1422,
-        "claudePlans": 9123,
         "cicd": 617,
         "frontend": 38677,
-        "backend": 24266,
+        "backend": 24267,
         "scripts": 6402,
-        "processing": 10858,
-        "docs": 5378
+        "processing": 11032,
+        "docs": 5483
       },
       "fileCount": {
         "tests": 78,
-        "codeChronicle": 7,
-        "claudePlans": 27,
         "cicd": 4,
         "frontend": 196,
         "backend": 79,
@@ -1257,8 +1099,6 @@
       "commit": "87e3cde81b7b86fbb5777974f7ca45ec821794e3",
       "totals": {
         "tests": 36458,
-        "codeChronicle": 1422,
-        "claudePlans": 10205,
         "cicd": 617,
         "frontend": 38687,
         "backend": 24267,
@@ -1268,8 +1108,6 @@
       },
       "fileCount": {
         "tests": 78,
-        "codeChronicle": 7,
-        "claudePlans": 31,
         "cicd": 4,
         "frontend": 196,
         "backend": 79,
@@ -1279,11 +1117,9 @@
       }
     },
     "2026-01-27": {
-      "commit": "2920a74c9dc271276324b2b50a51a2c7944d40c8",
+      "commit": "69f556db5e1eeba68c47bb420008124a86f39523",
       "totals": {
-        "tests": 36501,
-        "codeChronicle": 1422,
-        "claudePlans": 10205,
+        "tests": 36505,
         "cicd": 617,
         "frontend": 38687,
         "backend": 24267,
@@ -1292,9 +1128,7 @@
         "docs": 5483
       },
       "fileCount": {
-        "tests": 80,
-        "codeChronicle": 7,
-        "claudePlans": 31,
+        "tests": 81,
         "cicd": 4,
         "frontend": 196,
         "backend": 79,
@@ -1304,36 +1138,9 @@
       }
     },
     "2026-01-30": {
-      "commit": "5d4a4ac6da8f4be70f643613c9708b18d016e846",
+      "commit": "41426d61ebbfa8e5659b259c89d25d809291c092",
       "totals": {
         "tests": 36501,
-        "codeChronicle": 1422,
-        "claudePlans": 10205,
-        "cicd": 617,
-        "frontend": 38687,
-        "backend": 24267,
-        "scripts": 6402,
-        "processing": 11032,
-        "docs": 5483
-      },
-      "fileCount": {
-        "tests": 80,
-        "codeChronicle": 7,
-        "claudePlans": 31,
-        "cicd": 4,
-        "frontend": 196,
-        "backend": 79,
-        "scripts": 25,
-        "processing": 31,
-        "docs": 19
-      }
-    },
-    "2026-01-31": {
-      "commit": "5d4a4ac6da8f4be70f643613c9708b18d016e846",
-      "totals": {
-        "tests": 36501,
-        "codeChronicle": 1422,
-        "claudePlans": 10205,
         "cicd": 617,
         "frontend": 42956,
         "backend": 26515,
@@ -1343,8 +1150,6 @@
       },
       "fileCount": {
         "tests": 80,
-        "codeChronicle": 7,
-        "claudePlans": 31,
         "cicd": 4,
         "frontend": 213,
         "backend": 87,
@@ -1353,12 +1158,31 @@
         "docs": 16
       }
     },
+    "2026-01-31": {
+      "commit": "ab1e7182c0a9d1b535add7342cafa90f1af7e484",
+      "totals": {
+        "tests": 36501,
+        "cicd": 617,
+        "frontend": 42983,
+        "backend": 26529,
+        "scripts": 6402,
+        "processing": 11538,
+        "docs": 5173
+      },
+      "fileCount": {
+        "tests": 80,
+        "cicd": 4,
+        "frontend": 213,
+        "backend": 87,
+        "scripts": 25,
+        "processing": 31,
+        "docs": 17
+      }
+    },
     "2026-02-04": {
       "commit": "d43815aae58bc899b19ff403a8706f85dfdf7ed1",
       "totals": {
         "tests": 36555,
-        "codeChronicle": 1422,
-        "claudePlans": 13872,
         "cicd": 617,
         "frontend": 42983,
         "backend": 26529,
@@ -1368,8 +1192,6 @@
       },
       "fileCount": {
         "tests": 81,
-        "codeChronicle": 7,
-        "claudePlans": 47,
         "cicd": 4,
         "frontend": 213,
         "backend": 87,
@@ -1382,8 +1204,6 @@
       "commit": "849cdf5e69aecd28384d3c70ed3cfdcc464309f6",
       "totals": {
         "tests": 36501,
-        "codeChronicle": 1422,
-        "claudePlans": 13872,
         "cicd": 617,
         "frontend": 44030,
         "backend": 26784,
@@ -1393,8 +1213,6 @@
       },
       "fileCount": {
         "tests": 80,
-        "codeChronicle": 7,
-        "claudePlans": 47,
         "cicd": 4,
         "frontend": 218,
         "backend": 89,
@@ -1407,8 +1225,6 @@
       "commit": "e617eae2727326e03ba1c5e41cdfabfb12168156",
       "totals": {
         "tests": 36555,
-        "codeChronicle": 1422,
-        "claudePlans": 13872,
         "cicd": 617,
         "frontend": 43784,
         "backend": 26784,
@@ -1418,8 +1234,6 @@
       },
       "fileCount": {
         "tests": 81,
-        "codeChronicle": 7,
-        "claudePlans": 47,
         "cicd": 4,
         "frontend": 218,
         "backend": 89,
@@ -1432,8 +1246,6 @@
       "commit": "bb5f76cd7fa8f7b201654de93dc48f1654f0c7a1",
       "totals": {
         "tests": 36596,
-        "codeChronicle": 1422,
-        "claudePlans": 13872,
         "cicd": 619,
         "frontend": 46254,
         "backend": 27056,
@@ -1443,8 +1255,6 @@
       },
       "fileCount": {
         "tests": 81,
-        "codeChronicle": 7,
-        "claudePlans": 47,
         "cicd": 4,
         "frontend": 229,
         "backend": 91,
@@ -1457,8 +1267,6 @@
       "commit": "413669a2afa783fc90b4d28c02c28b16f6f39b5a",
       "totals": {
         "tests": 36596,
-        "codeChronicle": 1422,
-        "claudePlans": 13872,
         "cicd": 619,
         "frontend": 46334,
         "backend": 27056,
@@ -1468,8 +1276,6 @@
       },
       "fileCount": {
         "tests": 81,
-        "codeChronicle": 7,
-        "claudePlans": 47,
         "cicd": 4,
         "frontend": 230,
         "backend": 91,
@@ -1482,8 +1288,6 @@
       "commit": "74cc096798abd7daa5c4145e9d388b95d6d162c7",
       "totals": {
         "tests": 36596,
-        "codeChronicle": 1422,
-        "claudePlans": 13872,
         "cicd": 619,
         "frontend": 46334,
         "backend": 27062,
@@ -1493,8 +1297,6 @@
       },
       "fileCount": {
         "tests": 81,
-        "codeChronicle": 7,
-        "claudePlans": 47,
         "cicd": 4,
         "frontend": 230,
         "backend": 91,
@@ -1507,8 +1309,6 @@
       "commit": "2a4f77ea8b80195fb3862aec7d0e018784c79b07",
       "totals": {
         "tests": 36596,
-        "codeChronicle": 1422,
-        "claudePlans": 13872,
         "cicd": 619,
         "frontend": 46350,
         "backend": 27074,
@@ -1518,8 +1318,6 @@
       },
       "fileCount": {
         "tests": 81,
-        "codeChronicle": 7,
-        "claudePlans": 47,
         "cicd": 4,
         "frontend": 230,
         "backend": 91,
@@ -1529,36 +1327,9 @@
       }
     },
     "2026-02-15": {
-      "commit": "c27972acbe5aecf1cb1fe4b9da31ec095da60133",
+      "commit": "095cd3f74d011f7d00b1801050d9f3c494068115",
       "totals": {
         "tests": 36596,
-        "codeChronicle": 1422,
-        "claudePlans": 13872,
-        "cicd": 619,
-        "frontend": 46366,
-        "backend": 27081,
-        "scripts": 6456,
-        "processing": 11592,
-        "docs": 4999
-      },
-      "fileCount": {
-        "tests": 81,
-        "codeChronicle": 7,
-        "claudePlans": 47,
-        "cicd": 4,
-        "frontend": 230,
-        "backend": 91,
-        "scripts": 26,
-        "processing": 31,
-        "docs": 16
-      }
-    },
-    "2026-02-16": {
-      "commit": "c27972acbe5aecf1cb1fe4b9da31ec095da60133",
-      "totals": {
-        "tests": 36596,
-        "codeChronicle": 1422,
-        "claudePlans": 13872,
         "cicd": 619,
         "frontend": 46591,
         "backend": 27255,
@@ -1568,8 +1339,6 @@
       },
       "fileCount": {
         "tests": 81,
-        "codeChronicle": 7,
-        "claudePlans": 47,
         "cicd": 4,
         "frontend": 231,
         "backend": 91,
@@ -1578,12 +1347,31 @@
         "docs": 18
       }
     },
-    "2026-02-17": {
-      "commit": "cc1f939ea163e2ec0b9598239866a2b6af22efc2",
+    "2026-02-16": {
+      "commit": "110b752d1167a212b41e3e479d89bc3da1765272",
       "totals": {
         "tests": 36596,
-        "codeChronicle": 1422,
-        "claudePlans": 13872,
+        "cicd": 619,
+        "frontend": 46574,
+        "backend": 27840,
+        "scripts": 6456,
+        "processing": 11592,
+        "docs": 6382
+      },
+      "fileCount": {
+        "tests": 81,
+        "cicd": 4,
+        "frontend": 231,
+        "backend": 93,
+        "scripts": 26,
+        "processing": 31,
+        "docs": 20
+      }
+    },
+    "2026-02-17": {
+      "commit": "8f2d0e4f7249356a560ad0d74c8dc5b7867dcbb2",
+      "totals": {
+        "tests": 36596,
         "cicd": 619,
         "frontend": 46870,
         "backend": 28016,
@@ -1593,8 +1381,6 @@
       },
       "fileCount": {
         "tests": 81,
-        "codeChronicle": 7,
-        "claudePlans": 47,
         "cicd": 4,
         "frontend": 231,
         "backend": 94,
@@ -1604,36 +1390,30 @@
       }
     },
     "2026-02-18": {
-      "commit": "cc1f939ea163e2ec0b9598239866a2b6af22efc2",
+      "commit": "f4e893d960c90bff029f862d49ffccbc0a9ec5e0",
       "totals": {
         "tests": 36596,
-        "codeChronicle": 1422,
-        "claudePlans": 13872,
         "cicd": 619,
-        "frontend": 46870,
-        "backend": 28016,
-        "scripts": 6665,
+        "frontend": 46574,
+        "backend": 27840,
+        "scripts": 6456,
         "processing": 11592,
-        "docs": 6472
+        "docs": 6565
       },
       "fileCount": {
         "tests": 81,
-        "codeChronicle": 7,
-        "claudePlans": 47,
         "cicd": 4,
         "frontend": 231,
-        "backend": 94,
-        "scripts": 28,
+        "backend": 93,
+        "scripts": 26,
         "processing": 31,
-        "docs": 20
+        "docs": 21
       }
     },
     "2026-02-19": {
       "commit": "75278791514eb0cb1166a87964705731d6e5dbd2",
       "totals": {
         "tests": 36596,
-        "codeChronicle": 0,
-        "claudePlans": 15332,
         "cicd": 619,
         "frontend": 48632,
         "backend": 28016,
@@ -1643,8 +1423,6 @@
       },
       "fileCount": {
         "tests": 81,
-        "codeChronicle": 0,
-        "claudePlans": 53,
         "cicd": 4,
         "frontend": 236,
         "backend": 94,
@@ -1657,8 +1435,6 @@
       "commit": "ba6008c91258cfc2b0e8fbf7c0f7f131ee0d209f",
       "totals": {
         "tests": 36596,
-        "codeChronicle": 0,
-        "claudePlans": 15332,
         "cicd": 619,
         "frontend": 49777,
         "backend": 29117,
@@ -1668,8 +1444,6 @@
       },
       "fileCount": {
         "tests": 81,
-        "codeChronicle": 0,
-        "claudePlans": 53,
         "cicd": 4,
         "frontend": 242,
         "backend": 98,
@@ -1682,8 +1456,6 @@
       "commit": "c3dbf58e38885de25ccfbd066a69f7543447d7a5",
       "totals": {
         "tests": 36596,
-        "codeChronicle": 0,
-        "claudePlans": 15332,
         "cicd": 619,
         "frontend": 49932,
         "backend": 29335,
@@ -1693,8 +1465,6 @@
       },
       "fileCount": {
         "tests": 81,
-        "codeChronicle": 0,
-        "claudePlans": 53,
         "cicd": 4,
         "frontend": 242,
         "backend": 98,
@@ -1704,11 +1474,9 @@
       }
     },
     "2026-02-23": {
-      "commit": "9bfc3325119545aa42e4cdd4dabeff043a482751",
+      "commit": "c2878994d17b2262bacf49d2ff8e27fb4312e5a7",
       "totals": {
         "tests": 36596,
-        "codeChronicle": 0,
-        "claudePlans": 15332,
         "cicd": 619,
         "frontend": 51280,
         "backend": 29979,
@@ -1718,8 +1486,6 @@
       },
       "fileCount": {
         "tests": 81,
-        "codeChronicle": 0,
-        "claudePlans": 53,
         "cicd": 4,
         "frontend": 247,
         "backend": 101,
@@ -1729,28 +1495,66 @@
       }
     },
     "2026-02-24": {
-      "commit": "9bfc3325119545aa42e4cdd4dabeff043a482751",
+      "commit": "23aa713a9be4fc0bfe9465e123ba14e507bc19ec",
       "totals": {
-        "tests": 36596,
-        "codeChronicle": 0,
-        "claudePlans": 15332,
+        "tests": 36660,
         "cicd": 619,
         "frontend": 51280,
-        "backend": 29979,
+        "backend": 30349,
         "scripts": 6665,
         "processing": 11612,
-        "docs": 7253
+        "docs": 7436
       },
       "fileCount": {
         "tests": 81,
-        "codeChronicle": 0,
-        "claudePlans": 53,
         "cicd": 4,
         "frontend": 247,
         "backend": 101,
         "scripts": 28,
         "processing": 31,
-        "docs": 21
+        "docs": 22
+      }
+    },
+    "2026-02-28": {
+      "commit": "8af10395094604c547cc0f049a26b94b127d16e7",
+      "totals": {
+        "tests": 39264,
+        "cicd": 631,
+        "frontend": 51280,
+        "backend": 29583,
+        "scripts": 6665,
+        "processing": 11612,
+        "docs": 6381
+      },
+      "fileCount": {
+        "tests": 92,
+        "cicd": 4,
+        "frontend": 247,
+        "backend": 105,
+        "scripts": 28,
+        "processing": 31,
+        "docs": 18
+      }
+    },
+    "2026-03-01": {
+      "commit": "8af10395094604c547cc0f049a26b94b127d16e7",
+      "totals": {
+        "tests": 39180,
+        "cicd": 643,
+        "frontend": 48788,
+        "backend": 29583,
+        "scripts": 6665,
+        "processing": 11612,
+        "docs": 7446
+      },
+      "fileCount": {
+        "tests": 91,
+        "cicd": 4,
+        "frontend": 235,
+        "backend": 105,
+        "scripts": 28,
+        "processing": 31,
+        "docs": 20
       }
     }
   }

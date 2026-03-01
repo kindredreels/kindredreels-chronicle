@@ -17180,6 +17180,1658 @@
         "getting more exif changes",
         "removed code-chronicle from main repo"
       ]
+    },
+    {
+      "id": "pr-122",
+      "prNumber": 122,
+      "date": "2026-02-19",
+      "mergedAt": "2026-02-19T19:13:19Z",
+      "title": "feat: consolidate settings modals, remove broken features, restyle he…",
+      "branch": "dimitri/ui-broken-feature-cleanup",
+      "summary": "Consolidated settings modals, removed dead features, and restyled header buttons",
+      "detail": "Merged Timeline Settings into Project Settings as collapsible sections (Video Settings, Sections). Removed dead code including the AI Producer route/tab, blocked photos section, visual signature display, and stale spec docs. Restyled the Edit button as the primary blue CTA with larger sizing. A net deletion of ~1,000 lines — focused cleanup that removed wiring for features that had been superseded.",
+      "category": "frontend",
+      "tags": [
+        "settings-consolidation",
+        "dead-code-removal",
+        "UX-cleanup"
+      ],
+      "significance": "moderate",
+      "stats": {
+        "additions": 1200,
+        "deletions": 2166,
+        "changedFiles": 15
+      },
+      "filesChanged": [
+        {
+          "path": "docs/CREATE_TIMELINE_FLOW_IMPROVEMENTS.md",
+          "additions": 0,
+          "deletions": 177
+        },
+        {
+          "path": "docs/SPEC_music_system_overhaul.md",
+          "additions": 0,
+          "deletions": 506
+        },
+        {
+          "path": "docs/UNIFIED_FLOW_PROMPT_REFACTOR.md",
+          "additions": 0,
+          "deletions": 397
+        },
+        {
+          "path": "docs/ff-ui-cleanup-spec.md",
+          "additions": 205,
+          "deletions": 0
+        },
+        {
+          "path": "docs/progress.md",
+          "additions": 31,
+          "deletions": 0
+        },
+        {
+          "path": "docs/visual-clustering.md",
+          "additions": 0,
+          "deletions": 494
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "additions": 0,
+          "deletions": 2
+        },
+        {
+          "path": "frontend/src/components/modals/ProjectSettingsModal.tsx",
+          "additions": 888,
+          "deletions": 253
+        },
+        {
+          "path": "frontend/src/components/modals/StandalonePhotoModal.tsx",
+          "additions": 0,
+          "deletions": 6
+        },
+        {
+          "path": "frontend/src/components/photos/PhotoLibrary.tsx",
+          "additions": 48,
+          "deletions": 178
+        },
+        {
+          "path": "frontend/src/components/video/VideoBuilder.tsx",
+          "additions": 20,
+          "deletions": 79
+        },
+        {
+          "path": "frontend/src/pages/ProjectDashboard/PhotoLibraryTab.tsx",
+          "additions": 3,
+          "deletions": 30
+        },
+        {
+          "path": "frontend/src/pages/ProjectDashboard/ProjectLayout.tsx",
+          "additions": 5,
+          "deletions": 39
+        },
+        {
+          "path": "frontend/src/pages/ProjectDashboard/TimelineTab.tsx",
+          "additions": 0,
+          "deletions": 4
+        },
+        {
+          "path": "frontend/src/pages/ProjectDashboard/index.ts",
+          "additions": 0,
+          "deletions": 1
+        }
+      ],
+      "commitMessages": [
+        "feat: consolidate settings modals, remove broken features, restyle he…\n\n…ader buttons\n\nMerge Timeline Settings into Project Settings as collapsible sections (Video Settings, Sections).\nRemove dead TimelineSettingsModal wiring from VideoBuilder. Remove AI Producer route/tab,\nblocked photos section, visual signature display, and stale spec docs. Make Edit button\nprimary blue CTA with larger sizing.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+      ]
+    },
+    {
+      "id": "pr-123",
+      "prNumber": 123,
+      "date": "2026-02-20",
+      "mergedAt": "2026-02-20T02:20:40Z",
+      "title": "feat: navigation overhaul — desktop sidebar, mobile bottom nav, dedic…",
+      "branch": "dimitri/sidebar-mobile",
+      "summary": "Navigation overhaul — desktop sidebar, mobile bottom nav, and dedicated mobile timeline",
+      "detail": "Complete navigation redesign with a full-height collapsible ProjectSidebar for desktop and a fixed MobileBottomNav with tabs for Photos, Timeline, Videos, and Settings. Added a dedicated MobileTimelineView with read-only timeline, photo grids, section-scoped lightbox, and Generate Video button. Created an inline SettingsTab replacing modal-based settings. Redesigned Video Settings with 16:9 cover photo preview and fixed the broken cover photo picker. Removed all mobile conditionals from VideoBuilder for a clean desktop-only component. Full-viewport project workspace layout with no navbar/footer inside projects. Route renames from /library to /photos and /contributors to /people.",
+      "category": "frontend",
+      "tags": [
+        "sidebar",
+        "mobile-nav",
+        "mobile-timeline",
+        "navigation-redesign",
+        "responsive"
+      ],
+      "significance": "major",
+      "stats": {
+        "additions": 2250,
+        "deletions": 250,
+        "changedFiles": 18
+      },
+      "filesChanged": [
+        {
+          "path": "README.md",
+          "additions": 13,
+          "deletions": 10
+        },
+        {
+          "path": "docs/navigation-overhaul-spec.md",
+          "additions": 325,
+          "deletions": 0
+        },
+        {
+          "path": "docs/progress.md",
+          "additions": 135,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/README.md",
+          "additions": 27,
+          "deletions": 12
+        },
+        {
+          "path": "frontend/index.html",
+          "additions": 1,
+          "deletions": 1
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "additions": 22,
+          "deletions": 3
+        },
+        {
+          "path": "frontend/src/components/layout/MobileBottomNav.tsx",
+          "additions": 39,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/components/layout/ProjectSidebar.tsx",
+          "additions": 153,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/components/layout/index.ts",
+          "additions": 2,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/components/video/MobileTimelineView.tsx",
+          "additions": 330,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/components/video/index.ts",
+          "additions": 1,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/hooks/index.ts",
+          "additions": 2,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/hooks/useMediaQuery.ts",
+          "additions": 22,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/pages/PhotoDetail.tsx",
+          "additions": 3,
+          "deletions": 3
+        },
+        {
+          "path": "frontend/src/pages/ProjectDashboard/ProjectLayout.tsx",
+          "additions": 76,
+          "deletions": 181
+        },
+        {
+          "path": "frontend/src/pages/ProjectDashboard/SettingsTab.tsx",
+          "additions": 1069,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/pages/ProjectDashboard/TimelineTab.tsx",
+          "additions": 29,
+          "deletions": 40
+        },
+        {
+          "path": "frontend/src/pages/ProjectDashboard/index.ts",
+          "additions": 1,
+          "deletions": 0
+        }
+      ],
+      "commitMessages": [
+        "feat: navigation overhaul — desktop sidebar, mobile bottom nav, dedic…\n\n…ated mobile timeline, inline settings\n\n- Add ProjectSidebar (full-height, collapsible, logo, nav items with counts)\n- Add MobileBottomNav (fixed bottom tabs: Photos, Timeline, Videos, Settings)\n- Add MobileTimelineView (read-only timeline with photo grids, section-scoped lightbox, Generate Video)\n- Add SettingsTab with inline project details, video settings, sections management, danger zone\n- Redesign Video Settings: 16:9 cover photo preview, fix broken cover photo picker (switch from usePhotos to useVideoBuilder for correct section-photo mapping)\n- Remove all mobile conditionals from VideoBuilder (clean desktop-only component)\n- Full-viewport project workspace layout (no navbar/footer inside projects)\n- Route renames: /library → /photos, /contributors → /people\n- Add useIsMobile hook, viewport-fit=cover for iPhone safe areas\n- Update README.md and frontend/README.md with new routes and architecture\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+      ]
+    },
+    {
+      "id": "commits-2026-02-20-mobile-fixes",
+      "prNumber": null,
+      "date": "2026-02-20",
+      "mergedAt": "2026-02-20T18:19:42-05:00",
+      "title": "Mobile modal and viewport fixes",
+      "branch": "main",
+      "summary": "Batch of fixes for mobile modal positioning, viewport height, and ghost photo records",
+      "detail": "Five rapid-fire fixes addressing mobile UX issues that surfaced after the navigation overhaul: resolved git merge conflict markers in imageProcessor.py, prevented ghost photo records from appearing in the UI, fixed mobile modal scroll issues with calc-based max-height instead of margin, switched to dvh units for viewport height to account for mobile browser chrome, and fixed modal buttons being hidden behind the bottom nav bar.",
+      "category": "frontend",
+      "tags": [
+        "mobile-fixes",
+        "viewport",
+        "modals",
+        "dvh",
+        "bottom-nav"
+      ],
+      "significance": "minor",
+      "stats": {
+        "additions": 113,
+        "deletions": 47,
+        "changedFiles": 9
+      },
+      "filesChanged": [
+        {
+          "path": "frontend/src/components/modals/GenerateVideoModal.tsx",
+          "additions": 30,
+          "deletions": 15
+        },
+        {
+          "path": "backend/src/lambdas/imageProcessor.py",
+          "additions": 3,
+          "deletions": 23
+        },
+        {
+          "path": "frontend/src/hooks/useViewportHeight.ts",
+          "additions": 25,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/components/video/ThemeBrowser.tsx",
+          "additions": 15,
+          "deletions": 6
+        },
+        {
+          "path": "backend/src/db/photos.js",
+          "additions": 20,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/index.css",
+          "additions": 13,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "additions": 3,
+          "deletions": 1
+        },
+        {
+          "path": "frontend/src/pages/ProjectDashboard/ProjectLayout.tsx",
+          "additions": 2,
+          "deletions": 2
+        },
+        {
+          "path": "frontend/src/hooks/index.ts",
+          "additions": 2,
+          "deletions": 0
+        }
+      ],
+      "commitMessages": [
+        "fix: resolve git merge conflict markers in imageProcessor.py\n\nUnresolved stash pop left <<<<<<< / ======= / >>>>>>> markers in the\nEXIF extraction function, causing a Python SyntaxError that crashed\nevery imageProcessor Lambda invocation in prod (200 photos failed).\n\nMerged both sides: IFD enum approach with GPS sub-IFD + HEIC fallback.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+        "fix: prevent ghost photo records + mobile modal scroll issues\n\nBackend: Add ghost record guards to updatePhoto() and getPhotoById()\nto prevent Gemini-hallucinated photo IDs from creating phantom DynamoDB\nrecords that break video generation. Closes the gap where updatePhoto\nused DynamoDB UpdateItem (which creates records) without checking\nexistence first, while updatePhotoAIMetadata already had this guard.\n\nFrontend: Add mb-16 on mobile to GenerateVideoModal and ThemeBrowser\nso buttons aren't hidden behind the bottom nav bar. Disable theme\npreview on mobile (not rendering correctly).\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+        "fix: use calc-based max-height for mobile modals instead of margin\n\nmb-16 doesn't work because items-center re-centers the modal. Instead,\ncap modal height to calc(100vh - 5rem) on mobile to account for the\nbottom nav bar, so buttons are always reachable.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+        "fix: use dvh for viewport height to fix mobile browser chrome overlap\n\n100vh on mobile browsers (Chrome/Safari iOS) includes the area behind\nthe URL bar and bottom toolbar, making buttons unreachable. Switch to\n100dvh via CSS custom property --app-height with -webkit-fill-available\nfallback. Applied to app layout, project workspace, and modal max-heights.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+        "fix: mobile modal buttons hidden behind bottom nav and browser chrome\n\n- Add useViewportHeight hook that sets --app-height to window.innerHeight\n  (only reliable way to get actual visible viewport on iOS Safari)\n- On mobile, shift modal containers above MobileBottomNav by setting\n  bottom: var(--bottom-nav-h) on the fixed overlay\n- Restructure GenerateVideoModal to flex layout with sticky footer buttons\n  outside the scrollable content area\n- Add --bottom-nav-h CSS variable (56px + safe-area-inset-bottom)\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+      ]
+    },
+    {
+      "id": "pr-124",
+      "prNumber": 124,
+      "date": "2026-02-21",
+      "mergedAt": "2026-02-21T04:12:36Z",
+      "title": "feat: video sharing with public watch page, QR codes, and YouTube upload",
+      "branch": "dimitri/video-sharing",
+      "summary": "Video sharing with public watch page, QR codes, and YouTube upload integration",
+      "detail": "Full video sharing feature across four phases: a public watch page at /watch/:shareCode with video player and download, ShareVideoModal with copy link, Web Share API, QR code, and download button. Integrated YouTube OAuth (connect/disconnect/token refresh) with an async Lambda worker that streams S3 to YouTube via resumable upload. Added YouTube upload panel in the share modal with polling status and YouTube badges on video cards linking to uploaded videos.",
+      "category": "frontend",
+      "tags": [
+        "video-sharing",
+        "YouTube-upload",
+        "QR-codes",
+        "public-watch-page",
+        "OAuth"
+      ],
+      "significance": "major",
+      "stats": {
+        "additions": 3782,
+        "deletions": 21,
+        "changedFiles": 28
+      },
+      "filesChanged": [
+        {
+          "path": "README.md",
+          "additions": 45,
+          "deletions": 3
+        },
+        {
+          "path": "backend/serverless.yml",
+          "additions": 9,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/db/users.js",
+          "additions": 64,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/db/videos.js",
+          "additions": 203,
+          "deletions": 3
+        },
+        {
+          "path": "backend/src/handlers/userHandler.js",
+          "additions": 3,
+          "deletions": 1
+        },
+        {
+          "path": "backend/src/handlers/videoHandler.js",
+          "additions": 30,
+          "deletions": 4
+        },
+        {
+          "path": "backend/src/handlers/videoShareHandler.js",
+          "additions": 223,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/handlers/youtubeHandler.js",
+          "additions": 307,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/lambdas/youtubeUploadWorker.js",
+          "additions": 168,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/server.js",
+          "additions": 25,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/services/youtubeService.js",
+          "additions": 237,
+          "deletions": 0
+        },
+        {
+          "path": "docs/API.md",
+          "additions": 125,
+          "deletions": 0
+        },
+        {
+          "path": "docs/FLOWS.md",
+          "additions": 126,
+          "deletions": 1
+        },
+        {
+          "path": "docs/progress.md",
+          "additions": 90,
+          "deletions": 0
+        },
+        {
+          "path": "docs/share-feature-spec.md",
+          "additions": 868,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/package-lock.json",
+          "additions": 33,
+          "deletions": 4
+        },
+        {
+          "path": "frontend/package.json",
+          "additions": 2,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "additions": 6,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/components/modals/ShareVideoModal.tsx",
+          "additions": 301,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/components/video/VideosList.tsx",
+          "additions": 59,
+          "deletions": 2
+        },
+        {
+          "path": "frontend/src/components/video/YouTubeUploadPanel.tsx",
+          "additions": 323,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/pages/ProjectDashboard/VideosTab.tsx",
+          "additions": 3,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/pages/WatchVideo.tsx",
+          "additions": 112,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/pages/YouTubeCallback.tsx",
+          "additions": 175,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/utils/api/index.ts",
+          "additions": 14,
+          "deletions": 2
+        },
+        {
+          "path": "frontend/src/utils/api/types.ts",
+          "additions": 25,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/utils/api/videos.ts",
+          "additions": 62,
+          "deletions": 1
+        },
+        {
+          "path": "frontend/src/utils/api/youtube.ts",
+          "additions": 144,
+          "deletions": 0
+        }
+      ],
+      "commitMessages": [
+        "feat: video sharing with public watch page, QR codes, and YouTube upload\n\nAdds full video sharing feature (Phases 1-4):\n- Public watch page at /watch/:shareCode with video player and download\n- ShareVideoModal with copy link, Web Share API, QR code, and download\n- YouTube OAuth integration (connect/disconnect/token refresh)\n- Async YouTube upload Lambda that streams S3→YouTube via resumable upload\n- YouTube upload panel in share modal with polling status\n- YouTube badge on video cards linking to uploaded videos\n- Updated README, API.md, and FLOWS.md with sharing documentation\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+      ]
+    },
+    {
+      "id": "pr-125",
+      "prNumber": 125,
+      "date": "2026-02-21",
+      "mergedAt": "2026-02-21T17:54:32Z",
+      "title": "feat: optional section customization in Create Timeline flow",
+      "branch": "dimitri/video-sections",
+      "summary": "Optional section customization in Create Timeline flow for guided AI organization",
+      "detail": "Users can now specify section count (1-8) and per-section descriptions to guide the AI architect when creating timelines. Added a collapsible panel in Step 3 of the Create Timeline modal — full version for 40+ photos with per-section descriptions, simpler single-description for 20-39 photos. Backend validates sectionConfig, threads it through the architect prompt, and respects the user's exact section count.",
+      "category": "ai",
+      "tags": [
+        "section-customization",
+        "Create-Timeline",
+        "AI-architect",
+        "user-guidance"
+      ],
+      "significance": "moderate",
+      "stats": {
+        "additions": 799,
+        "deletions": 159,
+        "changedFiles": 11
+      },
+      "filesChanged": [
+        {
+          "path": "backend/src/handlers/eventOrganizerHandler.js",
+          "additions": 19,
+          "deletions": 3
+        },
+        {
+          "path": "backend/src/services/eventOrganizer/constants.js",
+          "additions": 1,
+          "deletions": 1
+        },
+        {
+          "path": "backend/src/services/eventOrganizer/organizeStage.js",
+          "additions": 277,
+          "deletions": 45
+        },
+        {
+          "path": "docs/FLOWS.md",
+          "additions": 24,
+          "deletions": 3
+        },
+        {
+          "path": "docs/PARKING_LOT.md",
+          "additions": 50,
+          "deletions": 100
+        },
+        {
+          "path": "docs/progress.md",
+          "additions": 22,
+          "deletions": 0
+        },
+        {
+          "path": "docs/section-customization-spec.md",
+          "additions": 215,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/components/modals/CreateTimelineModal.tsx",
+          "additions": 161,
+          "deletions": 6
+        },
+        {
+          "path": "frontend/src/utils/api/eventOrganizer.ts",
+          "additions": 7,
+          "deletions": 1
+        },
+        {
+          "path": "processing/src/ec2_handler.py",
+          "additions": 15,
+          "deletions": 0
+        },
+        {
+          "path": "processing/src/process_queue.py",
+          "additions": 8,
+          "deletions": 0
+        }
+      ],
+      "commitMessages": [
+        "feat: optional section customization in Create Timeline flow\n\nUsers can now specify section count (1-8) and per-section descriptions\nto guide the AI architect. Collapsible panel in Step 3 of the modal —\nfull version for 40+ photos, simpler single-description for 20-39.\nBackend validates sectionConfig, threads it through the architect prompt,\nand respects user's exact count (including allowing 2 sections).\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+      ]
+    },
+    {
+      "id": "pr-126",
+      "prNumber": 126,
+      "date": "2026-02-24",
+      "mergedAt": "2026-02-24T04:18:55Z",
+      "title": "feat: tribute flow reintegration — deferred Rekognition, people setup…",
+      "branch": "dimitri/tribute-reintegration",
+      "summary": "Tribute flow reintegration with deferred Rekognition, people setup, and face matching",
+      "detail": "Reintegrated the tribute/multi-person face recognition from the AI Producer into the main Create Timeline flow with major cost optimizations. Phase 1 deferred all Rekognition calls from upload time to video generation or analysis, achieving ~60-80% cost reduction. Phase 2 added a 'Is this a tribute?' question in Step 1, a full-screen TributeSetup overlay with two-panel people management, reference photo picker, and inline face identification. Phase 3 implemented a face matching stage with batch DetectFaces + SearchFacesByImage, AI-powered chronology estimation for date ordering of scanned photos, and atomic draft transitions to prevent concurrent race conditions.",
+      "category": "ai",
+      "tags": [
+        "tribute-flow",
+        "Rekognition",
+        "face-matching",
+        "cost-optimization",
+        "deferred-processing"
+      ],
+      "significance": "major",
+      "stats": {
+        "additions": 3665,
+        "deletions": 1107,
+        "changedFiles": 34
+      },
+      "filesChanged": [
+        {
+          "path": "backend/src/db/organizationDrafts.js",
+          "additions": 24,
+          "deletions": 7
+        },
+        {
+          "path": "backend/src/db/projects.js",
+          "additions": 4,
+          "deletions": 1
+        },
+        {
+          "path": "backend/src/handlers/eventOrganizerHandler.js",
+          "additions": 76,
+          "deletions": 11
+        },
+        {
+          "path": "backend/src/handlers/projectHandler.js",
+          "additions": 8,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/handlers/projectPersonHandler.js",
+          "additions": 24,
+          "deletions": 8
+        },
+        {
+          "path": "backend/src/lambdas/faceDetection.js",
+          "additions": 7,
+          "deletions": 65
+        },
+        {
+          "path": "backend/src/lambdas/imageProcessor.py",
+          "additions": 15,
+          "deletions": 13
+        },
+        {
+          "path": "backend/src/lambdas/photoProcessingWorker.js",
+          "additions": 11,
+          "deletions": 51
+        },
+        {
+          "path": "backend/src/services/aiProducer/promptBuilders.js",
+          "additions": 2,
+          "deletions": 1
+        },
+        {
+          "path": "backend/src/services/aiProducer/stages/chronologyStage.js",
+          "additions": 4,
+          "deletions": 115
+        },
+        {
+          "path": "backend/src/services/eventOrganizer/chronologyStep.js",
+          "additions": 240,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/services/eventOrganizer/faceMatchingStage.js",
+          "additions": 215,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/services/eventOrganizer/index.js",
+          "additions": 2,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/services/eventOrganizer/organizeStage.js",
+          "additions": 459,
+          "deletions": 167
+        },
+        {
+          "path": "backend/src/services/eventOrganizer/promptBuilders.js",
+          "additions": 32,
+          "deletions": 75
+        },
+        {
+          "path": "backend/src/shared/dateUtils.js",
+          "additions": 121,
+          "deletions": 0
+        },
+        {
+          "path": "docs/FLOWS.md",
+          "additions": 101,
+          "deletions": 27
+        },
+        {
+          "path": "docs/progress.md",
+          "additions": 77,
+          "deletions": 523
+        },
+        {
+          "path": "docs/tribute-flow-deferred-rekognition-spec.md",
+          "additions": 727,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/README.md",
+          "additions": 13,
+          "deletions": 1
+        },
+        {
+          "path": "frontend/src/components/aiProducer/ReferencePhotoPicker.tsx",
+          "additions": 56,
+          "deletions": 11
+        },
+        {
+          "path": "frontend/src/components/modals/CreateTimelineModal.tsx",
+          "additions": 170,
+          "deletions": 20
+        },
+        {
+          "path": "frontend/src/components/modals/TributeSetup.tsx",
+          "additions": 743,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/components/people/TributePeopleSection.tsx",
+          "additions": 330,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/components/people/index.ts",
+          "additions": 1,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/components/video/VideoBuilder.tsx",
+          "additions": 58,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/hooks/mutations/index.ts",
+          "additions": 1,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/hooks/mutations/useUngroupMemory.ts",
+          "additions": 77,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/pages/ProjectDashboard/ContributorsTab.tsx",
+          "additions": 22,
+          "deletions": 6
+        },
+        {
+          "path": "frontend/src/pages/ProjectDashboard/ProjectLayout.tsx",
+          "additions": 1,
+          "deletions": 1
+        },
+        {
+          "path": "frontend/src/utils/api/eventOrganizer.ts",
+          "additions": 17,
+          "deletions": 4
+        },
+        {
+          "path": "frontend/src/utils/api/projects.ts",
+          "additions": 2,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/utils/api/types.ts",
+          "additions": 10,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/utils/personRoles.ts",
+          "additions": 15,
+          "deletions": 0
+        }
+      ],
+      "commitMessages": [
+        "feat: tribute flow reintegration — deferred Rekognition, people setup…\n\n…, face matching\n\nReintegrates tribute/multi-person face recognition from the AI Producer into the\nmain Create Timeline flow with major cost optimizations.\n\nPhase 1 — Deferred Face Detection:\n- Skip all Rekognition at upload time for all projects (~60-80% cost reduction)\n- Face detection now only at video generation (Ken Burns) or analysis (tribute)\n\nPhase 2 — Tribute Question + People Setup:\n- \"Is this a tribute?\" question in Create Timeline Step 1\n- Full-screen TributeSetup overlay: two-panel people management with form fields,\n  reference photo picker, and inline face identification via FacePicker\n- Incremental face identification (only new photos re-identified)\n- Shared role definitions (honoree/featured/include) in personRoles.ts\n- TributePeopleSection for Settings tab display\n- Backend: birthYear on person update, face re-identification support\n\nPhase 3 — Face Matching in Analysis Pipeline:\n- faceMatchingStage: batch DetectFaces + SearchFacesByImage on candidate photos\n- chronologyStep: AI-powered date estimation and age-based ordering for scans\n- dateUtils: shared flexible date parsing\n- Atomic draft transitions to prevent concurrent apply race conditions\n- Analysis results show per-person face match counts in modal\n\nAlso: ReferencePhotoPicker scroll-to support, useUngroupMemory hook,\nelapsed timer during processing, updated docs (FLOWS.md, progress.md, README).\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+      ]
+    },
+    {
+      "id": "pr-127",
+      "prNumber": 127,
+      "date": "2026-02-28",
+      "mergedAt": "2026-02-28T20:08:04Z",
+      "title": "Sadie/security audit",
+      "branch": "sadie/security-audit",
+      "summary": "Security audit — signed S3 URLs, error sanitization, PITR, and S3 versioning",
+      "detail": "Initial security audit work by Sadie covering four areas: switched to signed S3 URLs for all bucket access, sanitized API error messages by removing err.message from 63 error response calls across 8 handler files to prevent leaking internal details. Enabled DynamoDB Point-in-Time Recovery on both tables and S3 versioning with 30-day lifecycle on both uploads buckets. Server-side console.error logging retained for debugging.",
+      "category": "backend",
+      "tags": [
+        "security-audit",
+        "signed-URLs",
+        "error-sanitization",
+        "PITR",
+        "S3-versioning"
+      ],
+      "significance": "major",
+      "stats": {
+        "additions": 1570,
+        "deletions": 777,
+        "changedFiles": 31
+      },
+      "filesChanged": [
+        {
+          "path": "README.md",
+          "additions": 10,
+          "deletions": 6
+        },
+        {
+          "path": "backend/package-lock.json",
+          "additions": 28,
+          "deletions": 9
+        },
+        {
+          "path": "backend/package.json",
+          "additions": 1,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/__tests__/handlers/memoryHandler.test.js",
+          "additions": 2,
+          "deletions": 2
+        },
+        {
+          "path": "backend/src/__tests__/handlers/projectHandler.test.js",
+          "additions": 104,
+          "deletions": 32
+        },
+        {
+          "path": "backend/src/__tests__/handlers/recordingHandler.test.js",
+          "additions": 1,
+          "deletions": 1
+        },
+        {
+          "path": "backend/src/__tests__/handlers/shareCodeHandler.test.js",
+          "additions": 1,
+          "deletions": 1
+        },
+        {
+          "path": "backend/src/db/contributors.js",
+          "additions": 24,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/db/restorationJobs.js",
+          "additions": 25,
+          "deletions": 1
+        },
+        {
+          "path": "backend/src/db/sections.js",
+          "additions": 24,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/db/shareCodes.js",
+          "additions": 31,
+          "deletions": 3
+        },
+        {
+          "path": "backend/src/db/videos.js",
+          "additions": 27,
+          "deletions": 3
+        },
+        {
+          "path": "backend/src/handlers/aiProducerHandler.js",
+          "additions": 22,
+          "deletions": 262
+        },
+        {
+          "path": "backend/src/handlers/eventOrganizerHandler.js",
+          "additions": 11,
+          "deletions": 22
+        },
+        {
+          "path": "backend/src/handlers/memoryHandler.js",
+          "additions": 20,
+          "deletions": 20
+        },
+        {
+          "path": "backend/src/handlers/musicTimelineHandler.js",
+          "additions": 7,
+          "deletions": 45
+        },
+        {
+          "path": "backend/src/handlers/photoHandler.js",
+          "additions": 119,
+          "deletions": 13
+        },
+        {
+          "path": "backend/src/handlers/projectHandler.js",
+          "additions": 172,
+          "deletions": 87
+        },
+        {
+          "path": "backend/src/handlers/projectPersonHandler.js",
+          "additions": 24,
+          "deletions": 124
+        },
+        {
+          "path": "backend/src/handlers/recordingHandler.js",
+          "additions": 25,
+          "deletions": 3
+        },
+        {
+          "path": "backend/src/handlers/sectionHandler.js",
+          "additions": 10,
+          "deletions": 67
+        },
+        {
+          "path": "backend/src/handlers/shareCodeHandler.js",
+          "additions": 13,
+          "deletions": 14
+        },
+        {
+          "path": "backend/src/handlers/userMusicHandler.js",
+          "additions": 7,
+          "deletions": 1
+        },
+        {
+          "path": "backend/src/server.js",
+          "additions": 63,
+          "deletions": 39
+        },
+        {
+          "path": "backend/src/shared/storage.js",
+          "additions": 73,
+          "deletions": 13
+        },
+        {
+          "path": "docs/progress.md",
+          "additions": 52,
+          "deletions": 0
+        },
+        {
+          "path": "docs/security-audit-spec.md",
+          "additions": 410,
+          "deletions": 0
+        },
+        {
+          "path": "frontend/src/pages/ContributePhoto.tsx",
+          "additions": 2,
+          "deletions": 2
+        },
+        {
+          "path": "frontend/src/utils/api/share.test.ts",
+          "additions": 4,
+          "deletions": 4
+        },
+        {
+          "path": "frontend/src/utils/api/share.ts",
+          "additions": 3,
+          "deletions": 3
+        },
+        {
+          "path": "security-audit-spec-sadie.md",
+          "additions": 255,
+          "deletions": 0
+        }
+      ],
+      "commitMessages": [
+        "pulled some changes",
+        "area 1 of security audit addressed",
+        "some more security audit changes",
+        "signature added to s3 bucket urls",
+        "Merge main into sadie/security-audit branch",
+        "changed s3 bucket links",
+        "security: sanitize API error messages, enable PITR + S3 versioning\n\nChunk 4 of security audit. Removes err.message from 63 error()\nresponse calls across 8 handler files so internal details (DynamoDB\nerrors, S3 paths, stack info) are never leaked to clients. Server-side\nconsole.error logging retained. Enables DynamoDB Point-in-Time Recovery\non both tables and S3 versioning with 30-day lifecycle on both uploads\nbuckets. Updates docs.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+      ]
+    },
+    {
+      "id": "pr-128",
+      "prNumber": 128,
+      "date": "2026-02-28",
+      "mergedAt": "2026-02-28T20:10:41Z",
+      "title": "security: route ownership middleware, CloudFront + OAC, risky change …",
+      "branch": "sadie/security-audit",
+      "summary": "Route ownership middleware, CloudFront + OAC, and risky change reverts",
+      "detail": "Chunks 1-3 of the security audit: migrated all project-scoped routes to per-router ownership middleware, eliminating redundant getProjectById calls. Added CloudFront with Origin Access Control for S3 uploads so buckets are now fully private. Reverted the async getFileUrl and in-memory rate limiting from PR #127 as they introduced issues. Updated tests and removed stale spec docs. A net deletion of ~3,800 lines through cleanup.",
+      "category": "backend",
+      "tags": [
+        "ownership-middleware",
+        "CloudFront",
+        "OAC",
+        "security-audit",
+        "route-auth"
+      ],
+      "significance": "major",
+      "stats": {
+        "additions": 771,
+        "deletions": 4617,
+        "changedFiles": 36
+      },
+      "filesChanged": [
+        {
+          "path": "backend/package-lock.json",
+          "additions": 10,
+          "deletions": 0
+        },
+        {
+          "path": "backend/serverless.yml",
+          "additions": 6,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/__tests__/handlers/admin/musicHandler.test.js",
+          "additions": 10,
+          "deletions": 6
+        },
+        {
+          "path": "backend/src/__tests__/handlers/aiProducerHandler.test.js",
+          "additions": 54,
+          "deletions": 106
+        },
+        {
+          "path": "backend/src/__tests__/handlers/backgroundMusicHandler.test.js",
+          "additions": 11,
+          "deletions": 52
+        },
+        {
+          "path": "backend/src/__tests__/handlers/googlePhotosHandler.test.js",
+          "additions": 8,
+          "deletions": 35
+        },
+        {
+          "path": "backend/src/__tests__/handlers/invitationHandler.test.js",
+          "additions": 27,
+          "deletions": 82
+        },
+        {
+          "path": "backend/src/__tests__/handlers/musicTimelineHandler.test.js",
+          "additions": 25,
+          "deletions": 90
+        },
+        {
+          "path": "backend/src/__tests__/handlers/projectHandler.test.js",
+          "additions": 66,
+          "deletions": 353
+        },
+        {
+          "path": "backend/src/__tests__/handlers/projectPersonHandler.test.js",
+          "additions": 52,
+          "deletions": 111
+        },
+        {
+          "path": "backend/src/__tests__/handlers/recordingHandler.test.js",
+          "additions": 45,
+          "deletions": 7
+        },
+        {
+          "path": "backend/src/__tests__/handlers/restorationHandler.test.js",
+          "additions": 20,
+          "deletions": 151
+        },
+        {
+          "path": "backend/src/__tests__/handlers/sectionHandler.test.js",
+          "additions": 34,
+          "deletions": 107
+        },
+        {
+          "path": "backend/src/__tests__/handlers/shareCodeHandler.test.js",
+          "additions": 13,
+          "deletions": 97
+        },
+        {
+          "path": "backend/src/__tests__/handlers/userMusicHandler.test.js",
+          "additions": 19,
+          "deletions": 35
+        },
+        {
+          "path": "backend/src/__tests__/handlers/videoHandler.test.js",
+          "additions": 17,
+          "deletions": 80
+        },
+        {
+          "path": "backend/src/handlers/admin/musicHandler.js",
+          "additions": 11,
+          "deletions": 40
+        },
+        {
+          "path": "backend/src/handlers/backgroundMusicHandler.js",
+          "additions": 20,
+          "deletions": 38
+        },
+        {
+          "path": "backend/src/handlers/googlePhotosHandler.js",
+          "additions": 0,
+          "deletions": 11
+        },
+        {
+          "path": "backend/src/handlers/invitationHandler.js",
+          "additions": 2,
+          "deletions": 39
+        },
+        {
+          "path": "backend/src/handlers/projectHandler.js",
+          "additions": 89,
+          "deletions": 172
+        },
+        {
+          "path": "backend/src/handlers/restorationHandler.js",
+          "additions": 1,
+          "deletions": 52
+        },
+        {
+          "path": "backend/src/handlers/shareCodeHandler.js",
+          "additions": 16,
+          "deletions": 76
+        },
+        {
+          "path": "backend/src/handlers/userMusicHandler.js",
+          "additions": 13,
+          "deletions": 34
+        },
+        {
+          "path": "backend/src/handlers/videoHandler.js",
+          "additions": 4,
+          "deletions": 26
+        },
+        {
+          "path": "backend/src/handlers/videoShareHandler.js",
+          "additions": 3,
+          "deletions": 8
+        },
+        {
+          "path": "backend/src/lambdas/photoProcessingWorker.js",
+          "additions": 1,
+          "deletions": 1
+        },
+        {
+          "path": "backend/src/middleware/authorize.js",
+          "additions": 1,
+          "deletions": 1
+        },
+        {
+          "path": "backend/src/server.js",
+          "additions": 182,
+          "deletions": 178
+        },
+        {
+          "path": "backend/src/shared/storage.js",
+          "additions": 11,
+          "deletions": 34
+        },
+        {
+          "path": "docs/ff-ui-cleanup-spec.md",
+          "additions": 0,
+          "deletions": 205
+        },
+        {
+          "path": "docs/navigation-overhaul-spec.md",
+          "additions": 0,
+          "deletions": 325
+        },
+        {
+          "path": "docs/section-customization-spec.md",
+          "additions": 0,
+          "deletions": 215
+        },
+        {
+          "path": "docs/security-audit-spec-sadie.md",
+          "additions": 0,
+          "deletions": 255
+        },
+        {
+          "path": "docs/share-feature-spec.md",
+          "additions": 0,
+          "deletions": 868
+        },
+        {
+          "path": "docs/tribute-flow-deferred-rekognition-spec.md",
+          "additions": 0,
+          "deletions": 727
+        }
+      ],
+      "commitMessages": [
+        "security: route ownership middleware, CloudFront + OAC, risky change …\n\n…reverts\n\nChunks 1-3 of security audit. Migrates all project-scoped routes to\nper-router ownership middleware, eliminates redundant getProjectById\ncalls, adds CloudFront + OAC for S3 uploads (buckets now private),\nreverts async getFileUrl and in-memory rate limiting from PR #127,\nupdates tests, and removes stale spec docs.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+      ]
+    },
+    {
+      "id": "pr-129",
+      "prNumber": 129,
+      "date": "2026-03-01",
+      "mergedAt": "2026-03-01T02:21:15Z",
+      "title": "backend: complete backend code hardening (phases 1-5)",
+      "branch": "dimitri/backend-cleanup",
+      "summary": "Complete backend code hardening across 5 phases — validation, testing, and refactoring",
+      "detail": "Comprehensive backend quality improvement: Phase 1 added CI gates, removed 4 unused deps, deleted dead files, added ESLint config. Phase 2 created a shared validation utility and standardized requireAuth across all handlers. Phase 3 added handler test coverage for photoHandler, eventOrganizer, videoShare, and YouTube. Phase 4 added middleware, shared utility, and DB layer tests. Phase 5 split the monolithic photoHandler into 3 files and organizeStage into 4 files, added service error handling, standardized DB null-return patterns, and cleaned up dead exports. Ended with 660 tests passing at 32% coverage with 0 lint errors.",
+      "category": "backend",
+      "tags": [
+        "code-hardening",
+        "testing",
+        "refactoring",
+        "CI-gates",
+        "validation"
+      ],
+      "significance": "major",
+      "stats": {
+        "additions": 9717,
+        "deletions": 8329,
+        "changedFiles": 57
+      },
+      "filesChanged": [
+        {
+          "path": ".github/workflows/deploy-backend.yml",
+          "additions": 9,
+          "deletions": 0
+        },
+        {
+          "path": ".github/workflows/deploy-prod.yml",
+          "additions": 9,
+          "deletions": 0
+        },
+        {
+          "path": ".gitignore",
+          "additions": 3,
+          "deletions": 0
+        },
+        {
+          "path": "backend/eslint.config.js",
+          "additions": 44,
+          "deletions": 0
+        },
+        {
+          "path": "backend/jest.config.js",
+          "additions": 5,
+          "deletions": 5
+        },
+        {
+          "path": "backend/package-lock.json",
+          "additions": 2313,
+          "deletions": 5907
+        },
+        {
+          "path": "backend/package.json",
+          "additions": 4,
+          "deletions": 5
+        },
+        {
+          "path": "backend/src/__tests__/db/memories.test.js",
+          "additions": 472,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/__tests__/db/photos.test.js",
+          "additions": 441,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/__tests__/db/projects.test.js",
+          "additions": 514,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/__tests__/handlers/aiProducerHandler.test.js",
+          "additions": 1,
+          "deletions": 1
+        },
+        {
+          "path": "backend/src/__tests__/handlers/eventOrganizerHandler.test.js",
+          "additions": 619,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/__tests__/handlers/googlePhotosHandler.test.js",
+          "additions": 5,
+          "deletions": 5
+        },
+        {
+          "path": "backend/src/__tests__/handlers/photoHandler.test.js",
+          "additions": 881,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/__tests__/handlers/userHandler.test.js",
+          "additions": 2,
+          "deletions": 2
+        },
+        {
+          "path": "backend/src/__tests__/handlers/userMusicHandler.test.js",
+          "additions": 4,
+          "deletions": 4
+        },
+        {
+          "path": "backend/src/__tests__/handlers/videoShareHandler.test.js",
+          "additions": 352,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/__tests__/handlers/youtubeHandler.test.js",
+          "additions": 350,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/__tests__/middleware/auth.test.js",
+          "additions": 151,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/__tests__/middleware/authorize.test.js",
+          "additions": 117,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/__tests__/shared/responses.test.js",
+          "additions": 99,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/__tests__/shared/validation.test.js",
+          "additions": 215,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/db/contributors.js",
+          "additions": 1,
+          "deletions": 1
+        },
+        {
+          "path": "backend/src/db/memories.js",
+          "additions": 1,
+          "deletions": 1
+        },
+        {
+          "path": "backend/src/db/migrate.js",
+          "additions": 0,
+          "deletions": 51
+        },
+        {
+          "path": "backend/src/db/photos.js",
+          "additions": 2,
+          "deletions": 2
+        },
+        {
+          "path": "backend/src/db/recordings.js",
+          "additions": 1,
+          "deletions": 1
+        },
+        {
+          "path": "backend/src/handlers/googlePhotosHandler.js",
+          "additions": 27,
+          "deletions": 46
+        },
+        {
+          "path": "backend/src/handlers/invitationHandler.js",
+          "additions": 7,
+          "deletions": 1
+        },
+        {
+          "path": "backend/src/handlers/memoryHandler.js",
+          "additions": 7,
+          "deletions": 2
+        },
+        {
+          "path": "backend/src/handlers/musicTimelineHandler.js",
+          "additions": 4,
+          "deletions": 1
+        },
+        {
+          "path": "backend/src/handlers/photoHandler.js",
+          "additions": 28,
+          "deletions": 1201
+        },
+        {
+          "path": "backend/src/handlers/photoLegacyUploadHandler.js",
+          "additions": 400,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/handlers/photoUploadHandler.js",
+          "additions": 809,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/handlers/projectHandler.js",
+          "additions": 6,
+          "deletions": 2
+        },
+        {
+          "path": "backend/src/handlers/recordingHandler.js",
+          "additions": 11,
+          "deletions": 3
+        },
+        {
+          "path": "backend/src/handlers/restorationHandler.js",
+          "additions": 5,
+          "deletions": 1
+        },
+        {
+          "path": "backend/src/handlers/shareCodeHandler.js",
+          "additions": 10,
+          "deletions": 3
+        },
+        {
+          "path": "backend/src/handlers/userHandler.js",
+          "additions": 4,
+          "deletions": 5
+        },
+        {
+          "path": "backend/src/handlers/userMusicHandler.js",
+          "additions": 13,
+          "deletions": 25
+        },
+        {
+          "path": "backend/src/handlers/videoHandler.js",
+          "additions": 17,
+          "deletions": 5
+        },
+        {
+          "path": "backend/src/handlers/videoShareHandler.js",
+          "additions": 10,
+          "deletions": 3
+        },
+        {
+          "path": "backend/src/handlers/youtubeHandler.js",
+          "additions": 16,
+          "deletions": 27
+        },
+        {
+          "path": "backend/src/middleware/optionalAuth.js",
+          "additions": 0,
+          "deletions": 81
+        },
+        {
+          "path": "backend/src/server.js",
+          "additions": 3,
+          "deletions": 1
+        },
+        {
+          "path": "backend/src/services/cloudRunService.js",
+          "additions": 28,
+          "deletions": 17
+        },
+        {
+          "path": "backend/src/services/eventOrganizer/architectStep.js",
+          "additions": 363,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/services/eventOrganizer/constants.js",
+          "additions": 0,
+          "deletions": 7
+        },
+        {
+          "path": "backend/src/services/eventOrganizer/curatorStep.js",
+          "additions": 242,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/services/eventOrganizer/index.js",
+          "additions": 0,
+          "deletions": 1
+        },
+        {
+          "path": "backend/src/services/eventOrganizer/organizeStage.js",
+          "additions": 4,
+          "deletions": 775
+        },
+        {
+          "path": "backend/src/services/eventOrganizer/promptBuilders.js",
+          "additions": 1,
+          "deletions": 128
+        },
+        {
+          "path": "backend/src/services/eventOrganizer/quickCuratorStep.js",
+          "additions": 200,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/services/openaiClient.js",
+          "additions": 20,
+          "deletions": 9
+        },
+        {
+          "path": "backend/src/shared/validation.js",
+          "additions": 72,
+          "deletions": 0
+        },
+        {
+          "path": "docs/backend-hardening-spec.md",
+          "additions": 730,
+          "deletions": 0
+        },
+        {
+          "path": "docs/progress.md",
+          "additions": 65,
+          "deletions": 0
+        }
+      ],
+      "commitMessages": [
+        "backend: complete backend code hardening (phases 1-5)\n\nComprehensive backend quality improvement across 5 phases:\n\nPhase 1: CI gates, removed 4 unused deps, deleted dead files, ESLint config\nPhase 2: Shared validation utility, standardized requireAuth across all handlers\nPhase 3: Handler test coverage (photoHandler, eventOrganizer, videoShare, youtube)\nPhase 4: Middleware, shared utility, and DB layer tests\nPhase 5: Split photoHandler (3 files), split organizeStage (4 files),\n         service error handling, DB null-return standardization, dead export cleanup\n\n660 tests passing, 32% coverage, 0 lint errors.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+      ]
+    },
+    {
+      "id": "pr-130",
+      "prNumber": 130,
+      "date": "2026-03-01",
+      "mergedAt": "2026-03-01T02:47:50Z",
+      "title": "backend: fix all 45 failing tests, make tests a hard CI gate",
+      "branch": "dimitri/backend-cleanup",
+      "summary": "Fixed all 45 failing backend tests and made tests a hard CI gate",
+      "detail": "Fixed env var issues across 4 test suites, error message mismatches, response shape mismatches, mock ordering, and dead tests. Found and fixed a real bug in statsHandler where 'complete' should have been 'completed' in the video status filter. Removed continue-on-error from CI workflows so tests now block deploys. Rewrote googlePhotosHandler import test for the async job pattern. Ended with 699 tests passing, 0 failures, 52 skipped (AI Producer tests deferred).",
+      "category": "backend",
+      "tags": [
+        "test-fixes",
+        "CI-gates",
+        "bug-fix",
+        "test-reliability"
+      ],
+      "significance": "moderate",
+      "stats": {
+        "additions": 159,
+        "deletions": 226,
+        "changedFiles": 14
+      },
+      "filesChanged": [
+        {
+          "path": ".github/workflows/deploy-backend.yml",
+          "additions": 0,
+          "deletions": 1
+        },
+        {
+          "path": ".github/workflows/deploy-prod.yml",
+          "additions": 0,
+          "deletions": 1
+        },
+        {
+          "path": "backend/src/__tests__/handlers/admin/musicHandler.test.js",
+          "additions": 5,
+          "deletions": 5
+        },
+        {
+          "path": "backend/src/__tests__/handlers/admin/processorHandler.test.js",
+          "additions": 3,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/__tests__/handlers/admin/projectsHandler.test.js",
+          "additions": 46,
+          "deletions": 37
+        },
+        {
+          "path": "backend/src/__tests__/handlers/admin/statsHandler.test.js",
+          "additions": 12,
+          "deletions": 2
+        },
+        {
+          "path": "backend/src/__tests__/handlers/admin/usersHandler.test.js",
+          "additions": 3,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/__tests__/handlers/googlePhotosHandler.test.js",
+          "additions": 36,
+          "deletions": 96
+        },
+        {
+          "path": "backend/src/__tests__/handlers/projectHandler.test.js",
+          "additions": 29,
+          "deletions": 18
+        },
+        {
+          "path": "backend/src/__tests__/handlers/projectPersonHandler.test.js",
+          "additions": 2,
+          "deletions": 59
+        },
+        {
+          "path": "backend/src/__tests__/handlers/shareCodeHandler.test.js",
+          "additions": 4,
+          "deletions": 2
+        },
+        {
+          "path": "backend/src/__tests__/handlers/userHandler.test.js",
+          "additions": 12,
+          "deletions": 4
+        },
+        {
+          "path": "backend/src/__tests__/utils/testHelpers.js",
+          "additions": 6,
+          "deletions": 0
+        },
+        {
+          "path": "backend/src/handlers/admin/statsHandler.js",
+          "additions": 1,
+          "deletions": 1
+        }
+      ],
+      "commitMessages": [
+        "backend: fix all 45 failing tests, make tests a hard CI gate\n\nFix env var issues (4 suites), error message mismatches, response shape\nmismatches, mock ordering, dead tests, and a handler bug. Remove\ncontinue-on-error from CI workflows so tests block deploys.\n\n- Fix statsHandler bug: 'complete' → 'completed' in video status filter\n- Add missing process.env setup for module-scoped constants\n- Update test expectations to match current handler response shapes\n- Remove dead tests for removed validation (honoree required, face limit)\n- Rewrite googlePhotosHandler import test for async job pattern\n- 699 tests passing, 0 failures, 52 skipped (AI Producer)\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+      ]
+    },
+    {
+      "id": "pr-131",
+      "prNumber": 131,
+      "date": "2026-03-01",
+      "mergedAt": "2026-03-01T03:08:45Z",
+      "title": "chore: upgrade Node.js to 22 across local, CI, and Lambda",
+      "branch": "dimitri/backend-cleanup",
+      "summary": "Upgraded Node.js to 22 across local dev, CI, and Lambda runtime",
+      "detail": "Added .nvmrc pinning Node 22 for local development consistency. Updated all GitHub Actions workflows to use node-version 22. Updated serverless.yml Lambda runtime to nodejs22.x. A small but important infrastructure change ensuring consistency across all environments.",
+      "category": "devops",
+      "tags": [
+        "Node-upgrade",
+        "Node-22",
+        "Lambda-runtime",
+        "CI"
+      ],
+      "significance": "minor",
+      "stats": {
+        "additions": 6,
+        "deletions": 5,
+        "changedFiles": 5
+      },
+      "filesChanged": [
+        {
+          "path": ".github/workflows/deploy-backend.yml",
+          "additions": 1,
+          "deletions": 1
+        },
+        {
+          "path": ".github/workflows/deploy-frontend.yml",
+          "additions": 1,
+          "deletions": 1
+        },
+        {
+          "path": ".github/workflows/deploy-prod.yml",
+          "additions": 2,
+          "deletions": 2
+        },
+        {
+          "path": ".nvmrc",
+          "additions": 1,
+          "deletions": 0
+        },
+        {
+          "path": "backend/serverless.yml",
+          "additions": 1,
+          "deletions": 1
+        }
+      ],
+      "commitMessages": [
+        "chore: upgrade Node.js to 22 across local, CI, and Lambda\n\n- Add .nvmrc pinning Node 22 for local development\n- Update all GitHub Actions workflows to node-version: '22'\n- Update serverless.yml Lambda runtime to nodejs22.x\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+      ]
+    },
+    {
+      "id": "pr-132",
+      "prNumber": 132,
+      "date": "2026-03-01",
+      "mergedAt": "2026-03-01T03:19:42Z",
+      "title": "fix: resolve exit code 1 from open handles after tests pass",
+      "branch": "dimitri/backend-cleanup",
+      "summary": "Fixed exit code 1 from open handles after tests pass",
+      "detail": "The Google Photos import test was using the local dev path which did a real dynamic import of the worker file, creating unmocked AWS clients that left open handles. Switched to the Lambda path with mocked clients. Added --forceExit to the jest command as a safety net for ESM open handle issues that can occur with dynamic imports.",
+      "category": "backend",
+      "tags": [
+        "test-fix",
+        "open-handles",
+        "ESM",
+        "jest"
+      ],
+      "significance": "minor",
+      "stats": {
+        "additions": 12,
+        "deletions": 9,
+        "changedFiles": 2
+      },
+      "filesChanged": [
+        {
+          "path": "backend/package.json",
+          "additions": 1,
+          "deletions": 1
+        },
+        {
+          "path": "backend/src/__tests__/handlers/googlePhotosHandler.test.js",
+          "additions": 11,
+          "deletions": 8
+        }
+      ],
+      "commitMessages": [
+        "fix: resolve exit code 1 from open handles after tests pass\n\n- Google Photos import test: use Lambda path (mocked client) instead of\n  local dev path that does a real dynamic import of the worker file,\n  creating unmocked AWS clients that leave open handles\n- Add --forceExit to jest command as safety net for ESM open handle issues\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+      ]
     }
   ],
   "phases": [
@@ -17412,24 +19064,41 @@
         "commits-2026-02-17-cleanup"
       ],
       "color": "#0EA5E9"
+    },
+    {
+      "id": "phase-7",
+      "title": "Hardening & Sharing",
+      "subtitle": "Security audit, backend quality overhaul, and video sharing for the world",
+      "dateRange": {
+        "start": "2026-02-19",
+        "end": "2026-03-01"
+      },
+      "narrative": "With the core product stabilized, the focus shifted to two parallel tracks: making Kindred Reels secure and production-grade, and giving users ways to share their creations with the world.\n\nThe sharing track delivered a complete video distribution system: public watch pages with unique share codes, QR code generation, Web Share API integration, and direct YouTube upload via an async Lambda worker streaming from S3 through the resumable upload protocol. Users could now create a tribute video and share it with a link, a QR code at a family gathering, or publish directly to YouTube — all from the same modal.\n\nMeanwhile, Sadie led a comprehensive security audit while Claude Code executed the hardening. S3 buckets went private behind CloudFront with Origin Access Control. All 63 API error responses were sanitized to stop leaking internal details. DynamoDB got Point-in-Time Recovery. Every project-scoped route was migrated to per-router ownership middleware, eliminating dozens of redundant authorization checks. The backend hardening continued with 5 phases of code quality work: shared validation utilities, standardized auth patterns, handler decomposition (splitting monolithic files into focused modules), and comprehensive test coverage that brought the suite to 699 passing tests with tests promoted to a hard CI gate that blocks deploys.\n\nThe phase also included a navigation overhaul (desktop sidebar + mobile bottom nav), tribute flow reintegration with 60-80% Rekognition cost reduction through deferred processing, and the Node.js 22 upgrade across all environments. The net effect: a more secure, better-tested, more shareable product.",
+      "entryIds": [
+        "pr-122",
+        "commits-2026-02-20-mobile-fixes",
+        "pr-123",
+        "pr-124",
+        "pr-125",
+        "pr-126",
+        "pr-127",
+        "pr-128",
+        "pr-129",
+        "pr-130",
+        "pr-131",
+        "pr-132"
+      ],
+      "color": "#DC2626"
     }
   ],
   "codeStats": {
     "2025-10-19": {
-      "totalLines": 5696,
-      "totalFiles": 24,
+      "totalLines": 55,
+      "totalFiles": 3,
       "byCategory": {
         "tests": {
           "lines": 0,
           "files": 0
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 0,
@@ -17458,20 +19127,12 @@
       }
     },
     "2025-11-09": {
-      "totalLines": 10766,
-      "totalFiles": 52,
+      "totalLines": 5125,
+      "totalFiles": 31,
       "byCategory": {
         "tests": {
           "lines": 0,
           "files": 0
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 0,
@@ -17500,20 +19161,12 @@
       }
     },
     "2025-11-10": {
-      "totalLines": 12166,
-      "totalFiles": 58,
+      "totalLines": 6525,
+      "totalFiles": 37,
       "byCategory": {
         "tests": {
           "lines": 0,
           "files": 0
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 0,
@@ -17542,20 +19195,12 @@
       }
     },
     "2025-11-11": {
-      "totalLines": 14287,
-      "totalFiles": 71,
+      "totalLines": 8646,
+      "totalFiles": 50,
       "byCategory": {
         "tests": {
           "lines": 0,
           "files": 0
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 96,
@@ -17584,20 +19229,12 @@
       }
     },
     "2025-11-15": {
-      "totalLines": 14810,
-      "totalFiles": 74,
+      "totalLines": 9169,
+      "totalFiles": 53,
       "byCategory": {
         "tests": {
           "lines": 0,
           "files": 0
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 100,
@@ -17626,20 +19263,12 @@
       }
     },
     "2025-11-19": {
-      "totalLines": 17319,
-      "totalFiles": 86,
+      "totalLines": 11678,
+      "totalFiles": 65,
       "byCategory": {
         "tests": {
           "lines": 0,
           "files": 0
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 100,
@@ -17668,20 +19297,12 @@
       }
     },
     "2025-11-21": {
-      "totalLines": 19771,
-      "totalFiles": 99,
+      "totalLines": 14130,
+      "totalFiles": 78,
       "byCategory": {
         "tests": {
           "lines": 0,
           "files": 0
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 100,
@@ -17710,20 +19331,12 @@
       }
     },
     "2025-11-22": {
-      "totalLines": 19771,
-      "totalFiles": 99,
+      "totalLines": 14130,
+      "totalFiles": 78,
       "byCategory": {
         "tests": {
           "lines": 0,
           "files": 0
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 100,
@@ -17752,20 +19365,12 @@
       }
     },
     "2025-11-23": {
-      "totalLines": 21912,
-      "totalFiles": 107,
+      "totalLines": 16271,
+      "totalFiles": 86,
       "byCategory": {
         "tests": {
           "lines": 360,
           "files": 2
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 100,
@@ -17794,20 +19399,12 @@
       }
     },
     "2025-11-24": {
-      "totalLines": 23638,
-      "totalFiles": 111,
+      "totalLines": 17997,
+      "totalFiles": 90,
       "byCategory": {
         "tests": {
           "lines": 360,
           "files": 2
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 100,
@@ -17836,20 +19433,12 @@
       }
     },
     "2025-11-25": {
-      "totalLines": 25092,
-      "totalFiles": 113,
+      "totalLines": 19451,
+      "totalFiles": 92,
       "byCategory": {
         "tests": {
           "lines": 360,
           "files": 2
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 100,
@@ -17878,20 +19467,12 @@
       }
     },
     "2025-11-26": {
-      "totalLines": 25846,
-      "totalFiles": 114,
+      "totalLines": 20205,
+      "totalFiles": 93,
       "byCategory": {
         "tests": {
           "lines": 360,
           "files": 2
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 226,
@@ -17920,20 +19501,12 @@
       }
     },
     "2025-11-27": {
-      "totalLines": 34166,
-      "totalFiles": 136,
+      "totalLines": 28525,
+      "totalFiles": 115,
       "byCategory": {
         "tests": {
           "lines": 360,
           "files": 2
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 262,
@@ -17962,20 +19535,12 @@
       }
     },
     "2025-11-28": {
-      "totalLines": 32003,
-      "totalFiles": 141,
+      "totalLines": 26362,
+      "totalFiles": 120,
       "byCategory": {
         "tests": {
           "lines": 360,
           "files": 2
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 265,
@@ -18004,20 +19569,12 @@
       }
     },
     "2025-11-29": {
-      "totalLines": 32870,
-      "totalFiles": 165,
+      "totalLines": 27229,
+      "totalFiles": 144,
       "byCategory": {
         "tests": {
           "lines": 444,
           "files": 3
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 265,
@@ -18046,20 +19603,12 @@
       }
     },
     "2025-11-30": {
-      "totalLines": 34150,
-      "totalFiles": 168,
+      "totalLines": 28509,
+      "totalFiles": 147,
       "byCategory": {
         "tests": {
           "lines": 444,
           "files": 3
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 265,
@@ -18088,20 +19637,12 @@
       }
     },
     "2025-12-01": {
-      "totalLines": 34590,
-      "totalFiles": 168,
+      "totalLines": 28949,
+      "totalFiles": 147,
       "byCategory": {
         "tests": {
           "lines": 444,
           "files": 3
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 265,
@@ -18130,20 +19671,12 @@
       }
     },
     "2025-12-02": {
-      "totalLines": 37012,
-      "totalFiles": 174,
+      "totalLines": 31371,
+      "totalFiles": 153,
       "byCategory": {
         "tests": {
           "lines": 444,
           "files": 3
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 265,
@@ -18172,20 +19705,12 @@
       }
     },
     "2025-12-03": {
-      "totalLines": 37874,
-      "totalFiles": 176,
+      "totalLines": 32233,
+      "totalFiles": 155,
       "byCategory": {
         "tests": {
           "lines": 444,
           "files": 3
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 265,
@@ -18214,20 +19739,12 @@
       }
     },
     "2025-12-04": {
-      "totalLines": 41225,
-      "totalFiles": 185,
+      "totalLines": 35584,
+      "totalFiles": 164,
       "byCategory": {
         "tests": {
           "lines": 444,
           "files": 3
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 542,
@@ -18256,20 +19773,12 @@
       }
     },
     "2025-12-05": {
-      "totalLines": 44977,
-      "totalFiles": 192,
+      "totalLines": 39336,
+      "totalFiles": 171,
       "byCategory": {
         "tests": {
           "lines": 444,
           "files": 3
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 542,
@@ -18298,20 +19807,12 @@
       }
     },
     "2025-12-06": {
-      "totalLines": 33189,
-      "totalFiles": 167,
+      "totalLines": 27548,
+      "totalFiles": 146,
       "byCategory": {
         "tests": {
           "lines": 710,
           "files": 3
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 265,
@@ -18340,20 +19841,12 @@
       }
     },
     "2025-12-07": {
-      "totalLines": 49663,
-      "totalFiles": 201,
+      "totalLines": 44022,
+      "totalFiles": 180,
       "byCategory": {
         "tests": {
           "lines": 718,
           "files": 3
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 542,
@@ -18382,20 +19875,12 @@
       }
     },
     "2025-12-08": {
-      "totalLines": 50070,
-      "totalFiles": 206,
+      "totalLines": 44429,
+      "totalFiles": 185,
       "byCategory": {
         "tests": {
           "lines": 718,
           "files": 3
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 542,
@@ -18424,20 +19909,12 @@
       }
     },
     "2025-12-09": {
-      "totalLines": 53367,
-      "totalFiles": 216,
+      "totalLines": 47726,
+      "totalFiles": 195,
       "byCategory": {
         "tests": {
           "lines": 1949,
           "files": 7
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 542,
@@ -18466,20 +19943,12 @@
       }
     },
     "2025-12-10": {
-      "totalLines": 76694,
-      "totalFiles": 268,
+      "totalLines": 71053,
+      "totalFiles": 247,
       "byCategory": {
         "tests": {
           "lines": 25139,
           "files": 58
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 542,
@@ -18508,20 +19977,12 @@
       }
     },
     "2025-12-11": {
-      "totalLines": 79515,
-      "totalFiles": 273,
+      "totalLines": 73874,
+      "totalFiles": 252,
       "byCategory": {
         "tests": {
           "lines": 25139,
           "files": 58
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 542,
@@ -18550,20 +20011,12 @@
       }
     },
     "2025-12-13": {
-      "totalLines": 84162,
-      "totalFiles": 281,
+      "totalLines": 78521,
+      "totalFiles": 260,
       "byCategory": {
         "tests": {
           "lines": 25139,
           "files": 58
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 542,
@@ -18592,20 +20045,12 @@
       }
     },
     "2025-12-16": {
-      "totalLines": 94828,
-      "totalFiles": 301,
+      "totalLines": 89187,
+      "totalFiles": 280,
       "byCategory": {
         "tests": {
           "lines": 25139,
           "files": 58
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 542,
@@ -18634,20 +20079,12 @@
       }
     },
     "2025-12-19": {
-      "totalLines": 97662,
-      "totalFiles": 320,
+      "totalLines": 92021,
+      "totalFiles": 299,
       "byCategory": {
         "tests": {
           "lines": 25139,
           "files": 58
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 550,
@@ -18676,20 +20113,12 @@
       }
     },
     "2025-12-20": {
-      "totalLines": 100296,
-      "totalFiles": 381,
+      "totalLines": 94655,
+      "totalFiles": 360,
       "byCategory": {
         "tests": {
           "lines": 25139,
           "files": 58
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 550,
@@ -18718,20 +20147,12 @@
       }
     },
     "2025-12-21": {
-      "totalLines": 100257,
-      "totalFiles": 389,
+      "totalLines": 93380,
+      "totalFiles": 361,
       "byCategory": {
         "tests": {
           "lines": 25139,
           "files": 58
-        },
-        "codeChronicle": {
-          "lines": 1236,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 550,
@@ -18760,20 +20181,12 @@
       }
     },
     "2025-12-23": {
-      "totalLines": 103679,
-      "totalFiles": 401,
+      "totalLines": 96759,
+      "totalFiles": 373,
       "byCategory": {
         "tests": {
           "lines": 25139,
           "files": 58
-        },
-        "codeChronicle": {
-          "lines": 1279,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 550,
@@ -18802,20 +20215,12 @@
       }
     },
     "2025-12-25": {
-      "totalLines": 105247,
-      "totalFiles": 406,
+      "totalLines": 98327,
+      "totalFiles": 378,
       "byCategory": {
         "tests": {
           "lines": 25139,
           "files": 58
-        },
-        "codeChronicle": {
-          "lines": 1279,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 550,
@@ -18844,20 +20249,12 @@
       }
     },
     "2025-12-27": {
-      "totalLines": 105461,
-      "totalFiles": 407,
+      "totalLines": 98541,
+      "totalFiles": 379,
       "byCategory": {
         "tests": {
           "lines": 25139,
           "files": 58
-        },
-        "codeChronicle": {
-          "lines": 1279,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 550,
@@ -18886,20 +20283,12 @@
       }
     },
     "2025-12-28": {
-      "totalLines": 107485,
-      "totalFiles": 415,
+      "totalLines": 100565,
+      "totalFiles": 387,
       "byCategory": {
         "tests": {
           "lines": 25139,
           "files": 58
-        },
-        "codeChronicle": {
-          "lines": 1279,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 550,
@@ -18928,20 +20317,12 @@
       }
     },
     "2025-12-29": {
-      "totalLines": 107485,
-      "totalFiles": 415,
+      "totalLines": 100565,
+      "totalFiles": 387,
       "byCategory": {
         "tests": {
           "lines": 25139,
           "files": 58
-        },
-        "codeChronicle": {
-          "lines": 1279,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 550,
@@ -18970,20 +20351,12 @@
       }
     },
     "2026-01-03": {
-      "totalLines": 107522,
-      "totalFiles": 415,
+      "totalLines": 100602,
+      "totalFiles": 387,
       "byCategory": {
         "tests": {
           "lines": 25139,
           "files": 58
-        },
-        "codeChronicle": {
-          "lines": 1279,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 550,
@@ -19012,20 +20385,12 @@
       }
     },
     "2026-01-04": {
-      "totalLines": 109409,
-      "totalFiles": 415,
+      "totalLines": 102489,
+      "totalFiles": 387,
       "byCategory": {
         "tests": {
           "lines": 25139,
           "files": 58
-        },
-        "codeChronicle": {
-          "lines": 1279,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 550,
@@ -19054,62 +20419,46 @@
       }
     },
     "2026-01-05": {
-      "totalLines": 111715,
-      "totalFiles": 421,
+      "totalLines": 106374,
+      "totalFiles": 394,
       "byCategory": {
         "tests": {
           "lines": 25139,
           "files": 58
         },
-        "codeChronicle": {
-          "lines": 1279,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
-        },
         "cicd": {
-          "lines": 550,
+          "lines": 553,
           "files": 4
         },
         "frontend": {
-          "lines": 35486,
+          "lines": 35413,
           "files": 186
         },
         "backend": {
-          "lines": 21646,
+          "lines": 22437,
           "files": 76
         },
         "scripts": {
-          "lines": 6074,
+          "lines": 6135,
           "files": 23
         },
         "processing": {
-          "lines": 8938,
+          "lines": 9311,
           "files": 29
         },
         "docs": {
-          "lines": 6962,
-          "files": 17
+          "lines": 7386,
+          "files": 18
         }
       }
     },
     "2026-01-06": {
-      "totalLines": 113514,
-      "totalFiles": 422,
+      "totalLines": 106451,
+      "totalFiles": 394,
       "byCategory": {
         "tests": {
           "lines": 25139,
           "files": 58
-        },
-        "codeChronicle": {
-          "lines": 1422,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 553,
@@ -19138,20 +20487,12 @@
       }
     },
     "2026-01-07": {
-      "totalLines": 115297,
-      "totalFiles": 423,
+      "totalLines": 108234,
+      "totalFiles": 395,
       "byCategory": {
         "tests": {
           "lines": 26507,
           "files": 58
-        },
-        "codeChronicle": {
-          "lines": 1422,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 553,
@@ -19180,20 +20521,12 @@
       }
     },
     "2026-01-08": {
-      "totalLines": 116668,
-      "totalFiles": 431,
+      "totalLines": 109605,
+      "totalFiles": 403,
       "byCategory": {
         "tests": {
           "lines": 26507,
           "files": 58
-        },
-        "codeChronicle": {
-          "lines": 1422,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 553,
@@ -19222,20 +20555,12 @@
       }
     },
     "2026-01-09": {
-      "totalLines": 116805,
-      "totalFiles": 431,
+      "totalLines": 109742,
+      "totalFiles": 403,
       "byCategory": {
         "tests": {
           "lines": 26507,
           "files": 58
-        },
-        "codeChronicle": {
-          "lines": 1422,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 553,
@@ -19264,20 +20589,12 @@
       }
     },
     "2026-01-10": {
-      "totalLines": 117349,
-      "totalFiles": 432,
+      "totalLines": 110286,
+      "totalFiles": 404,
       "byCategory": {
         "tests": {
           "lines": 26507,
           "files": 58
-        },
-        "codeChronicle": {
-          "lines": 1422,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 556,
@@ -19306,20 +20623,12 @@
       }
     },
     "2026-01-11": {
-      "totalLines": 118771,
-      "totalFiles": 434,
+      "totalLines": 111708,
+      "totalFiles": 406,
       "byCategory": {
         "tests": {
           "lines": 26507,
           "files": 58
-        },
-        "codeChronicle": {
-          "lines": 1422,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 617,
@@ -19348,20 +20657,12 @@
       }
     },
     "2026-01-12": {
-      "totalLines": 128998,
-      "totalFiles": 458,
+      "totalLines": 121935,
+      "totalFiles": 430,
       "byCategory": {
         "tests": {
           "lines": 36458,
           "files": 78
-        },
-        "codeChronicle": {
-          "lines": 1422,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 617,
@@ -19390,20 +20691,12 @@
       }
     },
     "2026-01-13": {
-      "totalLines": 129248,
-      "totalFiles": 459,
+      "totalLines": 122185,
+      "totalFiles": 431,
       "byCategory": {
         "tests": {
           "lines": 36458,
           "files": 78
-        },
-        "codeChronicle": {
-          "lines": 1422,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 5641,
-          "files": 21
         },
         "cicd": {
           "lines": 617,
@@ -19431,21 +20724,47 @@
         }
       }
     },
-    "2026-01-20": {
-      "totalLines": 130370,
-      "totalFiles": 462,
+    "2026-01-14": {
+      "totalLines": 122310,
+      "totalFiles": 431,
       "byCategory": {
         "tests": {
           "lines": 36458,
           "files": 78
         },
-        "codeChronicle": {
-          "lines": 1422,
-          "files": 7
+        "cicd": {
+          "lines": 617,
+          "files": 4
         },
-        "claudePlans": {
-          "lines": 9123,
-          "files": 27
+        "frontend": {
+          "lines": 38345,
+          "files": 196
+        },
+        "backend": {
+          "lines": 23386,
+          "files": 79
+        },
+        "scripts": {
+          "lines": 6402,
+          "files": 25
+        },
+        "processing": {
+          "lines": 9681,
+          "files": 29
+        },
+        "docs": {
+          "lines": 7421,
+          "files": 20
+        }
+      }
+    },
+    "2026-01-20": {
+      "totalLines": 119950,
+      "totalFiles": 428,
+      "byCategory": {
+        "tests": {
+          "lines": 36458,
+          "files": 78
         },
         "cicd": {
           "lines": 617,
@@ -19456,7 +20775,7 @@
           "files": 196
         },
         "backend": {
-          "lines": 23865,
+          "lines": 23866,
           "files": 79
         },
         "scripts": {
@@ -19464,30 +20783,56 @@
           "files": 25
         },
         "processing": {
-          "lines": 9641,
+          "lines": 9690,
           "files": 29
         },
         "docs": {
-          "lines": 4302,
+          "lines": 4377,
+          "files": 17
+        }
+      }
+    },
+    "2026-01-22": {
+      "totalLines": 119982,
+      "totalFiles": 430,
+      "byCategory": {
+        "tests": {
+          "lines": 36490,
+          "files": 80
+        },
+        "cicd": {
+          "lines": 617,
+          "files": 4
+        },
+        "frontend": {
+          "lines": 38540,
+          "files": 196
+        },
+        "backend": {
+          "lines": 23866,
+          "files": 79
+        },
+        "scripts": {
+          "lines": 6402,
+          "files": 25
+        },
+        "processing": {
+          "lines": 9690,
+          "files": 29
+        },
+        "docs": {
+          "lines": 4377,
           "files": 17
         }
       }
     },
     "2026-01-24": {
-      "totalLines": 133201,
-      "totalFiles": 466,
+      "totalLines": 122936,
+      "totalFiles": 432,
       "byCategory": {
         "tests": {
           "lines": 36458,
           "files": 78
-        },
-        "codeChronicle": {
-          "lines": 1422,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 9123,
-          "files": 27
         },
         "cicd": {
           "lines": 617,
@@ -19498,7 +20843,7 @@
           "files": 196
         },
         "backend": {
-          "lines": 24266,
+          "lines": 24267,
           "files": 79
         },
         "scripts": {
@@ -19506,30 +20851,22 @@
           "files": 25
         },
         "processing": {
-          "lines": 10858,
+          "lines": 11032,
           "files": 31
         },
         "docs": {
-          "lines": 5378,
+          "lines": 5483,
           "files": 19
         }
       }
     },
     "2026-01-25": {
-      "totalLines": 134573,
-      "totalFiles": 470,
+      "totalLines": 122946,
+      "totalFiles": 432,
       "byCategory": {
         "tests": {
           "lines": 36458,
           "files": 78
-        },
-        "codeChronicle": {
-          "lines": 1422,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 10205,
-          "files": 31
         },
         "cicd": {
           "lines": 617,
@@ -19558,20 +20895,12 @@
       }
     },
     "2026-01-27": {
-      "totalLines": 134616,
-      "totalFiles": 472,
+      "totalLines": 122993,
+      "totalFiles": 435,
       "byCategory": {
         "tests": {
-          "lines": 36501,
-          "files": 80
-        },
-        "codeChronicle": {
-          "lines": 1422,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 10205,
-          "files": 31
+          "lines": 36505,
+          "files": 81
         },
         "cicd": {
           "lines": 617,
@@ -19600,62 +20929,12 @@
       }
     },
     "2026-01-30": {
-      "totalLines": 134616,
-      "totalFiles": 472,
+      "totalLines": 130163,
+      "totalFiles": 456,
       "byCategory": {
         "tests": {
           "lines": 36501,
           "files": 80
-        },
-        "codeChronicle": {
-          "lines": 1422,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 10205,
-          "files": 31
-        },
-        "cicd": {
-          "lines": 617,
-          "files": 4
-        },
-        "frontend": {
-          "lines": 38687,
-          "files": 196
-        },
-        "backend": {
-          "lines": 24267,
-          "files": 79
-        },
-        "scripts": {
-          "lines": 6402,
-          "files": 25
-        },
-        "processing": {
-          "lines": 11032,
-          "files": 31
-        },
-        "docs": {
-          "lines": 5483,
-          "files": 19
-        }
-      }
-    },
-    "2026-01-31": {
-      "totalLines": 141790,
-      "totalFiles": 494,
-      "byCategory": {
-        "tests": {
-          "lines": 36501,
-          "files": 80
-        },
-        "codeChronicle": {
-          "lines": 1422,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 10205,
-          "files": 31
         },
         "cicd": {
           "lines": 617,
@@ -19683,21 +20962,47 @@
         }
       }
     },
+    "2026-01-31": {
+      "totalLines": 129743,
+      "totalFiles": 457,
+      "byCategory": {
+        "tests": {
+          "lines": 36501,
+          "files": 80
+        },
+        "cicd": {
+          "lines": 617,
+          "files": 4
+        },
+        "frontend": {
+          "lines": 42983,
+          "files": 213
+        },
+        "backend": {
+          "lines": 26529,
+          "files": 87
+        },
+        "scripts": {
+          "lines": 6402,
+          "files": 25
+        },
+        "processing": {
+          "lines": 11538,
+          "files": 31
+        },
+        "docs": {
+          "lines": 5173,
+          "files": 17
+        }
+      }
+    },
     "2026-02-04": {
-      "totalLines": 145091,
-      "totalFiles": 512,
+      "totalLines": 129797,
+      "totalFiles": 458,
       "byCategory": {
         "tests": {
           "lines": 36555,
           "files": 81
-        },
-        "codeChronicle": {
-          "lines": 1422,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 13872,
-          "files": 47
         },
         "cicd": {
           "lines": 617,
@@ -19726,20 +21031,12 @@
       }
     },
     "2026-02-06": {
-      "totalLines": 146597,
-      "totalFiles": 517,
+      "totalLines": 131303,
+      "totalFiles": 463,
       "byCategory": {
         "tests": {
           "lines": 36501,
           "files": 80
-        },
-        "codeChronicle": {
-          "lines": 1422,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 13872,
-          "files": 47
         },
         "cicd": {
           "lines": 617,
@@ -19768,20 +21065,12 @@
       }
     },
     "2026-02-07": {
-      "totalLines": 146405,
-      "totalFiles": 518,
+      "totalLines": 131111,
+      "totalFiles": 464,
       "byCategory": {
         "tests": {
           "lines": 36555,
           "files": 81
-        },
-        "codeChronicle": {
-          "lines": 1422,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 13872,
-          "files": 47
         },
         "cicd": {
           "lines": 617,
@@ -19810,20 +21099,12 @@
       }
     },
     "2026-02-09": {
-      "totalLines": 150911,
-      "totalFiles": 543,
+      "totalLines": 135617,
+      "totalFiles": 489,
       "byCategory": {
         "tests": {
           "lines": 36596,
           "files": 81
-        },
-        "codeChronicle": {
-          "lines": 1422,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 13872,
-          "files": 47
         },
         "cicd": {
           "lines": 619,
@@ -19852,20 +21133,12 @@
       }
     },
     "2026-02-11": {
-      "totalLines": 151111,
-      "totalFiles": 545,
+      "totalLines": 135817,
+      "totalFiles": 491,
       "byCategory": {
         "tests": {
           "lines": 36596,
           "files": 81
-        },
-        "codeChronicle": {
-          "lines": 1422,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 13872,
-          "files": 47
         },
         "cicd": {
           "lines": 619,
@@ -19894,20 +21167,12 @@
       }
     },
     "2026-02-13": {
-      "totalLines": 151117,
-      "totalFiles": 545,
+      "totalLines": 135823,
+      "totalFiles": 491,
       "byCategory": {
         "tests": {
           "lines": 36596,
           "files": 81
-        },
-        "codeChronicle": {
-          "lines": 1422,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 13872,
-          "files": 47
         },
         "cicd": {
           "lines": 619,
@@ -19936,20 +21201,12 @@
       }
     },
     "2026-02-14": {
-      "totalLines": 148974,
-      "totalFiles": 533,
+      "totalLines": 133680,
+      "totalFiles": 479,
       "byCategory": {
         "tests": {
           "lines": 36596,
           "files": 81
-        },
-        "codeChronicle": {
-          "lines": 1422,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 13872,
-          "files": 47
         },
         "cicd": {
           "lines": 619,
@@ -19978,62 +21235,12 @@
       }
     },
     "2026-02-15": {
-      "totalLines": 149003,
-      "totalFiles": 533,
+      "totalLines": 134674,
+      "totalFiles": 482,
       "byCategory": {
         "tests": {
           "lines": 36596,
           "files": 81
-        },
-        "codeChronicle": {
-          "lines": 1422,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 13872,
-          "files": 47
-        },
-        "cicd": {
-          "lines": 619,
-          "files": 4
-        },
-        "frontend": {
-          "lines": 46366,
-          "files": 230
-        },
-        "backend": {
-          "lines": 27081,
-          "files": 91
-        },
-        "scripts": {
-          "lines": 6456,
-          "files": 26
-        },
-        "processing": {
-          "lines": 11592,
-          "files": 31
-        },
-        "docs": {
-          "lines": 4999,
-          "files": 16
-        }
-      }
-    },
-    "2026-02-16": {
-      "totalLines": 149968,
-      "totalFiles": 536,
-      "byCategory": {
-        "tests": {
-          "lines": 36596,
-          "files": 81
-        },
-        "codeChronicle": {
-          "lines": 1422,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 13872,
-          "files": 47
         },
         "cicd": {
           "lines": 619,
@@ -20061,21 +21268,47 @@
         }
       }
     },
-    "2026-02-17": {
-      "totalLines": 152124,
-      "totalFiles": 543,
+    "2026-02-16": {
+      "totalLines": 136059,
+      "totalFiles": 486,
       "byCategory": {
         "tests": {
           "lines": 36596,
           "files": 81
         },
-        "codeChronicle": {
-          "lines": 1422,
-          "files": 7
+        "cicd": {
+          "lines": 619,
+          "files": 4
         },
-        "claudePlans": {
-          "lines": 13872,
-          "files": 47
+        "frontend": {
+          "lines": 46574,
+          "files": 231
+        },
+        "backend": {
+          "lines": 27840,
+          "files": 93
+        },
+        "scripts": {
+          "lines": 6456,
+          "files": 26
+        },
+        "processing": {
+          "lines": 11592,
+          "files": 31
+        },
+        "docs": {
+          "lines": 6382,
+          "files": 20
+        }
+      }
+    },
+    "2026-02-17": {
+      "totalLines": 136830,
+      "totalFiles": 489,
+      "byCategory": {
+        "tests": {
+          "lines": 36596,
+          "files": 81
         },
         "cicd": {
           "lines": 619,
@@ -20104,62 +21337,46 @@
       }
     },
     "2026-02-18": {
-      "totalLines": 152124,
-      "totalFiles": 543,
+      "totalLines": 136242,
+      "totalFiles": 487,
       "byCategory": {
         "tests": {
           "lines": 36596,
           "files": 81
-        },
-        "codeChronicle": {
-          "lines": 1422,
-          "files": 7
-        },
-        "claudePlans": {
-          "lines": 13872,
-          "files": 47
         },
         "cicd": {
           "lines": 619,
           "files": 4
         },
         "frontend": {
-          "lines": 46870,
+          "lines": 46574,
           "files": 231
         },
         "backend": {
-          "lines": 28016,
-          "files": 94
+          "lines": 27840,
+          "files": 93
         },
         "scripts": {
-          "lines": 6665,
-          "files": 28
+          "lines": 6456,
+          "files": 26
         },
         "processing": {
           "lines": 11592,
           "files": 31
         },
         "docs": {
-          "lines": 6472,
-          "files": 20
+          "lines": 6565,
+          "files": 21
         }
       }
     },
     "2026-02-19": {
-      "totalLines": 153348,
-      "totalFiles": 545,
+      "totalLines": 138016,
+      "totalFiles": 492,
       "byCategory": {
         "tests": {
           "lines": 36596,
           "files": 81
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 15332,
-          "files": 53
         },
         "cicd": {
           "lines": 619,
@@ -20188,20 +21405,12 @@
       }
     },
     "2026-02-20": {
-      "totalLines": 156589,
-      "totalFiles": 556,
+      "totalLines": 141257,
+      "totalFiles": 503,
       "byCategory": {
         "tests": {
           "lines": 36596,
           "files": 81
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 15332,
-          "files": 53
         },
         "cicd": {
           "lines": 619,
@@ -20230,20 +21439,12 @@
       }
     },
     "2026-02-21": {
-      "totalLines": 157142,
-      "totalFiles": 557,
+      "totalLines": 141810,
+      "totalFiles": 504,
       "byCategory": {
         "tests": {
           "lines": 36596,
           "files": 81
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 15332,
-          "files": 53
         },
         "cicd": {
           "lines": 619,
@@ -20272,20 +21473,12 @@
       }
     },
     "2026-02-23": {
-      "totalLines": 159336,
-      "totalFiles": 566,
+      "totalLines": 144004,
+      "totalFiles": 513,
       "byCategory": {
         "tests": {
           "lines": 36596,
           "files": 81
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 15332,
-          "files": 53
         },
         "cicd": {
           "lines": 619,
@@ -20314,20 +21507,12 @@
       }
     },
     "2026-02-24": {
-      "totalLines": 159336,
-      "totalFiles": 566,
+      "totalLines": 144621,
+      "totalFiles": 514,
       "byCategory": {
         "tests": {
-          "lines": 36596,
+          "lines": 36660,
           "files": 81
-        },
-        "codeChronicle": {
-          "lines": 0,
-          "files": 0
-        },
-        "claudePlans": {
-          "lines": 15332,
-          "files": 53
         },
         "cicd": {
           "lines": 619,
@@ -20338,7 +21523,7 @@
           "files": 247
         },
         "backend": {
-          "lines": 29979,
+          "lines": 30349,
           "files": 101
         },
         "scripts": {
@@ -20350,18 +21535,86 @@
           "files": 31
         },
         "docs": {
-          "lines": 7253,
-          "files": 21
+          "lines": 7436,
+          "files": 22
+        }
+      }
+    },
+    "2026-02-28": {
+      "totalLines": 145416,
+      "totalFiles": 525,
+      "byCategory": {
+        "tests": {
+          "lines": 39264,
+          "files": 92
+        },
+        "cicd": {
+          "lines": 631,
+          "files": 4
+        },
+        "frontend": {
+          "lines": 51280,
+          "files": 247
+        },
+        "backend": {
+          "lines": 29583,
+          "files": 105
+        },
+        "scripts": {
+          "lines": 6665,
+          "files": 28
+        },
+        "processing": {
+          "lines": 11612,
+          "files": 31
+        },
+        "docs": {
+          "lines": 6381,
+          "files": 18
+        }
+      }
+    },
+    "2026-03-01": {
+      "totalLines": 143917,
+      "totalFiles": 514,
+      "byCategory": {
+        "tests": {
+          "lines": 39180,
+          "files": 91
+        },
+        "cicd": {
+          "lines": 643,
+          "files": 4
+        },
+        "frontend": {
+          "lines": 48788,
+          "files": 235
+        },
+        "backend": {
+          "lines": 29583,
+          "files": 105
+        },
+        "scripts": {
+          "lines": 6665,
+          "files": 28
+        },
+        "processing": {
+          "lines": 11612,
+          "files": 31
+        },
+        "docs": {
+          "lines": 7446,
+          "files": 20
         }
       }
     }
   },
   "metadata": {
-    "generatedAt": "2026-02-24T11:56:00.922Z",
-    "totalEntries": 139,
+    "generatedAt": "2026-03-01T04:25:42.403Z",
+    "totalEntries": 151,
     "dateRange": {
       "start": "2025-10-19",
-      "end": "2026-02-17"
+      "end": "2026-03-01"
     },
     "repo": "kindredreels/kindredreels"
   }

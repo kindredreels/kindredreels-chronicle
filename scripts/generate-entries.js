@@ -818,6 +818,83 @@ const enrichments = {
     category: "ai",
     tags: ["music-library", "AI-music-selection", "curated-tracks", "org-migration"],
     significance: "major"
+  },
+  122: {
+    summary: "Consolidated settings modals, removed dead features, and restyled header buttons",
+    detail: "Merged Timeline Settings into Project Settings as collapsible sections (Video Settings, Sections). Removed dead code including the AI Producer route/tab, blocked photos section, visual signature display, and stale spec docs. Restyled the Edit button as the primary blue CTA with larger sizing. A net deletion of ~1,000 lines — focused cleanup that removed wiring for features that had been superseded.",
+    category: "frontend",
+    tags: ["settings-consolidation", "dead-code-removal", "UX-cleanup"],
+    significance: "moderate"
+  },
+  123: {
+    summary: "Navigation overhaul — desktop sidebar, mobile bottom nav, and dedicated mobile timeline",
+    detail: "Complete navigation redesign with a full-height collapsible ProjectSidebar for desktop and a fixed MobileBottomNav with tabs for Photos, Timeline, Videos, and Settings. Added a dedicated MobileTimelineView with read-only timeline, photo grids, section-scoped lightbox, and Generate Video button. Created an inline SettingsTab replacing modal-based settings. Redesigned Video Settings with 16:9 cover photo preview and fixed the broken cover photo picker. Removed all mobile conditionals from VideoBuilder for a clean desktop-only component. Full-viewport project workspace layout with no navbar/footer inside projects. Route renames from /library to /photos and /contributors to /people.",
+    category: "frontend",
+    tags: ["sidebar", "mobile-nav", "mobile-timeline", "navigation-redesign", "responsive"],
+    significance: "major"
+  },
+  124: {
+    summary: "Video sharing with public watch page, QR codes, and YouTube upload integration",
+    detail: "Full video sharing feature across four phases: a public watch page at /watch/:shareCode with video player and download, ShareVideoModal with copy link, Web Share API, QR code, and download button. Integrated YouTube OAuth (connect/disconnect/token refresh) with an async Lambda worker that streams S3 to YouTube via resumable upload. Added YouTube upload panel in the share modal with polling status and YouTube badges on video cards linking to uploaded videos.",
+    category: "frontend",
+    tags: ["video-sharing", "YouTube-upload", "QR-codes", "public-watch-page", "OAuth"],
+    significance: "major"
+  },
+  125: {
+    summary: "Optional section customization in Create Timeline flow for guided AI organization",
+    detail: "Users can now specify section count (1-8) and per-section descriptions to guide the AI architect when creating timelines. Added a collapsible panel in Step 3 of the Create Timeline modal — full version for 40+ photos with per-section descriptions, simpler single-description for 20-39 photos. Backend validates sectionConfig, threads it through the architect prompt, and respects the user's exact section count.",
+    category: "ai",
+    tags: ["section-customization", "Create-Timeline", "AI-architect", "user-guidance"],
+    significance: "moderate"
+  },
+  126: {
+    summary: "Tribute flow reintegration with deferred Rekognition, people setup, and face matching",
+    detail: "Reintegrated the tribute/multi-person face recognition from the AI Producer into the main Create Timeline flow with major cost optimizations. Phase 1 deferred all Rekognition calls from upload time to video generation or analysis, achieving ~60-80% cost reduction. Phase 2 added a 'Is this a tribute?' question in Step 1, a full-screen TributeSetup overlay with two-panel people management, reference photo picker, and inline face identification. Phase 3 implemented a face matching stage with batch DetectFaces + SearchFacesByImage, AI-powered chronology estimation for date ordering of scanned photos, and atomic draft transitions to prevent concurrent race conditions.",
+    category: "ai",
+    tags: ["tribute-flow", "Rekognition", "face-matching", "cost-optimization", "deferred-processing"],
+    significance: "major"
+  },
+  127: {
+    summary: "Security audit — signed S3 URLs, error sanitization, PITR, and S3 versioning",
+    detail: "Initial security audit work by Sadie covering four areas: switched to signed S3 URLs for all bucket access, sanitized API error messages by removing err.message from 63 error response calls across 8 handler files to prevent leaking internal details. Enabled DynamoDB Point-in-Time Recovery on both tables and S3 versioning with 30-day lifecycle on both uploads buckets. Server-side console.error logging retained for debugging.",
+    category: "backend",
+    tags: ["security-audit", "signed-URLs", "error-sanitization", "PITR", "S3-versioning"],
+    significance: "major"
+  },
+  128: {
+    summary: "Route ownership middleware, CloudFront + OAC, and risky change reverts",
+    detail: "Chunks 1-3 of the security audit: migrated all project-scoped routes to per-router ownership middleware, eliminating redundant getProjectById calls. Added CloudFront with Origin Access Control for S3 uploads so buckets are now fully private. Reverted the async getFileUrl and in-memory rate limiting from PR #127 as they introduced issues. Updated tests and removed stale spec docs. A net deletion of ~3,800 lines through cleanup.",
+    category: "backend",
+    tags: ["ownership-middleware", "CloudFront", "OAC", "security-audit", "route-auth"],
+    significance: "major"
+  },
+  129: {
+    summary: "Complete backend code hardening across 5 phases — validation, testing, and refactoring",
+    detail: "Comprehensive backend quality improvement: Phase 1 added CI gates, removed 4 unused deps, deleted dead files, added ESLint config. Phase 2 created a shared validation utility and standardized requireAuth across all handlers. Phase 3 added handler test coverage for photoHandler, eventOrganizer, videoShare, and YouTube. Phase 4 added middleware, shared utility, and DB layer tests. Phase 5 split the monolithic photoHandler into 3 files and organizeStage into 4 files, added service error handling, standardized DB null-return patterns, and cleaned up dead exports. Ended with 660 tests passing at 32% coverage with 0 lint errors.",
+    category: "backend",
+    tags: ["code-hardening", "testing", "refactoring", "CI-gates", "validation"],
+    significance: "major"
+  },
+  130: {
+    summary: "Fixed all 45 failing backend tests and made tests a hard CI gate",
+    detail: "Fixed env var issues across 4 test suites, error message mismatches, response shape mismatches, mock ordering, and dead tests. Found and fixed a real bug in statsHandler where 'complete' should have been 'completed' in the video status filter. Removed continue-on-error from CI workflows so tests now block deploys. Rewrote googlePhotosHandler import test for the async job pattern. Ended with 699 tests passing, 0 failures, 52 skipped (AI Producer tests deferred).",
+    category: "backend",
+    tags: ["test-fixes", "CI-gates", "bug-fix", "test-reliability"],
+    significance: "moderate"
+  },
+  131: {
+    summary: "Upgraded Node.js to 22 across local dev, CI, and Lambda runtime",
+    detail: "Added .nvmrc pinning Node 22 for local development consistency. Updated all GitHub Actions workflows to use node-version 22. Updated serverless.yml Lambda runtime to nodejs22.x. A small but important infrastructure change ensuring consistency across all environments.",
+    category: "devops",
+    tags: ["Node-upgrade", "Node-22", "Lambda-runtime", "CI"],
+    significance: "minor"
+  },
+  132: {
+    summary: "Fixed exit code 1 from open handles after tests pass",
+    detail: "The Google Photos import test was using the local dev path which did a real dynamic import of the worker file, creating unmocked AWS clients that left open handles. Switched to the Lambda path with mocked clients. Added --forceExit to the jest command as a safety net for ESM open handle issues that can occur with dynamic imports.",
+    category: "backend",
+    tags: ["test-fix", "open-handles", "ESM", "jest"],
+    significance: "minor"
   }
 };
 

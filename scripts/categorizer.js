@@ -11,16 +11,7 @@ const CATEGORIES = [
     match: (filepath) => /\.(test|spec)\.(js|ts|tsx|jsx)$/.test(filepath) ||
                          filepath.includes('__tests__/')
   },
-  {
-    name: 'codeChronicle',
-    match: (filepath) => filepath.startsWith('code-chronicle/') &&
-                         (filepath.endsWith('.js') || filepath.endsWith('.html') || filepath.endsWith('.css'))
-  },
-  {
-    name: 'claudePlans',
-    match: (filepath) => filepath.startsWith('.claude/plans/') && filepath.endsWith('.md')
-  },
-  {
+{
     name: 'cicd',
     match: (filepath) => filepath.startsWith('.github/workflows/') &&
                          (filepath.endsWith('.yml') || filepath.endsWith('.yaml'))

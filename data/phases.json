@@ -131,5 +131,30 @@
       "commits-2026-02-17-cleanup"
     ],
     "color": "#0EA5E9"
+  },
+  {
+    "id": "phase-7",
+    "title": "Hardening & Sharing",
+    "subtitle": "Security audit, backend quality overhaul, and video sharing for the world",
+    "dateRange": {
+      "start": "2026-02-19",
+      "end": "2026-03-01"
+    },
+    "narrative": "With the core product stabilized, the focus shifted to two parallel tracks: making Kindred Reels secure and production-grade, and giving users ways to share their creations with the world.\n\nThe sharing track delivered a complete video distribution system: public watch pages with unique share codes, QR code generation, Web Share API integration, and direct YouTube upload via an async Lambda worker streaming from S3 through the resumable upload protocol. Users could now create a tribute video and share it with a link, a QR code at a family gathering, or publish directly to YouTube — all from the same modal.\n\nMeanwhile, Sadie led a comprehensive security audit while Claude Code executed the hardening. S3 buckets went private behind CloudFront with Origin Access Control. All 63 API error responses were sanitized to stop leaking internal details. DynamoDB got Point-in-Time Recovery. Every project-scoped route was migrated to per-router ownership middleware, eliminating dozens of redundant authorization checks. The backend hardening continued with 5 phases of code quality work: shared validation utilities, standardized auth patterns, handler decomposition (splitting monolithic files into focused modules), and comprehensive test coverage that brought the suite to 699 passing tests with tests promoted to a hard CI gate that blocks deploys.\n\nThe phase also included a navigation overhaul (desktop sidebar + mobile bottom nav), tribute flow reintegration with 60-80% Rekognition cost reduction through deferred processing, and the Node.js 22 upgrade across all environments. The net effect: a more secure, better-tested, more shareable product.",
+    "entryIds": [
+      "pr-122",
+      "commits-2026-02-20-mobile-fixes",
+      "pr-123",
+      "pr-124",
+      "pr-125",
+      "pr-126",
+      "pr-127",
+      "pr-128",
+      "pr-129",
+      "pr-130",
+      "pr-131",
+      "pr-132"
+    ],
+    "color": "#DC2626"
   }
 ]
