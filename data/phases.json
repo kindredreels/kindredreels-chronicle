@@ -1,6 +1,6 @@
 [
   {
-    "id": "phase-0",
+    "id": "phase-1",
     "title": "Genesis",
     "subtitle": "From zero to a full-stack app in 33 days, all through direct commits",
     "dateRange": {
@@ -8,153 +8,79 @@
       "end": "2025-11-21"
     },
     "narrative": "Before there were pull requests, before there was a PR workflow, there was a founder and an AI pair-programming partner building as fast as they could. In 33 days and 29 direct-to-main commits, Kindred Reels went from an empty repository to a fully functional full-stack application with cloud infrastructure.\n\nThe journey started on October 19 with a LICENSE file and a Vite/Express skeleton. Three weeks of intense building followed: a working photo upload and voice recording app with SQLite (Nov 9), migration to DynamoDB and S3 for cloud-native storage (Nov 10), AWS Lambda deployment with GitHub Actions CI/CD (Nov 11), Google OAuth authentication via Cognito (Nov 11), per-user project authorization (Nov 15), a Python video generation pipeline with Ken Burns effects (Nov 19), cloud video processing through SQS and Lambda containers (Nov 19), and finally the migration to EC2 Spot instances when Lambda's 15-minute timeout proved insufficient (Nov 21).\n\nEvery commit was pushed directly to main — no branches, no reviews, just rapid iteration. The commit messages were informal and raw: 'whole mess of claude contributions..', 'fixed frontend action hopefully', 'lots of github action secrets for oauth.' This was the bootstrapping era, where speed mattered more than process. By November 21, the PR workflow would be adopted, but the architectural foundations laid in this phase — the monorepo structure, DynamoDB single-table design, S3 media storage, Lambda API, EC2 video processing — would persist throughout the project's evolution.",
-    "entryIds": [
-      "commits-2025-10-19-project-genesis",
-      "commits-2025-11-09-first-working-app",
-      "commit-21d3bc7",
-      "commits-2025-11-11-lambda-deploy",
-      "commits-2025-11-11-google-oauth",
-      "commits-2025-11-15-user-auth",
-      "commits-2025-11-19-video-generation",
-      "commits-2025-11-19-video-cloud",
-      "commits-2025-11-21-ec2-spot"
-    ],
+    "entryIds": ["commits-2025-10-19-project-genesis","commits-2025-11-09-first-working-app","commit-21d3bc7","commits-2025-11-11-google-oauth","commits-2025-11-11-lambda-deploy","commits-2025-11-15-user-auth","commits-2025-11-19-video-generation","commits-2025-11-19-video-cloud","commits-2025-11-21-ec2-spot"],
     "color": "#F97316"
   },
   {
-    "id": "phase-1",
-    "title": "The Spark",
-    "subtitle": "Building the foundation for a family storytelling platform",
+    "id": "phase-2",
+    "title": "The First Reel",
+    "subtitle": "The core loop takes shape — contribution links, the Memories model, and mobile-first recording",
     "dateRange": {
       "start": "2025-11-22",
-      "end": "2025-11-30"
-    },
-    "narrative": "In less than ten days, a solo founder and an AI coding assistant built the skeleton of an entirely new kind of family product. The very first PR introduced shareable contribution links — the defining interaction of the platform, where family members could record voice memories for photos without creating an account. Within a week, the codebase had video generation with beat-synced music, multi-method authentication through AWS Cognito, an admin panel, GPU-accelerated processing on EC2, and AWS Rekognition face detection guiding cinematic Ken Burns camera movements.\n\nThe pace was extraordinary: 26 PRs merged in 9 days, establishing the full-stack architecture (React, Node.js/Lambda, Python processing, DynamoDB) and the core product loop of upload → organize → record → generate. The project was renamed from 'Loomed Memories' to 'Kindred Reels' during this sprint. Most remarkably, the backend API, frontend UI, and video processing pipeline were all functional from the start — not built incrementally, but shipped as a cohesive system.\n\nAlongside the PRs, direct commits continued for quick fixes and operational tasks: a refreshed landing page with example videos, updated EC2 and CI/CD documentation, font rendering fixes for Linux, handling of corrupted video records, an upgrade to 4K video resolution, and a batch of production fixes including the missing image processor Lambda. This phase proved the feasibility of building a production-grade application through AI-assisted development at a pace that would normally require a team of engineers working for months.",
-    "entryIds": [
-      "pr-3", "pr-4", "pr-5", "pr-6", "pr-7", "pr-8", "pr-9", "pr-10",
-      "pr-11", "pr-12", "pr-13", "pr-14", "pr-15", "pr-16", "pr-17", "pr-18",
-      "pr-19", "pr-20", "pr-21", "pr-22", "pr-23", "pr-24", "pr-25", "pr-26",
-      "pr-27", "pr-28",
-      "commits-2025-11-25-landing-page",
-      "commits-2025-11-26-docs-infra",
-      "commits-2025-11-27-video-fixes",
-      "commits-2025-11-28-4k-rendering",
-      "commits-2025-11-29-prod-fixes"
-    ],
-    "color": "#6366F1"
-  },
-  {
-    "id": "phase-2",
-    "title": "Finding the Voice",
-    "subtitle": "Evolving the core data model around Memories and mobile-first contribution",
-    "dateRange": {
-      "start": "2025-12-01",
       "end": "2025-12-10"
     },
-    "narrative": "With the technical foundation in place, the project turned inward to discover its true conceptual model. The biggest breakthrough was the evolution from 'photo groups' to 'Memories' — the realization that the atomic unit of the product wasn't a photo or a recording, but a memory: a voice narration attached to one to five photos that becomes a segment in the final video. This conceptual shift touched nearly every layer of the system and required multiple PRs to fully realize.\n\nSimultaneously, the mobile experience was overhauled to make contribution feel natural on a phone: compact recording UI, volume visualization, auto-playing slideshow previews, and focused recording mode that minimizes distractions. The production deployment pipeline shipped with email and SMS invitations, making the platform usable by real families for the first time. A comprehensive frontend test suite of 1,742 tests was generated in a single AI-assisted session.\n\nThe Video Builder emerged as a drag-and-drop timeline editor with sections, and the color scheme was standardized across the entire UI. A quick package-lock fix and release script were pushed directly to main. By the end of this phase, Kindred Reels had found its voice — both literally (voice memories) and conceptually (the Memories model that would define the product).",
-    "entryIds": [
-      "pr-29", "pr-30", "pr-31", "pr-32", "pr-33", "pr-34", "pr-35", "pr-36",
-      "pr-37", "pr-38", "pr-39", "pr-40", "pr-41", "pr-42", "pr-43", "pr-44",
-      "pr-45", "pr-46", "pr-47", "pr-48", "pr-49", "pr-50", "pr-51",
-      "commits-2025-12-08-maintenance"
-    ],
-    "color": "#8B5CF6"
+    "narrative": "With the PR workflow adopted, a solo founder and an AI coding assistant built the skeleton of an entirely new kind of family product — and then discovered its true shape. The very first PR introduced shareable contribution links, the defining interaction of the platform, where family members could record voice memories for photos without creating an account. Within a week the codebase had beat-synced video generation, multi-method authentication through AWS Cognito, an admin panel, GPU-accelerated processing on EC2, and AWS Rekognition face detection guiding cinematic Ken Burns camera movements. The project was renamed from 'Loomed Memories' to 'Kindred Reels' during this sprint, and the backend, frontend, and video pipeline were all functional from the start — shipped as a cohesive system rather than built incrementally.\n\nThe biggest conceptual breakthrough came next: the evolution from 'photo groups' to 'Memories' — the realization that the atomic unit of the product wasn't a photo or a recording, but a memory: a voice narration attached to one to five photos that becomes a segment in the final video. This shift touched nearly every layer of the system and took several PRs to fully realize. Alongside it, the mobile experience was overhauled to make contribution feel natural on a phone: compact recording UI, volume visualization, auto-playing slideshow previews, and a focused recording mode.\n\nThe production deployment pipeline shipped with email and SMS invitations, making the platform usable by real families for the first time. The Video Builder emerged as a drag-and-drop timeline editor with sections, the color scheme was standardized across the UI with CSS custom properties, and a comprehensive frontend test suite of 1,742 tests was generated in a single AI-assisted session. Direct-to-main commits continued for quick operational work — a refreshed landing page, EC2 and CI/CD docs, Linux font fixes, 4K rendering, and a batch of production fixes. By December 10, Kindred Reels had found its voice, both literally and conceptually.",
+    "entryIds": ["pr-3","pr-4","pr-5","pr-6","pr-7","pr-8","pr-9","pr-10","commits-2025-11-25-landing-page","pr-11","pr-12","pr-13","commits-2025-11-26-docs-infra","pr-14","pr-15","pr-16","pr-17","pr-18","pr-19","commits-2025-11-27-video-fixes","commits-2025-11-28-4k-rendering","pr-20","pr-21","pr-22","pr-23","pr-24","commits-2025-11-29-prod-fixes","pr-25","pr-26","pr-27","pr-28","pr-29","pr-30","pr-31","pr-32","pr-33","pr-34","pr-35","pr-36","pr-37","pr-38","pr-39","pr-40","pr-41","pr-42","pr-43","pr-44","pr-45","pr-46","pr-47","commits-2025-12-08-maintenance","pr-48","pr-49","pr-50"],
+    "color": "#6366F1"
   },
   {
     "id": "phase-3",
     "title": "The Intelligence Layer",
-    "subtitle": "AI transforms photo curation from manual work into assisted storytelling",
+    "subtitle": "AI transforms curation, and the video output turns cinematic",
     "dateRange": {
       "start": "2025-12-11",
-      "end": "2025-12-25"
+      "end": "2026-01-19"
     },
-    "narrative": "This phase marked the pivot from a manual curation tool to an AI-powered storytelling platform. The AI Producer evolved through three generations: v1 prototyped with Gemini for basic photo analysis, v2 integrated Rekognition face clustering with the Gemini Files API for richer understanding, and the improvements phase added pre-upload optimization and face deduplication. The music system gained multi-track support with automatic audio ducking — background music that gracefully dips when voice recordings play.\n\nThe frontend underwent its own transformation with a major state management refactor from prop drilling to React Query and Zustand, establishing the architectural patterns for everything that followed. A photo enhancement pipeline brought Google Cloud Storage, Gemini-powered quality analysis, and Cloud Run GPU restoration. The landing page was redesigned for legitimacy with team photos and social proof.\n\nThe Timeline Contributor Flow launched, letting invited family members browse the entire project timeline rather than just their assigned photos. Google Photos integration via the Picker API eliminated the friction of photo uploads. The CodeChronicle codebase analytics dashboard — the ancestor of this very project — was added to the main repo. A year-end cleanup removed old test data files. By Christmas, the platform could intelligently analyze, organize, and present family photo collections with AI assistance.",
-    "entryIds": [
-      "pr-52", "pr-53", "pr-54", "pr-55", "pr-56", "pr-57", "pr-58", "pr-59",
-      "pr-60", "pr-61", "pr-62", "pr-63", "pr-64", "pr-65", "pr-66", "pr-67",
-      "pr-68", "pr-69", "pr-70", "pr-71", "pr-72",
-      "commits-2025-12-23-cleanup"
-    ],
+    "narrative": "This phase marked the pivot from a manual curation tool to an AI-powered storytelling platform whose output looked genuinely professional. The AI Producer evolved through three generations: v1 prototyped with Gemini for basic photo analysis, v2 integrated Rekognition face clustering with the Gemini Files API for richer understanding, and later refinements added pre-upload optimization and face deduplication. The music system gained multi-track support with automatic audio ducking — background music that gracefully dips when voice recordings play. The frontend underwent its own transformation with a major state management refactor from prop drilling to React Query and Zustand, establishing the architectural patterns for everything that followed.\n\nA photo enhancement pipeline brought Google Cloud Storage, Gemini-powered quality analysis, and Cloud Run GPU restoration. The Timeline Contributor Flow launched, letting invited family members browse the entire project timeline rather than just their assigned photos, and Google Photos integration via the Picker API eliminated the friction of uploads. The CodeChronicle codebase analytics dashboard — the ancestor of this very project — was added to the main repo.\n\nThe new year opened with a laser focus on output quality. The AI Producer was refactored into a clean 4-stage workflow with extensively engineered Gemini prompts. HTML-based slides replaced static images for title screens, credits, and section dividers — rendered through Playwright into crisp, resolution-independent frames. Whisper AI transcription brought closed captions, with an editor for hosts to correct the AI's work. The timeline UX went through a six-stage polish sprint, the music system gained track metadata and a table-based admin library, and video rendering improvements delivered attribution slides, fade-to-black outros, and the first named theme: 'noir-elegant.' By mid-January, Kindred Reels could intelligently analyze, organize, and present family photo collections — and the videos it produced were the kind families would be proud to share.",
+    "entryIds": ["pr-51","pr-52","pr-53","pr-54","pr-55","pr-56","pr-57","pr-58","pr-59","pr-60","pr-61","pr-62","pr-63","pr-64","pr-65","pr-66","commits-2025-12-23-cleanup","pr-67","pr-68","pr-69","pr-70","pr-71","pr-72","commit-fcc9484","pr-73","pr-74","commits-2026-01-05-tooling","pr-75","commits-2026-01-06-prod-fixes","pr-77","pr-78","commits-2026-01-07-lambda-fixes","commit-e207814","pr-79","pr-80","pr-81","pr-82","pr-83","pr-84","pr-85","pr-86","pr-87","pr-88","pr-89","pr-90","pr-92","pr-91","pr-93","pr-94","pr-95","pr-96","pr-97","pr-98","pr-99","pr-100","pr-101"],
     "color": "#EC4899"
   },
   {
     "id": "phase-4",
-    "title": "Cinematic Quality",
-    "subtitle": "Professional video output with HTML slides, themes, and caption rendering",
-    "dateRange": {
-      "start": "2026-01-03",
-      "end": "2026-01-15"
-    },
-    "narrative": "The new year opened with a laser focus on video output quality. The AI Producer was refactored into a clean 4-stage workflow with extensively engineered Gemini prompts, dramatically improving the narrative structures it generated. HTML-based slides replaced static images for title screens, credits, and section dividers — rendered through Playwright into crisp, resolution-independent frames with rich typography.\n\nThe timeline UX went through a six-stage improvement sprint, making the editor feel polished and responsive. Whisper AI transcription brought closed captions to generated videos, with an editor modal for hosts to correct the AI's transcriptions. The music system gained track metadata, a table-based admin library, and audio ducking refinements. Video rendering improvements included attribution slides, fade-to-black outros, and the first named video theme: 'noir-elegant.'\n\nDeployment infrastructure matured with unified EC2 deployment structures and upgraded processing instances. Direct-to-main fixes addressed recording bugs, production configuration issues, S3 bucket mismatches, a missing sharp Lambda layer, and AI Producer re-run capability. This was the phase where Kindred Reels' output started looking truly professional — the kind of videos families would be proud to share.",
-    "entryIds": [
-      "pr-73", "pr-74", "pr-75", "pr-77", "pr-78", "pr-79", "pr-80", "pr-81",
-      "pr-82", "pr-83", "pr-84", "pr-85", "pr-86", "pr-87", "pr-88", "pr-89",
-      "pr-90", "pr-91", "pr-92", "pr-93", "pr-94", "pr-95", "pr-96", "pr-97",
-      "pr-98", "pr-99", "pr-100", "pr-101",
-      "commit-fcc9484",
-      "commits-2026-01-05-tooling",
-      "commits-2026-01-06-prod-fixes",
-      "commits-2026-01-07-lambda-fixes",
-      "commit-e207814"
-    ],
-    "color": "#F59E0B"
-  },
-  {
-    "id": "phase-5",
-    "title": "Events & Occasions",
-    "subtitle": "Expanding beyond tributes to weddings, reunions, and celebrations",
+    "title": "Events, Scale & the Great Hardening",
+    "subtitle": "Weddings and reunions, a professional curation experience, and a security-and-quality reckoning",
     "dateRange": {
       "start": "2026-01-20",
-      "end": "2026-02-07"
+      "end": "2026-03-01"
     },
-    "narrative": "Kindred Reels had proven itself for tribute videos — heartfelt compilations for birthdays, retirements, and memorials. But the product vision was broader: any gathering where photos and stories intersect. This phase introduced Event projects alongside the existing Tribute type, designed for weddings, parties, and reunions where multiple people contribute photos in real-time.\n\nThe Event Organizer flow was the centerpiece — an AI-powered pipeline that analyzes hundreds of event photos, detects temporal clusters (moments), identifies key people through face detection, and generates a timeline with named sections. Deferred Rekognition was introduced to avoid expensive face detection at upload time for events where hundreds of photos arrive rapidly. The 28-template theme system launched, offering five aesthetic families from elegant to cinematic, all rendered through Playwright with credits customization.\n\nEnd-to-end Playwright tests were added for the first time, covering authentication and project lifecycle. The Playwright npm dependencies were pushed directly to main to support this testing effort. The review modal was removed from the Event Organizer after user testing showed it added friction without value. This phase expanded the product's addressable market from personal tributes to any family occasion worth remembering.",
-    "entryIds": [
-      "pr-102", "pr-103", "pr-104", "pr-106", "pr-107", "pr-108", "pr-109",
-      "pr-110", "pr-111",
-      "commit-e617eae"
-    ],
+    "narrative": "Kindred Reels had proven itself for tribute videos, but the product vision was broader: any gathering where photos and stories intersect. This phase introduced Event projects alongside the existing Tribute type, designed for weddings, parties, and reunions where multiple people contribute photos in real time. The Event Organizer flow was the centerpiece — an AI pipeline that analyzes hundreds of photos, detects temporal clusters, identifies key people, and generates a named-section timeline. Deferred Rekognition avoided expensive face detection at upload time, and the 28-template theme system launched, offering five aesthetic families all rendered through Playwright.\n\nWith the feature set largely complete, attention turned to making everything work beautifully at scale. The organization mode UX overhaul delivered a professional photo-curation experience with a full-screen lightbox, side-by-side comparison, and cluster visualization, while optimistic updates made photo replacement feel instant. A critical performance fix eliminated N+1 DynamoDB queries that had caused 13-second page loads, bringing them down to 1-2 seconds. The music system got a curated, mood-organized library with AI auto-selection, the project creation flow was unified across types, a public Technology page was added, and the repository migrated to the kindredreels organization on GitHub.\n\nThen came the reckoning. Two parallel tracks — security-and-quality hardening, and giving users ways to share their creations. The sharing track delivered a complete distribution system: public watch pages with share codes, QR codes, the Web Share API, and direct YouTube upload via an async Lambda worker streaming from S3. Meanwhile a comprehensive security audit put S3 behind CloudFront with Origin Access Control, sanitized all 63 leaking API error responses, enabled DynamoDB Point-in-Time Recovery, and migrated every project-scoped route to per-router ownership middleware. The backend, frontend, and Python processing pipeline each went through a five-phase hardening pass — shared validation, standardized auth, handler decomposition, structured logging, and comprehensive tests — promoting the suite to a hard CI gate that blocks deploys. A navigation overhaul, tribute-flow reintegration with 60-80% Rekognition cost reduction, and the Node.js 22 upgrade rounded it out. The result: a more secure, better-tested, more shareable product standing on solid ground.",
+    "entryIds": ["pr-102","pr-103","pr-104","pr-106","pr-107","pr-108","pr-110","pr-111","pr-109","commit-e617eae","pr-112","pr-113","pr-115","pr-118","commit-9b45c5c","pr-117","pr-119","pr-120","pr-121","commits-2026-02-17-cleanup","pr-122","pr-123","commits-2026-02-20-mobile-fixes","pr-124","pr-125","pr-126","pr-127","pr-128","pr-129","pr-130","pr-131","pr-132","pr-133","pr-134"],
     "color": "#10B981"
   },
   {
-    "id": "phase-6",
-    "title": "Refinement at Scale",
-    "subtitle": "Performance, polish, and the AI-assisted curation experience",
+    "id": "phase-5",
+    "title": "The Cutting Room",
+    "subtitle": "Video clips arrive, and the platform learns to edit motion, cost, and color",
     "dateRange": {
-      "start": "2026-02-07",
-      "end": "2026-02-17"
+      "start": "2026-03-02",
+      "end": "2026-05-18"
     },
-    "narrative": "With the feature set largely complete, this final phase focused on making everything work beautifully at scale. The organization mode UX overhaul was the largest single effort — a professional photo curation experience with full-screen lightbox, side-by-side comparison for similar photos, AI-detected cluster visualization, and comprehensive photo management tools. Optimistic updates made photo replacement feel instant.\n\nA critical performance fix eliminated N+1 DynamoDB queries that were causing 13-second page loads for projects with hundreds of photos, bringing load times down to 1-2 seconds. The visual clustering pipeline brought computer vision-based photo grouping. The project creation flow was unified so all projects follow the same path regardless of type, with AI behavior driven by the project description rather than rigid type categories.\n\nThe music system got its own overhaul with a curated library organized by mood and AI-powered automatic track selection. A public Technology page was added to showcase the platform's engineering. The repository was migrated to the kindredreels organization on GitHub. Production fixes addressed GCS bucket routing, Vertex AI credential loading, and SQS configuration. The code-chronicle tool was extracted from the main repo into its own project. After nearly four months of development starting from Genesis, the codebase had grown to over 100,000 lines — all written through AI-assisted development, without the founder writing code directly.",
-    "entryIds": [
-      "pr-112", "pr-113", "pr-115", "pr-117", "pr-118", "pr-119", "pr-120",
-      "pr-121",
-      "commit-9b45c5c",
-      "commits-2026-02-17-cleanup"
-    ],
+    "narrative": "For its entire life, Kindred Reels had worked with still photos. This phase brought it into motion. Video clips arrived as a full pipeline: videos import from Google Photos or upload directly from a device into Google Cloud Storage, a Cloud Run video-processor service runs FFmpeg plus Gemini analysis to identify the best moments, and the EC2 renderer stitches chosen clips into the timeline with music ducking for footage carrying meaningful audio. The clip experience matured quickly — clip extraction was deferred to render time (echoing the defer-until-generation cost pattern used elsewhere), a unified ClipPlayer gained draggable in/out handles for boundary editing, post-credits sections and per-clip ducking joined the mix, and a stubborn class of clip audio sync drift was finally eliminated by embedding audio in segments and rebuilding the timeline from probed durations. Smart ducking learned to read a Gemini audioSignificance rating, letting concerts stay loud and wind noise stay quiet.\n\nUnderneath the features, the platform grew a cost consciousness. Per-project cost tracking instrumented every Gemini, Rekognition, Whisper, Cloud Run, and EC2 call, surfacing in the admin UI exactly what each project cost to produce. GCP environments were isolated so dev and prod stopped sharing infrastructure, admin dashboard performance was rescued with shared server-side caches, and a GCP cost exploration corrected Vertex pricing and shut off idle-CPU billing. The AI pipeline gained deterministic project classification and composable, category-aware architect prompts.\n\nThe surface got a serious polish, too. The Timeline detail view and Organization lightbox were consolidated into one metadata-rich UnifiedLightbox, cover-photo handling was unified with a picker in the generate modal, and 19 emoji icons gave way to clean SVGs. A comprehensive branded email system with seven transactional types shipped alongside a rewritten login page, YouTube API compliance disclosures landed, and — most visibly — a sweeping semantic token refactor migrated ~2,500 raw color classes into 27 CSS variables, unlocking a full light mode across 167 files. The cutting room was open, and the product had learned to edit not just video, but its own cost and color.",
+    "entryIds": ["pr-135","pr-136","commits-2026-03-04-cloud-run-cicd","pr-137","pr-138","pr-139","pr-140","pr-141","pr-142","pr-143","pr-144","pr-145","pr-146","pr-147","pr-148","pr-149","pr-150","commit-b7e03cbe","pr-152","pr-153","pr-151","pr-154","pr-155","pr-156","pr-157","pr-158","pr-159","pr-160","pr-161"],
     "color": "#0EA5E9"
   },
   {
-    "id": "phase-7",
-    "title": "Hardening & Sharing",
-    "subtitle": "Security audit, backend quality overhaul, and video sharing for the world",
+    "id": "phase-6",
+    "title": "Timeline v2 & the Curation Engine",
+    "subtitle": "A new editing surface and a deterministic, merit-scored curation pipeline",
     "dateRange": {
-      "start": "2026-02-19",
-      "end": "2026-03-01"
+      "start": "2026-05-19",
+      "end": "2026-06-30"
     },
-    "narrative": "With the core product stabilized, the focus shifted to two parallel tracks: making Kindred Reels secure and production-grade, and giving users ways to share their creations with the world.\n\nThe sharing track delivered a complete video distribution system: public watch pages with unique share codes, QR code generation, Web Share API integration, and direct YouTube upload via an async Lambda worker streaming from S3 through the resumable upload protocol. Users could now create a tribute video and share it with a link, a QR code at a family gathering, or publish directly to YouTube — all from the same modal.\n\nMeanwhile, Sadie led a comprehensive security audit while Claude Code executed the hardening. S3 buckets went private behind CloudFront with Origin Access Control. All 63 API error responses were sanitized to stop leaking internal details. DynamoDB got Point-in-Time Recovery. Every project-scoped route was migrated to per-router ownership middleware, eliminating dozens of redundant authorization checks. The backend hardening continued with 5 phases of code quality work: shared validation utilities, standardized auth patterns, handler decomposition (splitting monolithic files into focused modules), and comprehensive test coverage that brought the suite to 699 passing tests with tests promoted to a hard CI gate that blocks deploys.\n\nThe phase also included a navigation overhaul (desktop sidebar + mobile bottom nav), tribute flow reintegration with 60-80% Rekognition cost reduction through deferred processing, and the Node.js 22 upgrade across all environments. The net effect: a more secure, better-tested, more shareable product.",
-    "entryIds": [
-      "pr-122",
-      "commits-2026-02-20-mobile-fixes",
-      "pr-123",
-      "pr-124",
-      "pr-125",
-      "pr-126",
-      "pr-127",
-      "pr-128",
-      "pr-129",
-      "pr-130",
-      "pr-131",
-      "pr-132"
-    ],
+    "narrative": "After a quiet stretch, the project returned with two of its most ambitious efforts. The GCS buckets were consolidated into us-east4 — first by lifting bucket names onto stage-aware environment variables, then executing the region move as a pure data migration with no code changes. Then came the largest single PR in the project's history at nearly 24,000 lines: the Timeline-v2 drag-and-drop redesign. It reimagined timeline editing as a single merged surface with live within-section rearrange, cursor-positional drops, cross-section drag with auto-expand and auto-scroll, drag-to-remove, multi-select, and multi-drag with a stacked overlay and floating action bar — the kind of direct-manipulation editing that makes a tool feel professional.\n\nBeneath the new surface, the intelligence that decides what goes into a video was substantially rebuilt. Deterministic temporal segmentation took over from the Gemini architect for chronological projects, with a balanced dynamic-programming partitioner fixing pathological section splits, demoting the AI to a fallback role. The curation overhaul introduced a content-value gate that assigns every photo a contentRole and hard-excludes functional captures, a four-dimension highlightMerit score that lets the curator rank on quality, an index-based response contract, and a merit floor where per-section targets are an aim rather than a quota — any theme may keep nothing if everything in it is weak. Cover-photo selection became curator-nominated and image-aware. Secrets were hardened into AWS Secrets Manager, and a seven-phase documentation overhaul rebuilt the reference docs against live infrastructure, running eleven adversarial checkers against 600 claims and shrinking the always-loaded doc context from ~1,970 lines to 46. The photo library was flattened to individual tiles, cluster dedup was enforced, and a warm-voice copy pass stripped the last robotic language from the product's face.",
+    "entryIds": ["pr-162","pr-163","pr-164","commit-dfd8acb3","pr-165","pr-166","pr-167","pr-168","pr-169"],
+    "color": "#8B5CF6"
+  },
+  {
+    "id": "phase-7",
+    "title": "The Road to Beta",
+    "subtitle": "Instrumentation, conversion loops, and a warm retheme for a public launch",
+    "dateRange": {
+      "start": "2026-07-01",
+      "end": "2026-07-23"
+    },
+    "narrative": "The final stretch was about turning a working product into a launchable one. Correctness came first: timezone-aware timestamps fixed phantom section splits by reading true EXIF UTC offsets and interpreting naive camera clocks against the project's trusted timeline, while a zero-warning lint enforcement pass cleaned 1,728 warnings — and, along the way, surfaced a real bug that had been routing contributor uploads through the wrong endpoint. Admin surfaces that had leaned on full-table scans were retired behind a shared sparse AdminIndex GSI, and a scheduled stuck-video sweep made contributor video processing resilient to serverless race conditions.\n\nThen the product turned outward. The landing page gained its signature moment: HeroTransformation, a hand-choreographed animation that watches contributor photos pile into a whimsical curation machine, spill out duplicates and blurry rejects, and emerge as a polished film strip behind a real title slide. A full feedback-capture loop wired a header button, an admin triage page, and proactive prompts that offer to report a failure the instant one happens. A five-phase beta instrumentation suite stamped uploader and contributor attribution on every media path, counted share-page views, alerted the founder on failures, and computed daily funnel snapshots surfaced on a new /admin/funnel page — extended in Funnel v2 into a people-based user funnel with clean Tailwind bar charts. The public watch page became a conversion surface with make-your-own CTAs, a Netflix-style credits mode, crawler-friendly link previews, and signup attribution that survives the OAuth round trip.\n\nFinally, the whole app was re-skinned in a warm 'photo album' palette — self-hosted serif and script fonts, a light-by-default theme, a new Solid Weave brandmark, and a landing overhaul built around the transformation hero and inline-playing sample reels. A beta-launch planning workspace captured the tracker, dated success criteria, and decision log that would govern the launch. Nine months after an empty repository and a LICENSE file, the codebase stood at more than 180,000 lines — every one of them written through AI-assisted development, without the founder writing code directly — poised at the threshold of a public beta.",
+    "entryIds": ["pr-170","pr-171","pr-172","pr-173","pr-175","pr-176","pr-177","pr-178","pr-179","pr-180","pr-181","pr-182","commits-2026-07-beta-launch-planning","pr-183","pr-184","pr-185"],
     "color": "#DC2626"
   }
 ]

@@ -895,6 +895,370 @@ const enrichments = {
     category: "backend",
     tags: ["test-fix", "open-handles", "ESM", "jest"],
     significance: "minor"
+  },
+  133: {
+    summary: "Frontend code hardening — CI gates, dead code removal, route-level code splitting, and mega-component decomposition across all 5 phases",
+    detail: "A sweeping frontend cleanup that removed ~2,400 lines of dead code and unused dependencies while adding CI gates to run lint and tests before every deploy. It introduced route-level code splitting via React.lazy for admin, contributor, and public pages, plus Vite manual chunks for vendor splitting. The centerpiece was decomposing the codebase's largest components: VideoBuilder shrank from 3,118 to 936 lines, CreateTimelineModal from 1,444 to ~300, and MusicTimelineModal from 1,301 to 624, with logic extracted into focused hooks like useTimelineDragDrop and useTimelineItemActions. Rounded out with onError handlers on all 17 mutation hooks and staleTime tuning across 14 query hooks — landing with 1,127 tests passing and zero lint errors.",
+    category: "frontend",
+    tags: ["code-splitting", "React.lazy", "component-decomposition", "CI-gates", "dead-code-removal", "react-query"],
+    significance: "major"
+  },
+  134: {
+    summary: "Python video-processing pipeline hardening — module split, error resilience, structured logging, and 92 pytest tests",
+    detail: "The counterpart hardening pass for the Python side of the video pipeline. It purged dead code (photo-restoration/, slides_legacy.py, legacy lambda_handler.py), patched a Pillow CVE, and fixed bare excepts and unused imports. Error handling was toughened with download validation, S3 retry-with-backoff, EC2 poison-pill protection, and phase-aware error messages surfaced in DynamoDB. The monolithic process_queue.py (1,514 lines) was split into four focused modules — orchestrator, db_client, and music_resolver — and 297 stray print() calls were replaced with structured logging. Capped off with 32 type-hinted public functions, a ruff linter config, 92 pytest tests across 5 files, and a CI pipeline gate.",
+    category: "processing",
+    tags: ["module-split", "pytest", "structured-logging", "ruff", "error-handling", "CI-gates"],
+    significance: "major"
+  },
+  135: {
+    summary: "Video clips — a full pipeline bringing Google Photos and device videos through Gemini clip analysis into rendered timelines",
+    detail: "A landmark feature expanding Kindred Reels beyond stills into video. Videos import from Google Photos into GCS with S3 thumbnails, and a new Cloud Run video-processor service runs FFmpeg plus Gemini analysis to identify clip candidates, with a separate clip-extractor service cutting the chosen segments. The Create Timeline flow was taught to work with mixed media: cached VI metadata means zero API calls during creation, the architect and curator receive clip candidates alongside photos with proportional per-section targeting, and the EC2 renderer downloads clips from GCS and re-encodes them with music ducking for clips carrying significant audio. Organization mode gained excluded-clip stub records (filterStatus 'rejected') so rejected footage remains visible in the lightbox with metadata.",
+    category: "processing",
+    tags: ["video-clips", "Cloud-Run", "clip-extraction", "Gemini", "FFmpeg", "mixed-media"],
+    significance: "major"
+  },
+  136: {
+    summary: "Resolve CI lint errors and add a required pre-push checklist to CLAUDE.md",
+    detail: "A small follow-up to the video clips work that unblocked CI. It added a `/* global AbortSignal */` directive for ESLint in clipExtractionService.js and replaced a ternary statement with an if/else in StandalonePhotoModal.tsx. It also codified a required pre-push checklist (lint + tests + build) into CLAUDE.md to prevent future CI breakage.",
+    category: "devops",
+    tags: ["lint-fix", "ESLint", "CI", "pre-push-checklist"],
+    significance: "minor"
+  },
+  137: {
+    summary: "Language audit for mixed-media, excluded-clip visibility fixes, and org-mode clip playback support",
+    detail: "With video now in the product, this PR reconciled the UI's vocabulary with reality — updating 38+ files to say \"Library\" instead of \"Photos\" and \"items\" instead of \"photos\" in mixed-media contexts, including the architect, curator, and quickCurator AI prompts. It fixed excluded clip stubs being invisible in org mode by removing the server-side filter and moving filtering client-side into PhotoLibraryTab. It also added a ClipPreviewPlayer component for clip playback in the org-mode lightbox, fixed video sizing overflow within the lightbox container, and extended OrganizationLightbox with a video_clip variant surfacing mood, duration, and audio for excluded clips.",
+    category: "frontend",
+    tags: ["language-audit", "mixed-media", "excluded-clips", "org-mode", "clip-player", "ai-prompts"],
+    significance: "moderate"
+  },
+  138: {
+    summary: "Device video upload, clip-extraction deferral to render time, draggable clip boundary editing, and a unified ClipPlayer",
+    detail: "This PR let users upload videos directly from their devices via GCS signed URLs and Cloud Run processing, enforcing 1GB / 2-minute limits. Architecturally, it deleted the standalone clip-extractor service entirely, deferring FFmpeg clip cutting to EC2 render time — echoing the same defer-until-generation cost pattern used elsewhere. It added clip boundary editing through a PATCH endpoint and merged ClipPreviewPlayer and ClipEditor into a single self-fetching ClipPlayer with draggable in/out handles. Along the way it fixed StandalonePhotoModal passing photo.id instead of sourceVideoId for playback and swept away completed spec docs (the deletion-heavy diff reflects ~8,600 lines of retired specs and dead services).",
+    category: "processing",
+    tags: ["device-upload", "clip-extraction", "deferred-processing", "clip-editing", "Cloud-Run", "GCS-signed-urls"],
+    significance: "major"
+  },
+  139: {
+    summary: "Post-credits sections with per-section music volume, per-clip music ducking, and assorted timeline/audio fixes",
+    detail: "This PR introduced post-credits sections — segments designated to play after the credits slide, each with its own music volume control — and a per-clip duck-music toggle that persists correctly across every view. It fixed the sign-off field silently failing to save in Settings, gave the music track library a two-tab layout with placed-track playback, and corrected several rendering issues: clip audio sync drift, outro fade timing, and draft clip IDs leaking into exclusion reason text. The bulk of the diff is retired spec documentation cleanup.",
+    category: "frontend",
+    tags: ["post-credits", "music-ducking", "audio-sync", "timeline", "music-library"],
+    significance: "moderate"
+  },
+  140: {
+    summary: "Fix Google Photos import counting bugs — duplicate items and progress exceeding 100%",
+    detail: "A targeted fix for import accounting. It added 'total' to the allowedFields in importJobs so the worker could write the true item count, deduplicated media items returned by the Picker API across overlapping pages, and capped the progress bar at 100%. Small but user-visible correctness fix for the import experience.",
+    category: "backend",
+    tags: ["google-photos", "import", "deduplication", "bugfix", "progress-bar"],
+    significance: "minor"
+  },
+  141: {
+    summary: "Fix AI-selected project cover photo never saving, plus video-aware thumbnail preferences and PATCH CORS",
+    detail: "This PR fixed a bug where the AI's chosen projectCoverPhotoId was extracted but never persisted during draft apply. It hardened cover selection to validate the pick is an actual photo rather than a video or video_clip (with fallback), updated AI prompts to specify photo IDs over clip IDs, and made getPhotoCountAndFirst() prefer real photos over video records for card thumbnails — now using full-res storagePath for sharper cards. It also added PATCH to the API Gateway CORS allowedMethods, unblocking clip-boundary saves in dev.",
+    category: "backend",
+    tags: ["cover-photo", "ai-selection", "thumbnails", "CORS", "bugfix"],
+    significance: "minor"
+  },
+  142: {
+    summary: "Video duration validation, streaming GCS imports, centralized API_BASE_URL config, and Gemini JSON-repair fallback",
+    detail: "A grab-bag of resilience improvements for the video pipeline. Videos shorter than 1s or longer than 2min are now rejected before processing, and video imports stream directly to GCS rather than buffering in memory. The API base URL was centralized behind an environment variable, replacing scattered stage conditionals, and a jsonrepair fallback now salvages malformed Gemini JSON responses. It also had the EC2 video processor load its .env via a systemd EnvironmentFile and split the import progress UI into separate photo and video counters with deterministic (non-retryable) error display.",
+    category: "backend",
+    tags: ["video-validation", "streaming-upload", "GCS", "json-repair", "Gemini", "config"],
+    significance: "moderate"
+  },
+  143: {
+    summary: "GCP environment isolation — stage-specific Cloud Run services, Cloud Tasks queues, and CDN buckets",
+    detail: "This PR removed hardcoded GCP values so dev and prod no longer share infrastructure. The video processor now reads GCS_CDN_BUCKET, GCS_VIDEOS_BUCKET, and CDN_BASE_URL from environment variables, and the backend resolves stage-specific Cloud Run URLs, Cloud Tasks queue paths, and GCS CDN bucket names. It also swept out the last lingering clip-extractor reference, completing that service's retirement.",
+    category: "infrastructure",
+    tags: ["gcp", "env-isolation", "Cloud-Run", "Cloud-Tasks", "CDN", "stage-config"],
+    significance: "moderate"
+  },
+  144: {
+    summary: "Fix deploy-prod.yml Cloud Run job using stale service name and env vars",
+    detail: "A one-file deploy-workflow fix ensuring production deploys target video-processor-prod with the correct stage-specific GCS_CDN_BUCKET, CDN_BASE_URL, and 8Gi memory — bringing deploy-prod.yml into alignment with deploy-cloud-run.yml.",
+    category: "devops",
+    tags: ["deploy-workflow", "Cloud-Run", "prod", "config-fix"],
+    significance: "minor"
+  },
+  145: {
+    summary: "Per-project cost tracking across all AI/compute services, cancellable Google Photos imports, and bug fixes",
+    detail: "This PR instrumented every Gemini, Rekognition, Whisper, Cloud Run, and EC2 call with fire-and-forget cost events written to a dedicated DynamoDB table, then surfaced per-project cost breakdowns in the admin UI with a sortable column and detail modal — giving the first real visibility into what each project actually costs to produce. It added cooperative cancellation for Google Photos imports, where the worker checks job status between batches and a cancel endpoint triggers background cleanup of already-imported photos. It also fixed a video-processor callback 404 (a /dev suffix incompatible with HTTP API v2), broken timeline clip thumbnails (hardcoded cdn.kindredreels.com replaced with the stage-aware bucket), and bumped Cloud Run max-instances from 5 to 100.",
+    category: "backend",
+    tags: ["cost-tracking", "DynamoDB", "import-cancellation", "admin-ui", "observability", "Cloud-Run-scaling"],
+    significance: "major"
+  },
+  146: {
+    summary: "Admin dashboard performance — shared server-side caches, batch cost endpoint, and React Query on the frontend",
+    detail: "This PR eliminated redundant DynamoDB scans and Cognito API calls that made the admin dashboard slow. Previously each admin tab independently triggered a full table scan and Cognito pagination; now a shared adminDataLoader and cognitoCache serve a single cached scan and Cognito listing across all admin handlers (30s/60s TTL). The frontend adopted React Query hooks with 60s staleTime so tab switches became instant, and the change also folded in a batch cost endpoint and a video re-analyze button. The deletion-heavy diff reflects handlers shedding their duplicated scan logic.",
+    category: "backend",
+    tags: ["admin-dashboard", "caching", "DynamoDB", "Cognito", "react-query", "performance"],
+    significance: "moderate"
+  },
+  147: {
+    summary: "Deterministic project classification and composable architect prompts for the video organization pipeline",
+    detail: "Added a classification step that categorizes every project (single_event, multi_day_trip, multi_year_montage, highlights_reel, tribute, miscellaneous) purely from date distribution and title keywords — no Gemini call required, saving latency and cost. Architect prompts were decomposed into composable blocks with per-category addendums and section objectives that flow downstream to the curator, and chronology handling was expanded to all project types with EXIF sanity checks and a visual era estimation fallback. Bundled fixes cleaned up AddPhotosModal stale state on reopen, video clip thumbnail fallbacks, cover-photo defaulting to video records, and a float-to-Decimal conversion bug in EC2 cost tracking.",
+    category: "ai",
+    tags: ["project-classification", "prompt-engineering", "event-organizer", "chronology", "cost-optimization"],
+    significance: "major"
+  },
+  148: {
+    summary: "Three-layer fix eliminating clip audio sync drift by keeping audio in segments and rebuilding the timeline from probed durations",
+    detail: "Attacked a bug where clip audio drifted 2-4 seconds out of sync by the end of an 8-minute video. Clip audio is now embedded directly in segments at the correct sample rate (aresample=44100) so it syncs by construction, silent audio is remuxed onto slideshow segments for stream consistency, and the timeline is rebuilt from actual ffprobe'd segment durations rather than model predictions — eliminating cumulative rounding errors in music ducking positions. The final layer always mixes video audio with ducked music, removing a conditional that could silently drop all clip audio. Also introduced a new speech_detection service, three-level ducking, and a Claude Code pre-push hook that runs lint, tests, and build before every push.",
+    category: "processing",
+    tags: ["audio-sync", "ffmpeg", "audio-ducking", "speech-detection", "timeline", "pre-push-hook"],
+    significance: "major"
+  },
+  149: {
+    summary: "Landing page refresh with rewritten copy, micro-animated How It Works cards, and removal of the Technology page",
+    detail: "Rewrote the landing page around broader product positioning (no longer tribute-only), stripping every user-facing 'AI' reference and adding fresh Hero, How It Works, Features, Voice Memories, FAQ, Pricing, and Final CTA sections. The How It Works cards gained CSS micro-animations — drifting photos, a curation filter, equalizer bars, and a film frame with a play pulse — plus framer-motion whileInView entrance animations. The Technology page, its architecture diagram, route, nav/footer links, and now-unused screenshot PNGs were removed, and a useIsDesktop hook was added.",
+    category: "design",
+    tags: ["landing-page", "framer-motion", "micro-animations", "copywriting", "positioning"],
+    significance: "moderate"
+  },
+  150: {
+    summary: "Fix for broken production email/password signup caused by stage-unaware Cognito triggers",
+    detail: "Production signups were silently failing because the Cognito PreSignUp and PostConfirmation Lambda triggers were hardcoded to the dev user pool, creating unconfirmed users that never auto-logged in. Made the pool references stage-aware, added a confirmation-code fallback flow for when auto-confirm isn't available, and switched signup validation to inline field errors (red border plus text below the field) rather than a top-level banner that was invisible on mobile.",
+    category: "backend",
+    tags: ["cognito", "signup", "auth", "stage-config", "form-validation"],
+    significance: "moderate"
+  },
+  151: {
+    summary: "Admin permanent user deletion with cascading cleanup across every storage system",
+    detail: "Added a delete button to the admin users page that permanently removes a user and all associated data — projects, photos, videos, recordings, music, Rekognition collections, S3/GCS files, DynamoDB records, and the Cognito account — guarded by a double-confirmation dialog for users with projects. A follow-up fix caught a missing barrel export in admin/index.js that crashed server startup, prompting the addition of `node --check src/server.js` to the pre-push hook and CLAUDE.md checklist to guard against a class of bug that ESLint and Jest miss.",
+    category: "backend",
+    tags: ["admin", "user-deletion", "cascading-cleanup", "data-cleanup", "pre-push-hook"],
+    significance: "moderate"
+  },
+  152: {
+    summary: "Tier 1 friends-and-family feedback fixes spanning landing, upload flow, and video sharing",
+    detail: "Shipped three phases of polish from early user feedback. Landing and About copy dropped jargon like 'Ken Burns' and vague 'Unlimited' pricing in favor of concrete benefit-oriented messaging. The upload flow gained a disabled Done button during active uploads, cancel confirmations, and desktop/mobile guidance callouts. Timeline and sharing improvements auto-play the video on mount, toast after drag-reorder saves, stop the public video view from leaking the project's story field, and give videos real cover-photo thumbnails and friendly names ('Video 1/2/3' instead of hex IDs) with corrected recording counts.",
+    category: "frontend",
+    tags: ["user-feedback", "upload-flow", "copywriting", "video-sharing", "ux-polish"],
+    significance: "moderate"
+  },
+  153: {
+    summary: "Smart audio ducking driven by a new Gemini audioSignificance rating combined with Whisper classification",
+    detail: "Introduced a three-tier music ducking model that fuses Whisper's audio classification with a new Gemini visual audioSignificance field (high/medium/low). Concerts and performances now get near-silent background music even when no speech is detected, while wind noise and traffic let the music stay prominent. The change also threaded actionCenterY through the render pipeline to enable smart cropping for vertical video.",
+    category: "ai",
+    tags: ["audio-ducking", "gemini", "whisper", "audio-significance", "vertical-video"],
+    significance: "moderate"
+  },
+  154: {
+    summary: "Unified lightbox merging Timeline detail and Organization mode viewers into one metadata-rich component",
+    detail: "Consolidated the separate Timeline detail view and Organization mode lightbox into a single UnifiedLightbox with filmstrip navigation, keyboard arrows, and a full metadata side panel — extracted into LightboxMetadataPanel and LightboxActions and wired through TimelineTab, MobileTimelineView, and OrganizationModeView. Org-mode section items gained the same rich metadata alongside Remove/Move actions, and clip info was split into distinct Audio Analysis and Clip Details sections. The PR also deleted nine spec documents for fully-implemented features, netting a large deletion count (~3,900 lines removed).",
+    category: "frontend",
+    tags: ["lightbox", "component-consolidation", "metadata-panel", "timeline", "refactor"],
+    significance: "major"
+  },
+  155: {
+    summary: "Unified cover-photo handling with a picker in the generate modal and a sweep of emoji-to-SVG icon cleanup",
+    detail: "Established a single source of truth for cover photos across all views via shared fallback utilities (last photo in the last section, never the first) and added a cover-photo picker to GenerateVideoModal. Video clips became eligible as cover photos through FFmpeg frame extraction at render time, and the Gemini architect prompt was tuned to prefer group photos from later sections. Smart re-create behavior preserves an existing cover when it survives into the new timeline and picks fresh when excluded, and the projects list now pulls thumbnails via titleCoverPhotoId through React Query. All 19 emoji icons were replaced with flat single-color lucide-react SVGs for visual consistency.",
+    category: "frontend",
+    tags: ["cover-photo", "generate-modal", "lucide-icons", "react-query", "ffmpeg"],
+    significance: "moderate"
+  },
+  156: {
+    summary: "YouTube API compliance fixes adding policy disclosures and the official two-tone icon",
+    detail: "Brought the app into YouTube API Services compliance by adding a YouTube ToS reference to the Terms of Service and a dedicated YouTube API Services section to the Privacy Policy covering data storage, access revocation instructions, and a Google Privacy Policy link. Also swapped the monochrome YouTube SVGs for the official two-tone icon (red #FF0000 with a white play triangle) across the Share modal, upload panel, and video card badge.",
+    category: "frontend",
+    tags: ["youtube-api", "compliance", "privacy-policy", "terms-of-service", "branding"],
+    significance: "minor"
+  },
+  157: {
+    summary: "Graceful handling of revoked Google Photos tokens instead of a 500 error",
+    detail: "When a user revoked Google Photos access from Google's side, API calls failed with a 500 because the service layer never inspected 401/403 responses. The fix detects revoked tokens, clears the stored credentials, and returns a 401 so the frontend can surface the reconnect prompt rather than an opaque server error.",
+    category: "backend",
+    tags: ["google-photos", "oauth", "token-revocation", "error-handling"],
+    significance: "minor"
+  },
+  158: {
+    summary: "Comprehensive branded email system with seven email types plus a full login page rewrite",
+    detail: "Built a shared dark-theme branded email template and seven email types — welcome, verification, password reset, invitation, reminder, video ready, and contributor recorded — with Cognito wired to send through SES (noreply@kindredreels.com) via a CustomMessage Lambda trigger. Email verification is now required for native signups (auto-confirm removed), with welcome emails sent post-verification for native users and immediately for Google OAuth, while video-ready notifications fire from an EC2 orchestrator callback to a new internal endpoint. The login page was rewritten with Sign In / Create Account tabs and forgot-password now detects Google-only accounts, and the deploy pipeline auto-restores the Cognito SES config after each serverless deploy.",
+    category: "backend",
+    tags: ["email", "ses", "cognito", "notifications", "login", "transactional-email"],
+    significance: "major"
+  },
+  159: {
+    summary: "Sweeping semantic token refactor plus a full light mode for the frontend",
+    detail: "A three-phase theming overhaul that migrated ~2,500 raw Tailwind gray-scale classes into 27 semantic CSS variable tokens defined via @theme in index.css, covering surfaces, borders, text hierarchy, and component tokens. A .light class override with inverted token values means every component themes automatically through the CSS cascade thanks to Tailwind v4's runtime var(--color-*) utilities. The PR added a ThemeContext/ThemeProvider, a Sun/Moon ThemeToggle, FOUC-prevention inline script, and localStorage persistence — touching 167 files and fixing latent bugs like bg-gray-750 hover breakage, ~120 text-white-on-light instances, and a pre-existing bg-primary-600 bug on the Google Photos button.",
+    category: "design",
+    tags: ["semantic-tokens", "light-mode", "tailwind-v4", "theming", "design-tokens", "refactor"],
+    significance: "major"
+  },
+  160: {
+    summary: "Fix to surface the theme toggle on mobile headers",
+    detail: "The ThemeToggle had been living only inside hidden md:flex desktop nav containers, leaving mobile users with no way to switch themes. This added it next to the hamburger/menu button on both the app header and the landing page navbar.",
+    category: "design",
+    tags: ["light-mode", "theme-toggle", "mobile", "responsive"],
+    significance: "minor"
+  },
+  161: {
+    summary: "GCP cost exploration correcting Vertex pricing rates and disabling idle-CPU billing",
+    detail: "Corrected costTracker.js Gemini Flash rates to actual Vertex AI pricing ($0.30 in / $2.50 out per 1M tokens, previously using Developer API rates) and removed --no-cpu-throttling from the video-processor deploy configs across CLAUDE.md and both GitHub Actions workflows to stop idle-CPU billing between requests. A new docs/gcp-cost-exploration-2026-04.md captured the full investigation — billing snapshot, where Gemini is called from, Vertex pricing, tracker-vs-bill reconciliation, and notes toward an open-weights/self-hosting decision — and orphaned Cloud Run services were cleaned up via gcloud.",
+    category: "infrastructure",
+    tags: ["gcp", "cost-tracking", "vertex-ai", "cloud-run", "cpu-throttling"],
+    significance: "minor"
+  },
+  162: {
+    summary: "GCS bucket names moved onto stage-aware env vars, plus a silent prod callback URL bug fixed",
+    detail: "Phase 1 of the GCS region consolidation: GCS_PHOTOS_BUCKET, GCS_VIDEOS_BUCKET, and VIDEO_PROCESSOR_CALLBACK_URL were lifted out of hardcoded STAGE construction and into stage-aware custom: mappings in serverless.yml, so Phase 2 could move buckets to us-east4 as a pure data move with zero code changes. Both gcsService.js and imageProcessor.py now read bucket names from env with cold-start assertions. The branch also caught a latent bug where prod inherited the dev VIDEO_PROCESSOR_CALLBACK_URL from .env because .env.prod never overrode it — silently stranding every prod device-video upload at videoProcessingStatus=pending. The unused gcsBucket field write was also cleaned out of five files.",
+    category: "infrastructure",
+    tags: ["GCS", "env-vars", "serverless", "callback-url", "prod-fix"],
+    significance: "moderate"
+  },
+  163: {
+    summary: "GCS bucket region migration to us-east4 (Phase 2)",
+    detail: "The three remaining us-east1 buckets (kindred-reels-photos-dev, kindred-reels-videos-dev, kindred-reels-videos-prod) were migrated to us-east4, co-locating all six kindred-reels-* buckets with Cloud Run, Vertex AI, Cloud Tasks, and the CDN buckets. Because Phase 1 had already moved bucket names onto env vars, the move required no code or config changes — just a GCP-side data move with roughly 2-3 minutes of downtime per bucket. New buckets were recreated with original UBLA, storage class, soft-delete, CORS, and the critical IAM bindings (including compute SA:objectUser on the videos buckets to prevent Cloud Run 403s), verified against byte and object counts before the source buckets were hard-deleted.",
+    category: "infrastructure",
+    tags: ["GCS", "region-migration", "us-east4", "cloud-run"],
+    significance: "minor"
+  },
+  164: {
+    summary: "Timeline-v2 drag-and-drop redesign — a full merged-timeline editing surface with multi-select and multi-drag",
+    detail: "The largest PR in the project at +23,966/-7,697 across 157 files, wrapping a long-running multi-feature branch. The centerpiece is the Timeline-v2 DnD redesign at /timeline-v2: a merged-timeline view with live-rearrange within-section reorder, cursor-positional drops via a phantom system, cross-section drag with 700ms collapsed-section auto-expand and auto-scroll, left-to-right drag-to-remove, multi-select (cmd/shift-click, Escape to clear), and multi-drag with a stacked overlay, count badge, 40% source-dim, and drops across all four surfaces — plus a floating action bar. Riding alongside: a cost-tracking gap fix that finally instruments per-photo upload Gemini analysis (revealed to be 29% of a project's cost) and multimodal embedding end-to-end, validated at $0.667 fully-loaded for an 88-photo/27-video project; and a thematic-stage model revert from gemini-3-flash-preview back to gemini-2.5-flash after the preview model's drifting safety calibration began randomly tripping PROHIBITED_CONTENT on photos already cleared upstream.",
+    category: "frontend",
+    tags: ["timeline-v2", "drag-and-drop", "multi-select", "cost-tracking", "curation", "gemini"],
+    significance: "major"
+  },
+  165: {
+    summary: "Secrets hardening to AWS Secrets Manager, plus timeline onboarding, section music, and manual photo rotate",
+    detail: "A broad batch on the misc-fixes branch anchored by secrets hardening: VIDEO_PROCESSOR_CALLBACK_SECRET moved into AWS Secrets Manager with distinct rotated per-stage values via a new shared loader backend/src/shared/secrets.js, with plaintext scrubbed from serverless.yml, GitHub workflows, the deploy script, and dotenv injection; validators, senders, and the EC2 renderer all read from it. OPENAI_API_KEY was descoped and revoked (transcription parked). The branch also delivered curation-quality fixes, timeline onboarding and section-music modals, a manual photo-rotate control, and storage-migration and cloud-inventory recon docs, landing green at 1054 backend and 1149 frontend tests.",
+    category: "backend",
+    tags: ["secrets-manager", "security-hardening", "section-music", "photo-rotate", "curation"],
+    significance: "moderate"
+  },
+  166: {
+    summary: "Deterministic temporal segmentation replaces the AI architect for chronological projects, with a balanced DP partitioner",
+    detail: "A pivotal shift in how timelines get their structure: deterministic temporal segmentation now handles chronological projects, demoting the Gemini architect to fallback-only, with global section naming drawn from curator summary fragments. A new balanced DP partitioner — event atoms fed through a linear-partition dynamic program — fixes pathological section splits like the 348/70/70/36 imbalance on Outer Banks 2012. Thematic hardening raised maxOutputTokens to 65536 and capped sequential chunked calls at 100 reps to stay out of the PROHIBITED_CONTENT zone. The batch also added orientation auto-detect via head-direction observable on gemini-3.5-flash (94% validated), a pipeline swap to gemini-3.1-flash-lite, and Security batch 1: share-code validation on the public recordings endpoint, API Gateway throttling, HTML-escaped branded emails, and Jinja2 autoescape in the slide renderer.",
+    category: "ai",
+    tags: ["segmentation", "dp-partitioner", "curator", "thematic-stage", "security", "gemini"],
+    significance: "major"
+  },
+  167: {
+    summary: "Documentation overhaul: ground-truth verification, distillation ledgers, and rewritten reference docs",
+    detail: "A seven-phase documentation rebuild grounded in live AWS/GCP inspection and code-surface maps. Phase C distilled 277 entries mined from progress logs, recons, and old reference docs; Phase D rewrote the full reference set — ARCHITECTURE, DATA_MODEL, API, INFRASTRUCTURE, PIPELINES, VIDEO_RENDERING, DEPLOYMENT, OPERATIONS, LOCAL_SETUP, FRONTEND — behind a new authoritative docs/INDEX.md. Phase E ran 11 adversarial checkers against 600 claims and applied 79 fixes, catching drift like EC2 SSH open to 0.0.0.0/0 and inbound mail actually served by Google Workspace rather than SES. Phase F archived ~35 historical docs with dated banners, trimmed progress.md to a rolling two-month window, and shrank the root README from ~904 to ~80 lines — dropping CLAUDE.md's always-loaded doc context from ~1970 to 46 lines.",
+    category: "docs",
+    tags: ["docs-overhaul", "adversarial-verification", "INDEX", "archive", "ground-truth"],
+    significance: "moderate"
+  },
+  168: {
+    summary: "Curation overhaul: image-aware cover selection, a content-value gate, merit scoring, and the clip pipeline",
+    detail: "A deep quality pass on Create Timeline curation. Clip analysis in the Cloud Run video-processor flipped to gemini-3.1-flash-lite with safety-off and a full-video Whisper transcript feeding a rewritten clip-selection prompt. A content-value gate at upload analysis assigns each photo a contentRole (people/place/detail/functional) that hard-excludes functional captures before curation, plus a four-dimension highlightMerit surfaced to the curator for ranking. The curator moved to an index-based response contract (item numbers, not hex) with a target-sliced fallback, and adopted a merit floor where per-call targets are an aim rather than a quota — any theme may keep nothing if all items are weak. Cover-photo selection became curator-nominated, image-aware, and last-section-biased with five-dimension scoring, fixing a bug where projectCoverPhotoId was silently dropped across draft write, allowlist, and read-transform. A screen-time-driven photo/clip split with a balance slider rounds it out.",
+    category: "ai",
+    tags: ["curation", "content-role", "merit-scoring", "cover-photo", "clip-pipeline", "whisper"],
+    significance: "major"
+  },
+  169: {
+    summary: "Photo library flattened to individual tiles, warm-voice copy pass, cluster dedup, and an org-mode toggle",
+    detail: "The photo library was flattened to individual item tiles with video clips folded into their source video, every tile opening the UnifiedLightbox in timeline mode; deleting an in-timeline item now cascades memory cleanup so no dangling memory is left behind. A user-facing copy pass vendored the avoid-ai-writing skill into the project and wired it into the CLAUDE.md checklist, then stripped literal \"AI\"/model names and em dashes from live copy with a warm-voice rewrite of the landing and about pages. Curation now keeps exactly one photo per embedding cluster (enforced in both prompt and validateClusterResult), and a new organization-mode toggle defaults to chronological — running the architect only for tributes, explicit theme mode, or user-supplied section descriptions.",
+    category: "frontend",
+    tags: ["photo-library", "unified-lightbox", "copy-pass", "cluster-dedup", "org-mode"],
+    significance: "moderate"
+  },
+  170: {
+    summary: "Music section-timing fixes plus a video-pending resilience fix with a scheduled stuck-video sweep",
+    detail: "Two related repairs. First, single-section highlights videos were rendering with no background music because the renderer derived sections from section-title card items — which highlights lack — so both timeline builders now derive section boundaries from each item's section_id via shared, card-independent helpers; music-chain duration estimates also switched from a flat 4s-per-photo guess to summing real item durations so clip-heavy sections stop under-chaining. Second, a race where both video-confirm handlers sent the HTTP response before awaiting callVideoProcessor — unreliable under serverless-http, which ends the Lambda when the response flushes — could strand contributor videos at pending forever, blocking Create Timeline. The fix enqueues before responding, backed by a scheduled sweepStuckVideos Lambda (every 10 minutes) that finds stale pendings via a new sparse VideoPendingIndex GSI, re-dispatches up to three times, then marks them failed to unblock the user.",
+    category: "backend",
+    tags: ["music-timing", "video-pending", "stuck-video-sweep", "dynamodb-gsi", "serverless"],
+    significance: "moderate"
+  },
+  171: {
+    summary: "Timezone-aware timestamps: honest EXIF-offset ingest plus naive-clock interpretation to stop phantom section splits",
+    detail: "Cross-source clock skew had been splitting single events into phantom sections — the Outer Banks wild-horse case saw Lumix stills store local wall-clock as if UTC, landing 4 hours off Google Photos items of the same moment. imageProcessor.py now reads OffsetTimeOriginal for true UTC (tagged exif-offset), marks naive times none, and extracts camera make/model, while Google imports are tagged import and device videos container-utc. A new organize-time naiveClockInterpretation.js derives the project's local offset from trusted items and shifts naive-domain effectiveDates by one constant per-device offset, no-opping without evidence. New photo fields (tz_evidence, exif_tz_offset, camera_make, camera_model) were wired through. The branch also bumped google-auth-library v9 to v10 and fixed the YouTube share panel's unreachable Connect button.",
+    category: "backend",
+    tags: ["timezone", "exif-offset", "naive-clock", "segmentation", "photo-metadata"],
+    significance: "moderate"
+  },
+  172: {
+    summary: "Zero-warning lint enforcement: 1728 warnings cleaned and max-warnings 0 enforced before push",
+    detail: "CI had been annotating PRs with eslint warnings that local checks never surfaced, because pre-push ran --quiet while CI ran the warning-inclusive lint — this closed that gap. On the backend, no-console was turned off (console logging is the house style, and the rule alone produced 1612 useless warnings), with 51 unused-var fixes across 34 files and three dead legacy functions deleted. On the frontend, all 35 react-hooks/exhaustive-deps warnings were resolved case by case, uncovering a real bug where PhotoUpload's callback omitted shareCode/contributorName deps and could route contributor uploads through the wrong endpoint with stale attribution. Both sides now run --max-warnings 0, and all five GitHub Actions workflows were bumped to current majors to clear Node 20 deprecation annotations.",
+    category: "devops",
+    tags: ["eslint", "max-warnings", "react-hooks", "ci", "github-actions"],
+    significance: "moderate"
+  },
+  173: {
+    summary: "Contributor chips in the library grid, a unified tile-badge system, and file-mtime timezone evidence",
+    detail: "Contributed items now surface their provenance: the photos API returns contributorName/uploadedViaShareCode (the handler had been dropping them), a contributor chip renders first name at larger sizes and initials at small with the full name in tooltip, and the filter dropdown gains per-contributor options with counts. The tile-badge system was reworked into a single TileBadge component with documented corner semantics — top-left controls, top-right warnings, and a single bottom bar splitting provenance/membership from media facts — with clip count merged into one neutral \"1 clip · 0:13\" chip and a density policy that strips facts and names on 20px thumbnails. A timezone follow-up tags direct-upload videos file-mtime from their lastModified epoch (true UTC by construction), since iOS browser uploads often strip container creation_time; the naive-clock interpreter trusts and never shifts these.",
+    category: "frontend",
+    tags: ["contributor-chips", "tile-badge", "photo-library", "timezone", "file-mtime"],
+    significance: "minor"
+  },
+  175: {
+    summary: "Three-step project stepper, library cleanup, button standardization, and section music picker fixes",
+    detail: "Added a state-aware desktop stepper (Add Photos & Videos, Create Timeline, Create Video) with mobile step checkmarks in the bottom nav, extracting the triplicated 10-item threshold into utils/timelineGate.ts. Standardized to one solid-blue primary per header cluster, retiring the gradient/sparkle treatment app-wide and renaming Generate to Create Timeline. Fixed the section music picker Save (the PATCH was missing its JSON content-type; authenticatedFetch now defaults it for string bodies), made selected tracks reorderable via dnd-kit, and moved the projectUserPrefs setter from a full put to an update expression so sibling flags can't clobber each other.",
+    category: "frontend",
+    tags: ["project-stepper", "library", "button-standardization", "music-picker", "dnd-kit"],
+    significance: "moderate"
+  },
+  176: {
+    summary: "Photo rotation everywhere, group-first lightbox redesign, and video clips inside memories",
+    detail: "A sweeping UX and rendering pass: restored left/right photo rotation across all detail views via a shared RotateControls, deleting the dead 1,335-line StandalonePhotoModal. The lightbox side panel was rebuilt group-first at 480px wide, leading with a MEMORY block (recorded-by row, inline name edit, items grid, transcript) above the individual item's fields, with a frameReady-gated ClipPlayer that shows spinner-on-black until the clip's true start frame is displayable. On the pipeline side, render_memory_segment gained muted, letterboxed, freeze-at-end clip slides with orchestrator wiring, and memoryHandler's four hydration spots were fixed to use the clip-safe cdn_thumbnail_url chain (clips are virtual and have no storage_path).",
+    category: "frontend",
+    tags: ["lightbox", "photo-rotation", "video-clips", "memories", "clip-player"],
+    significance: "major"
+  },
+  177: {
+    summary: "Removed the voice-memories question from Create Timeline in favor of user-created multi-photo memories",
+    detail: "The Create Timeline modal's voice-memories question only served to let Gemini pre-group 2-5 related photos into multi-photo memories with suggested prompts, and the groupings weren't good enough to keep. The modal now asks only the tribute question and always sends includeVoiceMemories: false; the backend grouping plumbing is kept but dormant, and voice recording on memories is unaffected, leaving multi-photo memories entirely user-created.",
+    category: "ai",
+    tags: ["curation", "gemini", "voice-memories", "create-timeline", "grouping"],
+    significance: "minor"
+  },
+  178: {
+    summary: "Retired admin-dashboard and music-library full-table scans behind a shared sparse AdminIndex GSI",
+    detail: "Replaced the scan({})-backed admin dashboard and music library with a shared sparse GSI (AdminIndex) keyed by a type discriminator: createProject writes adminPk='PROJECT' and createMusic writes adminPk='MUSIC'. The adminDataLoader now queries the index with per-project SK-scoped COUNT and video queries (never reading the EMBEDDING# range), and getAllMusic queries plus batchGets, retiring four MUSIC scans that also sat on video generation, auto-music, and the background-music picker. Shipped with an addAdminIndex.js migration (create + backfill, stage-safe with typed confirmation) and a serverless.yml grant scoping the api Lambda role to the index ARN; dev backfilled 46 projects and 54 music records.",
+    category: "backend",
+    tags: ["dynamodb", "gsi", "performance", "full-table-scan", "migration"],
+    significance: "major"
+  },
+  179: {
+    summary: "Signature animated hero on the landing page that demonstrates the whole curation-to-video story",
+    detail: "Replaced the abstract How It Works cards with HeroTransformation: contributor chips (You / Mom / Uncle Dave) pile in 14 real photos, a whimsical logo-faced curation machine swallows them, spits out duplicates and blurry rejects while floating date chips, then emits the 10 keepers into a film strip behind a faithful Timeless-theme title slide, ending on a pulsing play button. Built as a 969-line component driven by a typed choreography manifest, with geometry computed from measured band size in two orientations (horizontal on desktop, vertical gravity layout under 768px), a prefers-reduced-motion static composition, and 12 Unsplash-sourced WebP assets totaling 276KB. How It Works moved to a new public /how-it-works page.",
+    category: "design",
+    tags: ["landing-page", "hero-animation", "choreography", "responsive", "reduced-motion"],
+    significance: "major"
+  },
+  180: {
+    summary: "Repositioned the transformation-band captions and rebalanced mobile spacing",
+    detail: "A polish pass on the new hero animation: phase captions moved to the top of the panel on both layouts, with a fixed two-line height on mobile so longer captions never bounce the band below them, and the replay button relocated to the panel's top-right. Mobile vertical spacing was rebalanced so the machine chute sits right at the player's top edge, reclaiming space for more air above the chips and between the chips and the tray.",
+    category: "design",
+    tags: ["landing-page", "hero-animation", "mobile-layout", "polish", "captions"],
+    significance: "minor"
+  },
+  181: {
+    summary: "End-to-end feedback capture: a global header button, an admin triage loop, and proactive failure prompts",
+    detail: "Built a full feedback loop from a new FEEDBACK entity that writes adminPk='FEEDBACK' as a third discriminator into the existing AdminIndex, exposed via POST /api/feedback and GET/PUT /api/admin/feedback, with an SES notification to feedback@kindredreels.com awaited in try/catch so an unawaited promise can't silently drop. The frontend added a zustand useFeedbackStore and a single FeedbackDialog that captures rich context at the trigger — route, user, version, viewport, plus a project bundle of media makeup, memories, music, theme, and render status — surfaced through an auth-gated header button and a newest-first /admin/feedback triage page. Part 2 wired proactive prompts that reuse the same opener: render-fail-while-watching auto-opens the dialog, already-failed videos get a Report this chip, and upload failures get a Report pill.",
+    category: "frontend",
+    tags: ["feedback-capture", "triage", "zustand", "admin", "instrumentation"],
+    significance: "major"
+  },
+  182: {
+    summary: "Beta instrumentation suite: media attribution, share-view counters, failure alerts, and a conversion funnel",
+    detail: "A five-phase instrumentation push toward beta. Phase 1 stamped uploader/contributor attribution on every media path (uploaderId on authenticated uploads and Google imports, client-generated contributorId + shareCode on share paths, clip inheritance from source video) plus is_tribute and timeline_first_applied_at at draft apply. Phase 2 added an atomic fire-and-forget view counter on VIDEO_SHARE# records from the public watch page; Phase 3 sent founder failure emails on import/clip/render failures and swept silent render hangs via a RENDER#PENDING partition. Phase 4 introduced a daily funnelSnapshot Lambda writing immutable FUNNEL_SNAPSHOT# records with stage counts split by strangers/tribute/multi-contributor/voice (with a stranger-exclusion list of the 16 pre-beta prod accounts), and Phase 5 shipped the /admin/funnel page. Verification also uncovered fixes: the tribute chronology was ported to chunked fail-open Gemini calls after a single PROHIBITED_CONTENT response was killing whole tribute runs.",
+    category: "backend",
+    tags: ["instrumentation", "conversion-funnel", "attribution", "failure-alerts", "gemini-fail-open"],
+    significance: "major"
+  },
+  183: {
+    summary: "Watch-page conversion loop with make-your-own CTAs, Netflix-style credits mode, link previews, and signup attribution",
+    detail: "The public watch page became a conversion surface: distinct ?ref=watch-* CTAs across an end-of-video overlay, a below-player block, the header, and the footer, plus a Netflix-style credits mode that shrinks the video to a corner tile two seconds in (timing driven by a new creditsDuration in the public payload) while a CTA card fills the space. A new watchPreview Lambda serves /watch/* HTML with each reel's real title and thumbnail in OG/Twitter tags so crawlers that never run JS get proper unfurls — exposed as ANY /watch/{shareCode} rather than a Function URL (blocked account-wide) and fronted by a CloudFront origin group with S3 failover. Signup ref attribution captures ?ref= into sessionStorage, survives the OAuth round trip, and reports once via POST /api/users/signup-source (first ref wins, accounts under 7 days), feeding signups-by-ref into the funnel.",
+    category: "frontend",
+    tags: ["conversion-funnel", "watch-page", "link-previews", "cloudfront", "signup-attribution"],
+    significance: "major"
+  },
+  184: {
+    summary: "Funnel v2 with a people-based user funnel and Tailwind bar visualizations on /admin/funnel",
+    detail: "Made the admin funnel two-part by adding computeUserFunnel() to the snapshot Lambda — a people-based funnel (signed up, created a project, generated a video, shared a video) computed over the AdminIndex USER partition with zero new queries by grouping the existing per-project fan-out rows, carrying {overall, strangers} per stage. The frontend gained a chart-library-free FunnelBars component rendering Tailwind horizontal bars with share-of-first-stage percentages and green/red trend deltas versus the previous snapshot, plus an Overall/Strangers toggle driving both funnels. Share-of-first was chosen deliberately: because timeline_first_applied_at only exists on projects touched since Jul 13, stage-to-stage ratios produced a 360% artifact. Shipped with the first-ever funnelSnapshot test suite (6 cases including a payload regression lock).",
+    category: "frontend",
+    tags: ["conversion-funnel", "admin", "data-visualization", "analytics", "tailwind"],
+    significance: "moderate"
+  },
+  185: {
+    summary: "Warm \"photo album\" retheme and a full landing overhaul spanning 153 files",
+    detail: "An eight-phase retheme that replaced the app's look with a warm photo-album palette: self-hosted Karla/Lora/Caveat fonts, warm dark and light token sets with light as the new default, mood/role/tint tokens, animation glows via color-mix on --color-primary, a force-dark overlay for always-dark surfaces, and a full palette-literal sweep to classified exceptions. A shared BrandMark component rolled the new Solid Weave logo everywhere with an adaptive favicon, per-theme theme-color meta, and an /og-image.png that finally closed the broken social-preview bug. The landing page was overhauled with a serif headline, a polaroid-cluster hero promoting HeroTransformation to centerpiece, a SampleVideosSection, and an inline-playing vacation sample that grows into the persistent brown panel with native controls; a standing copy rule (input = clips, output = video/reel) threaded clip visibility through the manifest, headline, and meta descriptions.",
+    category: "design",
+    tags: ["retheme", "theming", "landing-page", "design-tokens", "branding", "fonts"],
+    significance: "major"
   }
 };
 

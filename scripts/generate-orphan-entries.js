@@ -273,6 +273,48 @@ const groups = [
     category: "frontend",
     tags: ["mobile-fixes", "viewport", "modals", "dvh", "bottom-nav"],
     significance: "minor"
+  },
+
+  // === CUTTING ROOM & BEYOND (Mar – Jul) ===
+  {
+    indices: [64, 65, 66, 67],
+    id: "commits-2026-03-04-cloud-run-cicd",
+    title: "Cloud Run CI/CD for video processing, plus Lambda bundling fixes",
+    summary: "Automated Cloud Run deployment workflow for the video-processor service and a cluster of esbuild-vs-Lambda bundling fixes that unblocked the video clips launch",
+    detail: "Infrastructure groundwork for the video clips feature. A new deploy-cloud-run.yml auto-deploys the video-processor to dev on pushes to services/**, with manual dispatch for dev/prod, backed by a fresh GCP service account, Artifact Registry, and GitHub secrets. Three companion fixes tamed esbuild's habit of breaking bundled Lambdas: the Google Photos import worker got the missing sharp-node-layer, GCS file operations were rewritten to use signed URLs + native fetch (bypassing gaxios's AbortSignal instanceof check that fails when bundled), and the CI deploy step gained the missing CLOUD_RUN_VIDEO_PROCESSOR_URL, VIDEO_PROCESSOR_CALLBACK_SECRET, and CLOUD_RUN_CLIP_EXTRACTOR_URL env vars.",
+    category: "devops",
+    tags: ["Cloud-Run", "CI/CD", "esbuild", "Lambda", "GCS", "sharp"],
+    significance: "moderate"
+  },
+  {
+    indices: [68],
+    id: "commit-b7e03cbe",
+    title: "Stage-aware Cognito pool name in serverless config",
+    summary: "Fixed Cognito pool resolution where dev and prod use different naming conventions",
+    detail: "The dev Cognito pool is 'LoomedMemories-dev' (PascalCase) while prod is 'loomed-memories-prod' (kebab-case), so a simple stage interpolation couldn't resolve both. Switched to a stage-specific custom variable, matching the pattern used for the project's other stage-scoped resources.",
+    category: "devops",
+    tags: ["Cognito", "stage-config", "serverless"],
+    significance: "minor"
+  },
+  {
+    indices: [69],
+    id: "commit-dfd8acb3",
+    title: "Gitignore the Claude Code scheduled-tasks lock file",
+    summary: "Added the Claude Code scheduled-tasks lock file to .gitignore",
+    detail: "A one-line housekeeping commit keeping the Claude Code scheduled-tasks lock file out of version control.",
+    category: "devops",
+    tags: ["gitignore", "housekeeping"],
+    significance: "minor"
+  },
+  {
+    indices: [70, 71],
+    id: "commits-2026-07-beta-launch-planning",
+    title: "Beta launch planning workspace — tracker, success criteria, and decision log",
+    summary: "Established a beta-launch planning workspace with a living tracker, dated continue/kill/extend success criteria, and a decision log",
+    detail: "As the product turned toward a public beta, a new docs/beta-launch/ workspace captured the plan outside the reference-doc contract. BETA_LAUNCH_TRACKER.md organized the effort into buckets — instrumentation, pricing probes, multi-contributor detection, a stranger-exclusion list, and funnel CLI coverage of the success metrics — while SUCCESS_CRITERIA.md set dated continue/kill/extend thresholds. A follow-up checked off the eight scoped instrumentation items and failure monitoring, resolved the open decisions, recorded five decision-log entries, and amended the occasion-vs-vacation lens to a feature-based measurement. This is the meta-scaffolding of a founder deciding, in writing, what would make the beta worth continuing.",
+    category: "docs",
+    tags: ["beta-launch", "planning", "success-criteria", "decision-log", "instrumentation"],
+    significance: "moderate"
   }
 ];
 

@@ -17917,5 +17917,174 @@
         "deletions": 0
       }
     ]
+  },
+  {
+    "sha": "da80663fe58182ff001123532cede8d3522760fe",
+    "date": "2026-03-04T15:52:25-05:00",
+    "headline": "fix: add Sharp layer to Google Photos import worker Lambda",
+    "body": "The googlePhotosImportWorker was missing the sharp-node-layer,\ncausing it to crash on startup since esbuild marks sharp as external.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+    "stats": {
+      "additions": 3,
+      "deletions": 0,
+      "changedFiles": 1
+    },
+    "filesChanged": [
+      {
+        "path": "backend/serverless.yml",
+        "additions": 3,
+        "deletions": 0
+      }
+    ]
+  },
+  {
+    "sha": "9a4d7f74c5d1dc84fb644d8b1a2dcd29d16e503d",
+    "date": "2026-03-04T17:24:18-05:00",
+    "headline": "fix: use signed URLs for GCS uploads/downloads in Lambda",
+    "body": "The @google-cloud/storage SDK's HTTP client (gaxios) does an\nAbortSignal instanceof check that fails when bundled by esbuild\nfor Lambda. Replace file.save()/download()/delete() with signed\nURL + native fetch to bypass gaxios entirely.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+    "stats": {
+      "additions": 64,
+      "deletions": 26,
+      "changedFiles": 1
+    },
+    "filesChanged": [
+      {
+        "path": "backend/src/services/gcsService.js",
+        "additions": 64,
+        "deletions": 26
+      }
+    ]
+  },
+  {
+    "sha": "34a3f8a677f69aa5a19ecbd76523b1045c2873b9",
+    "date": "2026-03-04T17:42:51-05:00",
+    "headline": "fix: add missing Cloud Run env vars to CI deploy workflow",
+    "body": "CLOUD_RUN_VIDEO_PROCESSOR_URL, VIDEO_PROCESSOR_CALLBACK_SECRET,\nand CLOUD_RUN_CLIP_EXTRACTOR_URL were missing from the GitHub\nActions deploy step, causing video processing to fail in dev.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+    "stats": {
+      "additions": 3,
+      "deletions": 0,
+      "changedFiles": 1
+    },
+    "filesChanged": [
+      {
+        "path": ".github/workflows/deploy-backend.yml",
+        "additions": 3,
+        "deletions": 0
+      }
+    ]
+  },
+  {
+    "sha": "ef9914c550763d35541dd0f6be67fb6e229e262a",
+    "date": "2026-03-04T18:32:38-05:00",
+    "headline": "feat: add Cloud Run CI/CD deployment workflow",
+    "body": "- New deploy-cloud-run.yml: auto-deploys to dev on push to main (services/**), manual dispatch for dev/prod\n- Updated deploy-prod.yml: added deploy-cloud-run job, added missing CLOUD_RUN_* env vars to backend deploy\n- GCP setup complete: service account, Artifact Registry, GitHub secrets\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+    "stats": {
+      "additions": 591,
+      "deletions": 1,
+      "changedFiles": 3
+    },
+    "filesChanged": [
+      {
+        "path": ".github/workflows/deploy-cloud-run.yml",
+        "additions": 158,
+        "deletions": 0
+      },
+      {
+        "path": ".github/workflows/deploy-prod.yml",
+        "additions": 73,
+        "deletions": 1
+      },
+      {
+        "path": "docs/cloud-run-cicd-spec.md",
+        "additions": 360,
+        "deletions": 0
+      }
+    ]
+  },
+  {
+    "sha": "b7e03cbebeb480a7ecd3e1989b49747152c559b5",
+    "date": "2026-03-27T08:32:51-04:00",
+    "headline": "fix: use custom variable for Cognito pool name — dev and prod have different naming conventions",
+    "body": "Dev pool is \"LoomedMemories-dev\" (PascalCase) while prod is\n\"loomed-memories-prod\" (kebab-case), so a simple interpolation doesn't\nwork. Uses stage-specific custom var like other resources.\n\nCo-Authored-By: Claude Opus 4.6 (1M context) <noreply@anthropic.com>",
+    "stats": {
+      "additions": 5,
+      "deletions": 2,
+      "changedFiles": 1
+    },
+    "filesChanged": [
+      {
+        "path": "backend/serverless.yml",
+        "additions": 5,
+        "deletions": 2
+      }
+    ]
+  },
+  {
+    "sha": "dfd8acb3be4b20311b1ade1717338ce9e2cfc041",
+    "date": "2026-05-22T16:19:51-04:00",
+    "headline": "chore: gitignore Claude Code scheduled-tasks lock file",
+    "body": "Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "stats": {
+      "additions": 1,
+      "deletions": 0,
+      "changedFiles": 1
+    },
+    "filesChanged": [
+      {
+        "path": ".gitignore",
+        "additions": 1,
+        "deletions": 0
+      }
+    ]
+  },
+  {
+    "sha": "08535b17b58e187691199f92f7fc674350fcff6a",
+    "date": "2026-07-13T16:25:53-04:00",
+    "headline": "Beta launch planning workspace: tracker updates + success criteria",
+    "body": "- New docs/beta-launch/ folder for beta launch planning docs, outside the\n  INDEX.md reference-doc contract (one pointer line added under Other entry\n  points).\n- BETA_LAUNCH_TRACKER.md: bucket 10 (success criteria) marked DONE with\n  resolution note; bucket 2 gains pricing-probe logging, multi-contributor\n  detection (recon first), stranger exclusion list, and funnel CLI coverage\n  of the success metrics; bucket 8 gains the two beta price points and the\n  honest fake-door pricing probe; decision log rows added for 2026-07-13.\n- SUCCESS_CRITERIA.md: dated continue/kill/extend criteria for the December\n  decision (headline: 3+ multi-contributor shared videos; extend once, second\n  decision 2027-02-28).\n\nCo-Authored-By: Claude Fable 5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01SKfe4ZjuoWxZV6RELi7aDb",
+    "stats": {
+      "additions": 380,
+      "deletions": 0,
+      "changedFiles": 3
+    },
+    "filesChanged": [
+      {
+        "path": "docs/INDEX.md",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": "docs/beta-launch/BETA_LAUNCH_TRACKER.md",
+        "additions": 284,
+        "deletions": 0
+      },
+      {
+        "path": "docs/beta-launch/SUCCESS_CRITERIA.md",
+        "additions": 95,
+        "deletions": 0
+      }
+    ]
+  },
+  {
+    "sha": "51e96790d74f036775c12780bd96dd08efb6ee3f",
+    "date": "2026-07-16T20:16:49-04:00",
+    "headline": "Tracker: bucket 2 instrumentation shipped; decision log + criteria amendment",
+    "body": "Check off the eight scoped instrumentation items and failure monitoring,\nsplit the open system-health remainder into its own items, resolve both\nopen decisions, and record the five bucket 2 Decision Log entries. Amend\nSUCCESS_CRITERIA.md's occasion-vs-vacation lens to the feature-based\nmeasurement (thresholds unchanged).\n\nCo-Authored-By: Claude Fable 5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01DRSkzirntjyuT8pUxn3MyL",
+    "stats": {
+      "additions": 21,
+      "deletions": 18,
+      "changedFiles": 2
+    },
+    "filesChanged": [
+      {
+        "path": "docs/beta-launch/BETA_LAUNCH_TRACKER.md",
+        "additions": 19,
+        "deletions": 16
+      },
+      {
+        "path": "docs/beta-launch/SUCCESS_CRITERIA.md",
+        "additions": 2,
+        "deletions": 2
+      }
+    ]
   }
 ]
