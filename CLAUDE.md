@@ -2,7 +2,7 @@
 
 ## What This Is
 
-An analytics and storytelling tool for the Kindred Reels project — a collaborative platform for creating cinematic video memories from family photos and voice recordings. Kindred Reels is a 250K+ line production web app built through AI-assisted development (Claude Code): Dimitri never writes code directly. His daughter Sadie, a software engineer, joined in December 2025 and wrote the backend's first tests, the first browser tests, and led the first security audit. This repo tells that story both quantitatively and qualitatively, and calls out Sadie's work wherever it appears (`src/utils/people.ts`).
+An analytics and storytelling tool for the Kindred Reels project — a collaborative platform for creating cinematic video memories from family photos and voice recordings. Kindred Reels is a 250K+ line production web app built through AI-assisted development (Claude Code): Dimitri never writes code directly. His daughter Sadie, a software engineer, joined in December 2025: she wrote the backend's first tests and the first browser tests, led the first security audit, built the Grafana log dashboard (committed outside the app repo), and was Dimitri's sounding board on design. She worked mostly through Claude Code, sometimes by hand when exploring a new area. This repo tells that story both quantitatively and qualitatively, and calls out Sadie's work wherever it appears (`src/utils/people.ts`).
 
 This repo was bootstrapped from the `code-chronicle/` tool that previously lived inside the Kindred Reels codebase. It's being expanded into a full React application with multiple views.
 
