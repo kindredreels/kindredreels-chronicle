@@ -2,6 +2,8 @@ import { useState } from 'react'
 import type { ChronicleEntry } from '../../types'
 import CategoryBadge from './CategoryBadge'
 import SignificanceDot from './SignificanceDot'
+import SadieBadge from './SadieBadge'
+import { isSadieEntry } from '../../utils/people'
 import TagList from './TagList'
 
 interface EntryDetailProps {
@@ -27,6 +29,10 @@ export default function EntryDetail({ entry }: EntryDetailProps) {
         <CategoryBadge category={entry.category} />
         <SignificanceDot significance={entry.significance} showLabel />
         <span className="text-xs text-gray-500">{date}</span>
+        {entry.authors && entry.authors.length > 0 && (
+          <span className="text-xs text-gray-500">&middot; by {entry.authors.map(a => a.split(' ')[0]).join(' & ')}</span>
+        )}
+        {isSadieEntry(entry) && <SadieBadge />}
       </div>
 
       <p className="text-gray-300 text-sm">{entry.summary}</p>

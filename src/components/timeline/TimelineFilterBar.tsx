@@ -1,6 +1,7 @@
 import { useRef, useCallback } from 'react'
 import type { EntryCategory, EntrySignificance } from '../../types'
 import { ENTRY_COLORS, ENTRY_CATEGORY_NAMES, ENTRY_CATEGORY_KEYS } from '../../constants/entryCategories'
+import { SADIE_COLOR } from '../../utils/people'
 
 interface TimelineFilterBarProps {
   activeCategories: Set<EntryCategory>
@@ -8,6 +9,8 @@ interface TimelineFilterBarProps {
   significance: EntrySignificance | null
   onSignificanceChange: (sig: EntrySignificance | null) => void
   onSearchChange: (text: string) => void
+  sadieOnly: boolean
+  onSadieOnlyChange: (on: boolean) => void
 }
 
 const SIG_OPTIONS: (EntrySignificance | null)[] = [null, 'major', 'moderate']
@@ -22,7 +25,9 @@ export default function TimelineFilterBar({
   onCategoriesChange,
   significance,
   onSignificanceChange,
-  onSearchChange
+  onSearchChange,
+  sadieOnly,
+  onSadieOnlyChange
 }: TimelineFilterBarProps) {
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
@@ -90,6 +95,18 @@ export default function TimelineFilterBar({
             </button>
           ))}
         </div>
+
+        <button
+          onClick={() => onSadieOnlyChange(!sadieOnly)}
+          aria-pressed={sadieOnly}
+          className="px-3 py-1 text-sm rounded transition"
+          style={{
+            backgroundColor: sadieOnly ? SADIE_COLOR + '40' : '#374151',
+            color: sadieOnly ? SADIE_COLOR : '#9CA3AF'
+          }}
+        >
+          Sadie&apos;s work
+        </button>
 
         <input
           type="text"

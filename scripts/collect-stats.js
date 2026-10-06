@@ -56,6 +56,23 @@ function countLinesByCategory() {
 }
 
 /**
+ * Count the working tree as it is now and store it as today's snapshot, then save.
+ */
+function captureToday(snapshots, cache) {
+  const today = getTodayDate();
+  console.log(`📸 Capturing today's snapshot (${today})...`);
+  const { totals, fileCount } = countLinesByCategory();
+  snapshots.days[today] = {
+    commit: git('rev-parse HEAD'),
+    totals,
+    fileCount
+  };
+  cache.lastProcessedDate = today;
+  saveSnapshots(snapshots);
+  saveCache(cache);
+}
+
+/**
  * Main collection function
  * @param {Object} options
  * @param {boolean} options.force - Force full recollection
@@ -92,7 +109,10 @@ async function collect(options = {}) {
   const commits = getCommitsInRange(startDate, endDate);
 
   if (commits.length === 0) {
-    console.log('\n✅ Already up to date!\n');
+    // Nothing new on earlier days, but today's count is still refreshed: a second
+    // run on the same day used to stop here and keep the morning's numbers.
+    console.log('\n✅ No earlier days to fill in.');
+    captureToday(snapshots, cache);
     printSummary(snapshots);
     return;
   }
@@ -167,19 +187,7 @@ async function collect(options = {}) {
   }
 
   // Always capture today's current working directory state
-  const today = getTodayDate();
-  console.log(`📸 Capturing today's snapshot (${today})...`);
-  const { totals, fileCount } = countLinesByCategory();
-  const currentCommit = git('rev-parse HEAD');
-  snapshots.days[today] = {
-    commit: currentCommit,
-    totals,
-    fileCount
-  };
-  cache.lastProcessedDate = today;
-
-  // Save data
-  saveSnapshots(snapshots);
+  captureToday(snapshots, cache);
   saveCache(cache);
 
   console.log('💾 Data saved!\n');

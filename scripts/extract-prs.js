@@ -47,6 +47,18 @@ function gh(args) {
   }).trim();
 }
 
+// Page by page with an explicit page number: `gh api --paginate` follows GitHub's
+// Link headers, which name the repo by numeric id, and the session proxy refuses those.
+function ghPages(path) {
+  const all = [];
+  for (let page = 1; ; page++) {
+    const sep = path.includes('?') ? '&' : '?';
+    const batch = JSON.parse(gh(`api "${path}${sep}per_page=100&page=${page}"`));
+    all.push(...batch);
+    if (batch.length < 100) return all;
+  }
+}
+
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -56,42 +68,60 @@ async function main() {
   console.log(`Extracting PRs from ${slug}...`);
 
   // Fetch all merged PRs in one call
+  // REST, not `gh pr list`/`gh pr view`: those use GraphQL, which Claude Code
+  // cloud sessions block. The records keep the GraphQL shape the rest of the
+  // pipeline reads (camelCase fields, files capped at 100 as GraphQL returned them).
   console.log('Fetching merged PR list...');
-  const prFields = [
-    'number', 'title', 'body', 'mergedAt', 'additions', 'deletions',
-    'changedFiles', 'files', 'labels', 'headRefName'
-  ].join(',');
+  const pulls = ghPages(`repos/${slug}/pulls?state=closed`);
+  const merged = pulls.filter(p => p.merged_at);
+  console.log(`Found ${merged.length} merged PRs`);
+  merged.sort((a, b) => new Date(a.merged_at) - new Date(b.merged_at));
 
-  const prListJson = gh(`pr list --repo ${slug} --state merged --json ${prFields} --limit 300`);
-  const prs = JSON.parse(prListJson);
-  console.log(`Found ${prs.length} merged PRs`);
-
-  // Sort by mergedAt ascending (oldest first)
-  prs.sort((a, b) => new Date(a.mergedAt) - new Date(b.mergedAt));
-
-  // Fetch commits for each PR
-  console.log('Fetching commits for each PR...');
+  console.log('Fetching details, files and commits for each PR...');
   const enrichedPRs = [];
 
-  for (let i = 0; i < prs.length; i++) {
-    const pr = prs[i];
-    console.log(`  [${i + 1}/${prs.length}] PR #${pr.number}: ${pr.title}`);
-
+  for (let i = 0; i < merged.length; i++) {
+    const p = merged[i];
+    if ((i + 1) % 20 === 0) console.log(`  ${i + 1}/${merged.length}`);
+    const detail = JSON.parse(gh(`api repos/${slug}/pulls/${p.number}`));
+    const pr = {
+      additions: detail.additions,
+      body: detail.body,
+      changedFiles: detail.changed_files,
+      deletions: detail.deletions,
+      files: [],
+      headRefName: detail.head?.ref,
+      labels: (detail.labels || []).map(l => ({ id: l.node_id, name: l.name, description: l.description, color: l.color })),
+      mergedAt: detail.merged_at,
+      number: detail.number,
+      title: detail.title,
+    };
     try {
-      const commitJson = gh(`pr view ${pr.number} --repo ${slug} --json commits`);
-      const { commits } = JSON.parse(commitJson);
-      pr.commits = commits;
+      const files = JSON.parse(gh(`api "repos/${slug}/pulls/${p.number}/files?per_page=100"`));
+      pr.files = files.slice(0, 100).map(f => ({ path: f.filename, additions: f.additions, deletions: f.deletions }));
     } catch (err) {
-      console.warn(`    Warning: Could not fetch commits for PR #${pr.number}: ${err.message}`);
+      console.warn(`    Warning: Could not fetch files for PR #${p.number}: ${err.message}`);
+    }
+    try {
+      const commits = ghPages(`repos/${slug}/pulls/${p.number}/commits`);
+      pr.commits = commits.map(c => {
+        const [headline, ...rest] = c.commit.message.split('\n');
+        return {
+          authoredDate: c.commit.author?.date,
+          authors: [{ email: c.commit.author?.email, login: c.author?.login ?? null, name: c.commit.author?.name }],
+          committedDate: c.commit.committer?.date,
+          messageBody: rest.join('\n').replace(/^\n+/, ''),
+          messageHeadline: headline,
+          oid: c.sha,
+        };
+      });
+    } catch (err) {
+      console.warn(`    Warning: Could not fetch commits for PR #${p.number}: ${err.message}`);
       pr.commits = [];
     }
 
     enrichedPRs.push(pr);
-
-    // Rate limiting delay (skip after last PR)
-    if (i < prs.length - 1) {
-      await sleep(200);
-    }
+    if (i < merged.length - 1) await sleep(100);
   }
 
   // Write output

@@ -64,6 +64,8 @@ export interface ChronicleEntry {
   category: EntryCategory
   tags: string[]
   significance: EntrySignificance
+  /** Commit authors, the AI pair-programmer left out. Absent on direct-commit groups. */
+  authors?: string[]
   stats: {
     additions: number
     deletions: number
@@ -86,8 +88,26 @@ export interface ChroniclePhase {
     end: string
   }
   narrative: string
+  /** What Sadie did in this chapter, shown above her entries. Only where she contributed. */
+  sadieNote?: string
   entryIds: string[]
   color: string
+}
+
+/** A group of chapters: the story is told in acts, each with a short introduction. */
+export interface ChronicleAct {
+  id: string
+  numeral: string
+  title: string
+  subtitle: string
+  intro: string
+  phaseIds: string[]
+}
+
+/** The story's framing: an opening paragraph and the acts that hold the chapters. */
+export interface ChronicleStory {
+  lede: string
+  acts: ChronicleAct[]
 }
 
 export interface CodeStatDay {
@@ -109,6 +129,7 @@ export interface GrowthChartPoint {
 export interface ChronicleData {
   entries: ChronicleEntry[]
   phases: ChroniclePhase[]
+  story?: ChronicleStory
   codeStats: Record<string, CodeStatDay>
   metadata: {
     generatedAt: string

@@ -3,7 +3,7 @@
  * This is a one-time generation script — enrichments are hand-crafted.
  */
 
-import { readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, readdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -295,11 +295,11 @@ const enrichments = {
     significance: "major"
   },
   43: {
-    summary: "Backend handler test suite for project CRUD operations with Jest test infrastructure",
-    detail: "Added comprehensive unit tests for the project handler covering getProjectById (success and error cases), createProject, and deleteProject operations. Built test helper utilities for mocking DynamoDB operations. Written by a second contributor (Sadie), representing the first collaborative development on the codebase.",
+    summary: "Sadie joins: the first pull request from a second person, and the backend's first handler tests",
+    detail: "Sadie Bilenkin joined the project at the start of December and opened its first pull request from anyone other than Dimitri. Starting December 2 she wrote unit tests for the project handler: fetching a project by id with its error paths, creating a project and deleting one, with helpers that stand in for DynamoDB so the tests run without a database. It was 417 lines, and it is the moment Kindred Reels stopped being a one-person codebase.",
     category: "backend",
-    tags: ["testing", "Jest", "unit-tests", "project-handler"],
-    significance: "minor"
+    tags: ["testing", "Jest", "unit-tests", "project-handler", "sadie"],
+    significance: "major"
   },
   44: {
     summary: "Memory-based video architecture where each memory becomes an atomic video segment",
@@ -414,10 +414,10 @@ const enrichments = {
     significance: "moderate"
   },
   60: {
-    summary: "Update team member photo on landing page",
-    detail: "Quick update to replace a team member's photo with a better image on the landing page.",
+    summary: "Sadie's photo goes up on the new About page, next to Dimitri's",
+    detail: "The landing page was being reworked to look like a real company for a Google for Startups application, and the new About page introduced a team of two. This small change added Sadie's photo beside Dimitri's, with Sadie listed as Software Engineer: the first place outside the code where Kindred Reels said it was built by two people.",
     category: "design",
-    tags: ["landing-page", "team-photo"],
+    tags: ["landing-page", "team-photo", "sadie"],
     significance: "minor"
   },
   61: {
@@ -526,10 +526,10 @@ const enrichments = {
     significance: "minor"
   },
   77: {
-    summary: "Comprehensive backend test expansion covering all project handler operations",
-    detail: "Extended backend test suite with thorough testing of all project handler functions. Written by Sadie as part of ongoing collaborative test coverage expansion. Tests cover success cases, error handling, authentication checks, and edge cases.",
+    summary: "Sadie brings the project tests up to date with a month of API changes and covers every project handler function",
+    detail: "A month of fast feature work had moved the API out from under the tests. Sadie updated her project handler tests to match the new behavior, then went on to test every function in the handler, including the authentication checks and the edge cases. The suite grew by about 1,575 lines in one file.",
     category: "backend",
-    tags: ["testing", "project-handler", "collaboration"],
+    tags: ["testing", "project-handler", "collaboration", "sadie"],
     significance: "minor"
   },
   78: {
@@ -631,11 +631,11 @@ const enrichments = {
     significance: "minor"
   },
   91: {
-    summary: "Extensive backend handler test suite covering auth, AI Producer, music, and more",
-    detail: "Major testing contribution by Sadie adding tests for authHandler, aiProducerHandler, backgroundMusicHandler, googlePhotosHandler, memoryHandler, and multiple admin handlers. At 12,175 lines added, this significantly expanded backend test coverage across all major API surfaces. The tests cover authentication flows, AI Producer session management, music operations, and admin functionality.",
+    summary: "Sadie's 12,000-line test push: auth, the AI Producer, music, Google Photos, memories, invitations and admin",
+    detail: "Sadie's biggest contribution to the codebase. Over six days she wrote tests for most of the backend's handlers: sign-in, the AI Producer, background music and the music timeline, Google Photos, memories, invitations, people, and five admin handlers. Along the way she tightened some of the error messages the handlers returned. At 12,175 lines across 21 files it was one of the largest single additions of tests in the project's first year, and it gave the later hardening work a safety net to stand on.",
     category: "backend",
-    tags: ["testing", "handler-tests", "comprehensive-coverage", "collaboration"],
-    significance: "moderate"
+    tags: ["testing", "handler-tests", "comprehensive-coverage", "collaboration", "sadie"],
+    significance: "major"
   },
   93: {
     summary: "Video processing reliability improvements and contributor name inline editing",
@@ -722,10 +722,10 @@ const enrichments = {
     significance: "minor"
   },
   106: {
-    summary: "End-to-end Playwright tests for the home page and user login flow",
-    detail: "Added end-to-end tests using Playwright covering the home/landing page rendering and user authentication flows. Written by Sadie as part of the E2E testing initiative. Includes test configuration and helper utilities for authentication state management.",
+    summary: "Sadie starts the browser tests: Playwright checks the home page and signing in",
+    detail: "Unit tests check one function at a time; these drive a real browser. Sadie set up Playwright and wrote the first end-to-end tests: the home page renders, an existing user can sign in, and signing out works. It was the first time anything checked the app the way a person uses it.",
     category: "frontend",
-    tags: ["E2E-tests", "Playwright", "authentication", "collaboration"],
+    tags: ["E2E-tests", "Playwright", "authentication", "collaboration", "sadie"],
     significance: "minor"
   },
   107: {
@@ -757,10 +757,10 @@ const enrichments = {
     significance: "minor"
   },
   109: {
-    summary: "End-to-end Playwright tests for project creation, deletion, and authenticated flows",
-    detail: "Extended E2E test coverage with Playwright tests for the full project lifecycle: creating a project, navigating to it, and deleting it. Added authentication setup so tests run against an authenticated user session. Written by Sadie.",
+    summary: "Sadie's browser tests sign in once and walk a project from creation to deletion",
+    detail: "Sadie extended her Playwright suite so the tests sign in once before they run, then exercise a project's whole life: create it, open the project page, and delete it. Together with her earlier tests this became the starting point for the browser smoke suite the project leaned on before launch.",
     category: "frontend",
-    tags: ["E2E-tests", "Playwright", "project-lifecycle", "collaboration"],
+    tags: ["E2E-tests", "Playwright", "project-lifecycle", "collaboration", "sadie"],
     significance: "minor"
   },
   112: {
@@ -792,10 +792,10 @@ const enrichments = {
     significance: "major"
   },
   117: {
-    summary: "Fix photo orientation by applying EXIF rotation during thumbnail creation",
-    detail: "Added rotation correction based on EXIF orientation data when generating thumbnails. Previously, photos taken in portrait mode on phones would appear rotated in thumbnail views. Written by Sadie.",
+    summary: "Sadie fixes sideways photos: thumbnails now follow the phone's rotation",
+    detail: "Photos taken upright on a phone often showed up sideways in the app, because the thumbnail step ignored the rotation the camera records in the file. Sadie's fix applies that rotation when the thumbnail is made. Six lines, and a bug every user with a phone would have hit.",
     category: "backend",
-    tags: ["EXIF-rotation", "thumbnails", "photo-orientation", "collaboration"],
+    tags: ["EXIF-rotation", "thumbnails", "photo-orientation", "collaboration", "sadie"],
     significance: "minor"
   },
   119: {
@@ -855,17 +855,17 @@ const enrichments = {
     significance: "major"
   },
   127: {
-    summary: "Security audit — signed S3 URLs, error sanitization, PITR, and S3 versioning",
-    detail: "Initial security audit work by Sadie covering four areas: switched to signed S3 URLs for all bucket access, sanitized API error messages by removing err.message from 63 error response calls across 8 handler files to prevent leaking internal details. Enabled DynamoDB Point-in-Time Recovery on both tables and S3 versioning with 30-day lifecycle on both uploads buckets. Server-side console.error logging retained for debugging.",
+    summary: "Sadie leads the security audit before friends and family test the app",
+    detail: "Before anyone outside the family used Kindred Reels, the project needed a security audit, and it was Sadie's. The brief was written for her and opened with a known hole: guessing a project's id could open someone else's project. Over two weeks she worked through the first area, authorization on the API's routes, and moved file access onto signed, expiring S3 links. Dimitri added a commit on her branch that stopped 63 error responses from leaking internal details and turned on database point-in-time recovery and file versioning.",
     category: "backend",
-    tags: ["security-audit", "signed-URLs", "error-sanitization", "PITR", "S3-versioning"],
+    tags: ["security-audit", "signed-URLs", "error-sanitization", "PITR", "S3-versioning", "sadie"],
     significance: "major"
   },
   128: {
-    summary: "Route ownership middleware, CloudFront + OAC, and risky change reverts",
-    detail: "Chunks 1-3 of the security audit: migrated all project-scoped routes to per-router ownership middleware, eliminating redundant getProjectById calls. Added CloudFront with Origin Access Control for S3 uploads so buckets are now fully private. Reverted the async getFileUrl and in-memory rate limiting from PR #127 as they introduced issues. Updated tests and removed stale spec docs. A net deletion of ~3,800 lines through cleanup.",
+    summary: "Finishing Sadie's audit: ownership checks on every project route, and private storage behind CloudFront",
+    detail: "The second half of the audit, merged from Sadie's branch the same day. The ownership checks she had added route by route became one shared check on every project route. Uploaded files moved behind CloudFront so the buckets themselves are fully private, and two changes from the first half that caused problems were rolled back. The cleanup removed about 3,800 lines.",
     category: "backend",
-    tags: ["ownership-middleware", "CloudFront", "OAC", "security-audit", "route-auth"],
+    tags: ["ownership-middleware", "CloudFront", "OAC", "security-audit", "route-auth", "sadie"],
     significance: "major"
   },
   129: {
@@ -1262,6 +1262,15 @@ const enrichments = {
   }
 };
 
+// Later enrichments live as JSON in scripts/enrichments/, one file per update,
+// written the same way (hand-checked, from each PR's commits and the app's changelog).
+const ENRICHMENTS_DIR = join(__dirname, 'enrichments');
+if (existsSync(ENRICHMENTS_DIR)) {
+  for (const file of readdirSync(ENRICHMENTS_DIR).filter(f => f.endsWith('.json')).sort()) {
+    Object.assign(enrichments, JSON.parse(readFileSync(join(ENRICHMENTS_DIR, file), 'utf8')));
+  }
+}
+
 // Build entries
 const entries = prs.map((pr, index) => {
   const enrichment = enrichments[pr.number];
@@ -1275,6 +1284,11 @@ const entries = prs.map((pr, index) => {
     if (c.messageBody) parts.push(c.messageBody);
     return parts.join('\n\n');
   });
+
+  // Who wrote it: commit authors, the AI pair-programmer left out because it
+  // co-authors everything. Lets the app credit Sadie's work where it appears.
+  const authors = [...new Set(pr.commits.flatMap(c => (c.authors || []).map(a => a.name)))]
+    .filter(name => name && !/^Claude\b/.test(name));
 
   const filesChanged = pr.files.map(f => ({
     path: f.path,
@@ -1294,6 +1308,7 @@ const entries = prs.map((pr, index) => {
     category: enrichment.category,
     tags: enrichment.tags,
     significance: enrichment.significance,
+    authors,
     stats: {
       additions: pr.additions,
       deletions: pr.deletions,

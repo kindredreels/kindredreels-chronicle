@@ -29,12 +29,15 @@ function snapToDataDate(target: string, dates: string[]): string | undefined {
 
 export default function OverviewView({ data, chronicleData }: OverviewViewProps) {
   const stats = getLatestStats(data)
-  const { metadata, phases, entries, codeStats } = chronicleData
+  const { metadata, phases, entries, codeStats, story } = chronicleData
 
   // Compute days building
   const startDate = new Date(metadata.dateRange.start + 'T00:00:00')
   const endDate = new Date(metadata.dateRange.end + 'T00:00:00')
   const daysBuilding = Math.round((endDate.getTime() - startDate.getTime()) / 86400000) + 1
+
+  // Merged pull requests only; direct commits to main are entries too
+  const prCount = entries.filter(e => e.prNumber !== null).length
 
   // Count major milestones
   const majorMilestones = entries.filter(e => e.significance === 'major').length
@@ -47,7 +50,7 @@ export default function OverviewView({ data, chronicleData }: OverviewViewProps)
 
   const heroStats = [
     { label: 'Total Lines', value: stats ? formatNumber(stats.totalLines) : '—', color: 'text-blue-400' },
-    { label: 'Total PRs', value: formatNumber(metadata.totalEntries), color: 'text-emerald-400' },
+    { label: 'Pull Requests', value: formatNumber(prCount), color: 'text-emerald-400' },
     { label: 'Chapters', value: String(phases.length), color: 'text-amber-400' },
     { label: 'Days Building', value: formatNumber(daysBuilding), color: 'text-violet-400' },
     { label: 'Major Milestones', value: String(majorMilestones), color: 'text-rose-400' },
@@ -55,6 +58,22 @@ export default function OverviewView({ data, chronicleData }: OverviewViewProps)
   ]
 
   const chartDates = chartData.map(p => p.date)
+
+  const renderChapter = (phase: (typeof phases)[number]) => (
+    <div
+      key={phase.id}
+      className="border-l-4 pl-3 sm:pl-4 py-1"
+      style={{ borderColor: phase.color }}
+    >
+      <div className="font-semibold text-sm sm:text-base">
+        <span className="text-gray-500 mr-1.5">{phases.indexOf(phase) + 1}.</span>{phase.title}
+      </div>
+      <div className="text-gray-400 text-sm">{phase.subtitle}</div>
+      <div className="text-gray-500 text-xs mt-1">
+        {formatDateRange(phase.dateRange.start, phase.dateRange.end)} · {phase.entryIds.length} entries
+      </div>
+    </div>
+  )
 
   return (
     <div className="space-y-6">
@@ -132,24 +151,29 @@ export default function OverviewView({ data, chronicleData }: OverviewViewProps)
         </div>
       </Card>
 
-      {/* Chapters at a Glance */}
+      {/* The story: opening paragraph, then each act with its chapters */}
       <Card>
         <h2 className="text-lg font-semibold mb-3">The Story So Far</h2>
-        <div className="space-y-3">
-          {phases.map(phase => (
-            <div
-              key={phase.id}
-              className="border-l-4 pl-3 sm:pl-4 py-1"
-              style={{ borderColor: phase.color }}
-            >
-              <div className="font-semibold text-sm sm:text-base">{phase.title}</div>
-              <div className="text-gray-400 text-sm">{phase.subtitle}</div>
-              <div className="text-gray-500 text-xs mt-1">
-                {formatDateRange(phase.dateRange.start, phase.dateRange.end)} · {phase.entryIds.length} entries
-              </div>
-            </div>
-          ))}
-        </div>
+        {story ? (
+          <div className="space-y-6">
+            <p className="text-gray-300 text-sm leading-relaxed max-w-3xl">{story.lede}</p>
+            {story.acts.map(act => (
+              <section key={act.id} className="space-y-3">
+                <div>
+                  <div className="text-xs font-semibold uppercase tracking-wider text-gray-500">Act {act.numeral}</div>
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-100">{act.title}</h3>
+                  <p className="text-gray-400 text-sm">{act.subtitle}</p>
+                </div>
+                <p className="text-gray-300 text-sm leading-relaxed max-w-3xl">{act.intro}</p>
+                <div className="space-y-3">
+                  {act.phaseIds.map(id => phases.find(p => p.id === id)).filter(p => !!p).map(p => renderChapter(p!))}
+                </div>
+              </section>
+            ))}
+          </div>
+        ) : (
+          <div className="space-y-3">{phases.map(renderChapter)}</div>
+        )}
       </Card>
     </div>
   )
