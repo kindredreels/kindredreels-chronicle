@@ -27,6 +27,7 @@ export default function ChaptersView({ data }: ChaptersViewProps) {
       <div className="w-70 shrink-0 hidden lg:block sticky top-4 self-start max-h-[calc(100vh-120px)] overflow-y-auto">
         <ChapterSidebar
           phases={data.phases}
+          story={data.story}
           selectedId={selectedPhaseId}
           onSelect={handlePhaseSelect}
         />
@@ -38,9 +39,9 @@ export default function ChaptersView({ data }: ChaptersViewProps) {
           onChange={e => handlePhaseSelect(e.target.value)}
           className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-200"
         >
-          {data.phases.map(phase => (
+          {data.phases.map((phase, i) => (
             <option key={phase.id} value={phase.id}>
-              {phase.title} — {phase.subtitle}
+              {i + 1}. {phase.title}
             </option>
           ))}
         </select>

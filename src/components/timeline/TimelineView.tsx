@@ -4,6 +4,7 @@ import type { ChronicleDataWithLookup } from '../../hooks/useChronicleData'
 import { filterEntries, groupEntriesByMonth, groupEntriesByWeek, formatMonthLabel, formatWeekLabel, getGroupStats } from '../../utils/chronicleProcessing'
 import StatsBar from '../shared/StatsBar'
 import TimelineFilterBar from './TimelineFilterBar'
+import { isSadieEntry } from '../../utils/people'
 import ZoomControls from './ZoomControls'
 import type { ZoomLevel } from './ZoomControls'
 import TimelineGroup from './TimelineGroup'
@@ -17,6 +18,7 @@ export default function TimelineView({ data }: TimelineViewProps) {
   const [activeCategories, setActiveCategories] = useState<Set<EntryCategory>>(new Set())
   const [significance, setSignificance] = useState<EntrySignificance | null>(null)
   const [searchText, setSearchText] = useState('')
+  const [sadieOnly, setSadieOnly] = useState(false)
   const [expandedEntryId, setExpandedEntryId] = useState<string | null>(null)
 
   const filtered = useMemo(() =>
@@ -24,8 +26,8 @@ export default function TimelineView({ data }: TimelineViewProps) {
       categories: activeCategories,
       minSignificance: significance ?? undefined,
       searchText: searchText || undefined
-    }),
-    [data.entries, activeCategories, significance, searchText]
+    }).filter(e => !sadieOnly || isSadieEntry(e)),
+    [data.entries, activeCategories, significance, searchText, sadieOnly]
   )
 
   const groups = useMemo(() => {
@@ -60,6 +62,8 @@ export default function TimelineView({ data }: TimelineViewProps) {
         significance={significance}
         onSignificanceChange={setSignificance}
         onSearchChange={setSearchText}
+        sadieOnly={sadieOnly}
+        onSadieOnlyChange={setSadieOnly}
       />
 
       <div className="space-y-8">
@@ -68,7 +72,7 @@ export default function TimelineView({ data }: TimelineViewProps) {
             key={key}
             label={formatLabel(key)}
             entries={entries}
-            compact={zoomLevel === 'month'}
+            compact={zoomLevel === 'month' && !sadieOnly}
             expandedEntryId={expandedEntryId}
             onToggleEntry={toggleEntry}
           />

@@ -2,7 +2,7 @@
  * Build combined chronicle-data.json from entries, phases, and snapshots.
  */
 
-import { readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -16,6 +16,19 @@ function loadJSON(filename) {
 const entries = loadJSON('entries.json');
 const phases = loadJSON('phases.json');
 const snapshots = loadJSON('snapshots.json');
+// The acts and opening paragraph that frame the chapters (optional).
+const story = existsSync(join(DATA_DIR, 'story.json')) ? loadJSON('story.json') : undefined;
+
+if (story) {
+  const phaseIds = new Set(phases.map(p => p.id));
+  const placed = story.acts.flatMap(a => a.phaseIds);
+  const missing = [...phaseIds].filter(id => !placed.includes(id));
+  const unknown = placed.filter(id => !phaseIds.has(id));
+  if (missing.length || unknown.length) {
+    console.error(`story.json and phases.json disagree. Not in any act: ${missing.join(', ') || 'none'}. Unknown: ${unknown.join(', ') || 'none'}`);
+    process.exit(1);
+  }
+}
 
 // Transform snapshots into codeStats format: { [date]: { totalLines, totalFiles, byCategory } }
 const codeStats = {};
@@ -47,6 +60,7 @@ const dateRange = {
 const chronicleData = {
   entries,
   phases,
+  story,
   codeStats,
   metadata: {
     generatedAt: new Date().toISOString(),

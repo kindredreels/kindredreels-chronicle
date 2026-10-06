@@ -1,0 +1,42 @@
+{
+  "lede": "Kindred Reels turns the photos, clips and voice memories a family or a group of friends collect into one short film. It was built in a year, from an empty repository on October 19, 2025 to the edge of a public beta in October 2026. Dimitri Bilenkin built it working through Claude Code and never wrote code directly. In December his daughter Sadie, a software engineer, joined him. She wrote the backend's first tests and the first browser tests, led the security audit that made it safe to invite people in, and built the first dashboard that watched the app's logs. She was also the person Dimitri talked the design through with, the one he bounced ideas off. 250 pull requests and about 258,000 lines later, this is the story in three acts: making it work, making it good, and making it ready.",
+  "acts": [
+    {
+      "id": "act-1",
+      "numeral": "I",
+      "title": "Making It Work",
+      "subtitle": "October 2025 to January 2026: from an empty repository to films a family would share",
+      "intro": "The first three months were about finding out what the product was. It began as raw commits straight to main and settled into pull requests within five weeks. The big idea arrived early: the heart of the product is a memory, a voice over a few photos, not a single photo. By January the app could take a pile of photos, understand them with Gemini, and render a film with music on the beat, camera moves and real title slides. It also stopped being a one-person codebase: Sadie's first pull request merged on December 8. In three months the code went from nothing to about 122,000 lines.",
+      "phaseIds": [
+        "phase-1",
+        "phase-2",
+        "phase-3"
+      ]
+    },
+    {
+      "id": "act-2",
+      "numeral": "II",
+      "title": "Making It Good",
+      "subtitle": "January to June 2026: broader, safer, and smarter about what goes into a video",
+      "intro": "With the core working, the next five months went into breadth and depth. Events joined tributes, video clips joined photos, and Sadie's security audit opened a hardening pass across every layer. After a quiet April and early May came the two most ambitious pieces of the year: a drag-and-drop timeline editor and a curator that picks photos on merit instead of filling a quota. The way of working matured too. Tests became a gate on every deploy, and in June the documentation was rebuilt against the live cloud so the AI could trust what it read. The code grew to about 175,000 lines.",
+      "phaseIds": [
+        "phase-4",
+        "phase-5",
+        "phase-6"
+      ]
+    },
+    {
+      "id": "act-3",
+      "numeral": "III",
+      "title": "Making It Ready",
+      "subtitle": "July to October 2026: real people arrive, and everything is measured, priced, protected and polished",
+      "intro": "The last act moved fastest: 87 pull requests in fourteen weeks, and about 82,000 lines, nearly a third of the codebase. Strangers began arriving in late August with no launch at all, and real use set the agenda: find what breaks, measure whether anyone watched, decide what to charge, and protect the people already there. The working method grew up with it: a launch tracker of numbered buckets, a parking lot sorted by risk, plain-spoken rules in CLAUDE.md, and four agent roles so each change is planned, built and reviewed separately. It ends where the product does its real job: the film itself, on the beat, moving with purpose, and ready for a public beta.",
+      "phaseIds": [
+        "phase-7",
+        "phase-8",
+        "phase-9",
+        "phase-10"
+      ]
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-import type { ChronicleEntry, ChroniclePhase, EntryCategory, EntrySignificance, CodeStatDay, GrowthChartPoint } from '../types'
+import type { ChronicleAct, ChronicleEntry, ChroniclePhase, ChronicleStory, EntryCategory, EntrySignificance, CodeStatDay, GrowthChartPoint } from '../types'
 
 export function groupEntriesByMonth(entries: ChronicleEntry[]): Map<string, ChronicleEntry[]> {
   const groups = new Map<string, ChronicleEntry[]>()
@@ -180,4 +180,14 @@ export function formatDateRange(start: string, end: string): string {
     return `${sMonth} ${s.getDate()} – ${eMonth} ${e.getDate()}, ${s.getFullYear()}`
   }
   return `${sMonth} ${s.getDate()}, ${s.getFullYear()} – ${eMonth} ${e.getDate()}, ${e.getFullYear()}`
+}
+
+/** The act a chapter belongs to, and the chapter's number across the whole story. */
+export function getChapterContext(
+  phaseId: string,
+  phases: ChroniclePhase[],
+  story?: ChronicleStory
+): { act?: ChronicleAct; chapterNumber: number } {
+  const act = story?.acts.find(a => a.phaseIds.includes(phaseId))
+  return { act, chapterNumber: phases.findIndex(p => p.id === phaseId) + 1 }
 }

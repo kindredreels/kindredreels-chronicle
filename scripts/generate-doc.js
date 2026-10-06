@@ -58,7 +58,7 @@ function categoryLabel(cat) {
 }
 
 const data = loadJSON('chronicle-data.json');
-const { entries, phases, codeStats, metadata } = data;
+const { entries, phases, codeStats, metadata, story } = data;
 
 // Build entriesById lookup
 const entriesById = {};
@@ -85,9 +85,27 @@ lines.push('');
 lines.push(`*Generated ${formatDate(new Date().toISOString().slice(0, 10))} \u2022 ${prCount} pull requests \u2022 ${commitCount} direct commits \u2022 ${formatNum(latestLines)} lines of code*`);
 lines.push('');
 
-// Phases with entries
-for (const phase of phases) {
-  lines.push(`## ${phase.title}`);
+if (story) {
+  lines.push(story.lede);
+  lines.push('');
+}
+
+// Phases with entries, each act opening with its introduction
+const actByPhase = {};
+for (const act of story?.acts ?? []) actByPhase[act.phaseIds[0]] = act;
+
+phases.forEach((phase, index) => {
+  const act = actByPhase[phase.id];
+  if (act) {
+    lines.push(`# Act ${act.numeral}: ${act.title}`);
+    lines.push(`*${act.subtitle}*`);
+    lines.push('');
+    lines.push(act.intro);
+    lines.push('');
+  }
+  lines.push(`## ${index + 1}. ${phase.title}`);
+  lines.push(`*${phase.subtitle}*`);
+  lines.push('');
   lines.push(`*${formatDate(phase.dateRange.start)} \u2013 ${formatDate(phase.dateRange.end)}*`);
   lines.push('');
   lines.push(phase.narrative);
@@ -111,7 +129,7 @@ for (const phase of phases) {
     lines.push(`- ${entryLink(entry)}`);
     lines.push('');
   }
-}
+});
 
 // By the Numbers
 lines.push('## By the Numbers');
@@ -150,7 +168,7 @@ lines.push(`- **Major changes**: ${majorCount}`);
 lines.push(`- **Lines added/removed**: +${formatNum(totalAdditions)} / -${formatNum(totalDeletions)}`);
 lines.push(`- **Current codebase**: ${formatNum(latestLines)} lines across ${statDates.length} measured snapshots`);
 lines.push(`- **Development period**: ${formatDate(metadata.dateRange.start)} to ${formatDate(metadata.dateRange.end)}`);
-lines.push(`- **Phases**: ${phases.length}`);
+lines.push(`- **Chapters**: ${phases.length}${story ? ` in ${story.acts.length} acts` : ''}`);
 if (mostActiveWeek) {
   lines.push(`- **Most active week**: ${mostActiveWeek[0]} (${mostActiveWeek[1]} entries)`);
 }

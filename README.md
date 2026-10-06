@@ -1,14 +1,15 @@
 # Kindred Reels Chronicle
 
-An analytics and storytelling tool for the Kindred Reels project — a 100K+ line production web app built entirely through AI-assisted development with Claude Code. This app tells that story both quantitatively and qualitatively.
+An analytics and storytelling tool for the Kindred Reels project: a 250K+ line production web app built over a year through AI-assisted development with Claude Code, by Dimitri Bilenkin and his daughter Sadie. This app tells that story both quantitatively and qualitatively.
 
 ## Features
 
-The Chronicle app has four interactive views:
+The Chronicle app has these views:
 
 - **Code Stats** — Lines of code over time, category breakdowns, and growth metrics from codebase snapshots
-- **Timeline** — Chronological feed of all development entries (PRs and commit groups) with filtering by category, significance, and search
-- **Chapters** — Phase-based narrative view that groups entries into development chapters with rich context and narratives
+- **Timeline** — Chronological feed of all development entries (PRs and commit groups) with filtering by category, significance, search, and Sadie's work
+- **Overview** — Headline numbers, codebase growth, and the story in three acts
+- **Story** — Ten chapters in three acts, each with a narrative, a code-growth chart and its entries; chapters Sadie worked in carry a callout of her contributions
 - **Growth** — Correlation chart overlaying codebase growth with major development milestones, with brush selection to explore date ranges
 
 ## Setup

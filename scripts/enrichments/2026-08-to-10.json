@@ -1,0 +1,927 @@
+{
+  "186": {
+    "summary": "Friends-and-family feedback pass on the timeline, music and settings, plus the end of DynamoDB full-table scans",
+    "detail": "Tester feedback drove a broad editing pass: Not Included now hides behind a pill, items added from the Library place themselves into sections by date, and one viewer replaced a confusing side-by-side comparison. Music got a per-section chip with inline play, and choosing a track now replaces rather than appends; checking that path found a renderer bug where a chained track ran 1:42 past its own section and over the next one's music. A June bill of $44.10 for DynamoDB, against $3.66 in May, was traced to 2.89 million full-table scans from a local tab polling an endpoint, so the two scans behind routine reads were replaced with index queries. Scripts now refuse to run without an explicit stage, after it emerged the documented prod recipe quietly hit the dev table. The Settings page gained an always-visible save bar, and text invitations stopped saying \"share a memory for null\".",
+    "category": "backend",
+    "tags": [
+      "user-feedback",
+      "timeline-editor",
+      "dynamodb",
+      "cost",
+      "settings",
+      "music"
+    ],
+    "significance": "major"
+  },
+  "187": {
+    "summary": "Every existing video returned 404 after a read moved onto an index; fixed by backfilling the missing keys",
+    "detail": "Moving the video lookup from a full-table scan to an index query broke every video ever made: 0 of 144 dev records and 0 of 75 prod records carried the index keys, so none could be played, downloaded or deleted. The migration had been labelled forward-only, which was wrong because an existing read path was switched onto the new index. A guarded, idempotent backfill script repaired both stages before the PR merged. The key names now live in one shared place, since a writer and reader disagreeing fails silently. The lesson went into the parking lot: unit tests mocked the database, so they all passed while production was broken.",
+    "category": "backend",
+    "tags": [
+      "outage",
+      "dynamodb",
+      "backfill",
+      "migration",
+      "lessons-learned"
+    ],
+    "significance": "moderate"
+  },
+  "188": {
+    "summary": "A polling dashboard burned 964K database reads in an hour; the video list now costs 8 units a read instead of 261",
+    "detail": "A prod read alarm fired when the project video list, polled every three seconds, read every full video record each time, up to 7.5MB on one project. Item counts are now stored on the video record, and the long list of video items moved to a separate sibling record the list never touches, cutting each read from 261 to 8 units. Render jobs on the queue became small pointer messages, which also closed a silent failure where the biggest videos exceeded the 256KB queue limit and waited forever. The renderer accepts both old and new message shapes so deploys can overlap safely.",
+    "category": "backend",
+    "tags": [
+      "cost",
+      "dynamodb",
+      "sqs",
+      "renderer",
+      "performance"
+    ],
+    "significance": "moderate"
+  },
+  "189": {
+    "summary": "Closed the friends-and-family feedback bucket with wording, type size and reassurance fixes",
+    "detail": "\"Excluded\" became \"Not Included\" in the Library, and small timeline text was enlarged after measuring it in the browser. Create Timeline now tells everyone, not just large projects, that nothing is final and the timeline can be recreated, and the recreate confirmation reads as a normal action instead of a warning. A Recreate button joined the timeline header, placed as far as possible from Create Video. A recon found shipped work whose tracker boxes were never ticked, so a new rule says a commit that finishes a tracker item updates the tracker in the same commit.",
+    "category": "frontend",
+    "tags": [
+      "copy",
+      "timeline",
+      "beta-launch",
+      "tracker",
+      "ux"
+    ],
+    "significance": "minor"
+  },
+  "190": {
+    "summary": "Plans and prices arrive: four tiers, gated features, upload caps, a pricing probe, and a rebuilt render progress bar",
+    "detail": "Monetization took shape as four tiers (Free, Standard, Premium, Tribute at $0, $9, $24 and $79), each a strict superset of the one below, with five capabilities gated by tier and upgrades granted free during the beta. Gate prompts now show post-beta prices and record a click, giving the beta its first willingness-to-pay signal. Day-one caps of 1,000 uploads and 10 timeline rebuilds per project use counters that never refund, because the cost is spent at upload. Voice-memory transcripts were removed from the product, and an invite-only signup brake was proven on the deployed sign-up check. Separately, a 4K test render showed the progress bar was driven by about 15 hard-coded numbers, so a new model prices each piece of work in seconds and records predicted against actual time for every render.",
+    "category": "backend",
+    "tags": [
+      "monetization",
+      "pricing",
+      "tier-gating",
+      "beta-launch",
+      "render-progress"
+    ],
+    "significance": "major"
+  },
+  "191": {
+    "summary": "Fitted the render time model to three real renders, landing within 9% at every resolution",
+    "detail": "Three instrumented renders of one 112-item project (720p in 184s, 1080p in 286s, 4K in 932s) replaced guessed constants with measured ones. They showed 4K encoding costs 6.99 times 720p, not the 4.94 used before, and corrected an earlier claim about download time, which was really 10 to 11 seconds. Three structural bugs were fixed: upload was budgeted inside the renderer though it happens after, slideshow runs were counted wrongly, and some segment kinds were never planned. Predictions went from scoring 0.21 to 0.45 against reality to between 0.91 and 0.97.",
+    "category": "processing",
+    "tags": [
+      "render-progress",
+      "measurement",
+      "renderer",
+      "eta"
+    ],
+    "significance": "moderate"
+  },
+  "192": {
+    "summary": "The render estimate stopped wandering, and progress messages were rewritten for people instead of debugging",
+    "detail": "With the model's numbers now right, a watched 4K render still showed 22 minutes, then 16, then 19, peaking at a 41-minute guess for a 15-minute job. Each kind of work now carries its own correction instead of one global factor, so the slow start of a 16-worker pool no longer inflates every estimate; the peak fell from 2.7 times the truth to 1.2. The finish time is smoothed so good news lands at once and bad news arrives slowly. Messages like \"Rendering 116 items at 4K with 16 workers\" became one steady line, \"Building your video (23 of 116)\".",
+    "category": "processing",
+    "tags": [
+      "render-progress",
+      "copy",
+      "ux",
+      "eta"
+    ],
+    "significance": "minor"
+  },
+  "193": {
+    "summary": "Progress copy now says \"voice memories\" and drops a reassurance prefix",
+    "detail": "\"Getting your recordings ready\" became \"Getting your voice memories ready\", the term the rest of the product uses. \"Almost there, saving your video\" became \"Saving your video\" so every line speaks in the same plain voice. Tests now block internal vocabulary and any line that opens with a reassurance prefix.",
+    "category": "processing",
+    "tags": [
+      "copy",
+      "voice-memories",
+      "render-progress"
+    ],
+    "significance": "minor"
+  },
+  "194": {
+    "summary": "Payments built and switched off, and cloud budgets set after finding AWS costs $8 a month, not $150",
+    "detail": "Stripe checkout was wired behind a PAYMENTS_ENABLED flag that ships false, so everything needed to charge exists and nothing can charge. The existing upgrade route became the one place where a payment starts, and the webhook is mounted ahead of the app's JSON parsing so its signature checks cannot silently fail. A cost review overturned the premise behind it: AWS cost about $8 a month, and the one bad month was the June read runaway, already fixed. New budgets went in on both clouds, and an old AWS budget that had been alarming nonstop since 2021 was deleted. Bucket 8, monetization, was marked done.",
+    "category": "infrastructure",
+    "tags": [
+      "payments",
+      "stripe",
+      "cost",
+      "budgets",
+      "monetization"
+    ],
+    "significance": "major"
+  },
+  "195": {
+    "summary": "Contributor uploads survive bad networks, duplicates are caught, and add-photos links work for whole groups",
+    "detail": "A contributor's 168-item batch froze twice in prod. The trigger was their network, but the app could not recover: a stalled upload never ended and permanently took one of five upload slots. Uploads now abort after 60 seconds without progress, retry with backoff, and can really be cancelled, and a cleanup sweep finishes or removes uploads abandoned mid-way. Device uploads gained a duplicate check, and share links can now go to a group, with contributors tracked by device rather than matched by first name. The branch also carried theme and credits work already in progress.",
+    "category": "frontend",
+    "tags": [
+      "uploads",
+      "contributors",
+      "reliability",
+      "dedupe",
+      "share-links"
+    ],
+    "significance": "major"
+  },
+  "196": {
+    "summary": "Add-photos links are always group links, and a hidden invite dialog now appears",
+    "detail": "Testing on dev showed the new group-link toggle had been built into a modal the app never shows, so it was deleted. The \"Who are you inviting?\" question was removed from add-photos links, since naming one person made every visitor appear as that person. A second person on a shared device no longer inherits the first person's name. A separate \"Invite contributor\" button had done nothing because its dialog opened behind the lightbox; it was raised above it.",
+    "category": "frontend",
+    "tags": [
+      "share-links",
+      "contributors",
+      "bug-fix",
+      "dead-code"
+    ],
+    "significance": "minor"
+  },
+  "197": {
+    "summary": "Contributors can import from Google Photos, and duplicate detection actually matches",
+    "detail": "Share-link visitors were shown a Google Photos tab that could only fail, since every route required an account. Six public routes now cover the full import, and a contributor's Google access is kept only briefly and never as a lasting grant, because they cannot see or withdraw it. The duplicate key had included a file's modified time, which changes when a file is copied, so it matched almost nothing; it is now name plus size, and backfills found 180 duplicate groups already sitting in prod. Contributor video uploads also update live instead of spinning until a reload.",
+    "category": "backend",
+    "tags": [
+      "google-photos",
+      "contributors",
+      "dedupe",
+      "privacy",
+      "security"
+    ],
+    "significance": "moderate"
+  },
+  "198": {
+    "summary": "Added the one missing public route that left contributor imports stuck on \"Preparing import...\"",
+    "detail": "The first dev run of contributor Google Photos import hung because one call, counting the picked items, had no public version. Rather than fix only that call, every API call on the contributor path was audited. A cleanup call is now skipped for contributors, and Cancel Import is hidden from them, because cancelling deletes photos already imported and would let anyone with the link delete from the owner's import.",
+    "category": "backend",
+    "tags": [
+      "google-photos",
+      "contributors",
+      "bug-fix",
+      "security"
+    ],
+    "significance": "minor"
+  },
+  "199": {
+    "summary": "YouTube upload rebuilt to resume in chunks, ending triple uploads and endless spinners",
+    "detail": "Uploading a 1GB video produced three stuck copies on YouTube and a dialog that spun forever. The worker loaded the whole file into memory and ran out, the platform retried twice and each retry started a fresh upload, and the crash skipped the code that marks a failure. The file now goes up in 8MB pieces, the upload session is saved before the first byte, and a retry asks YouTube how far it got and continues. A local test killed an upload at 35%, resumed from YouTube's own count, and finished with one video.",
+    "category": "backend",
+    "tags": [
+      "youtube",
+      "uploads",
+      "reliability",
+      "resumable-upload"
+    ],
+    "significance": "moderate"
+  },
+  "200": {
+    "summary": "Music starts with the title on card-less videos, edits stop reverting, and dev CI now matches prod",
+    "detail": "Videos without section cards opened with eight seconds of silence because music started after the first photo; it now begins during the title slide. Trimmed clips appeared to revert because one cache was never refreshed; a single helper now refreshes all of them, and a test fails any hand-written partial refresh. Clip thumbnails broke because a frame name was missing a leading zero, and a cover photo can now come from outside the timeline. The prod landing page had always served its sample video from dev storage, and two dev CI gaps that quietly broke the video-ready email and Cognito email were closed. A new CLAUDE.md rule says to read the deployment table before saying what a merge will deploy.",
+    "category": "frontend",
+    "tags": [
+      "music",
+      "cache-invalidation",
+      "ci",
+      "landing-page",
+      "bug-fix"
+    ],
+    "significance": "moderate"
+  },
+  "201": {
+    "summary": "Frontend deploys get real cache headers, and the landing animation matches the real sample reel",
+    "detail": "Frontend files had shipped with no cache headers, so a returning visitor could miss a deploy for hours. Hashed assets are now cached for a year and index.html is always rechecked. The landing hero animation was rebuilt item for item from the published sample reel: 13 real keepers and 4 real rejects. Clicking play on the sample had seemed to scroll the page, which turned out to be the panel collapsing to 70px for a moment plus the browser's own scroll anchoring; both were fixed.",
+    "category": "frontend",
+    "tags": [
+      "landing-page",
+      "caching",
+      "deployment",
+      "animation"
+    ],
+    "significance": "minor"
+  },
+  "202": {
+    "summary": "A browser smoke test of seven key flows that can run against local, dev or prod",
+    "detail": "A testing recon found every main page sat at 0% test coverage while the layers underneath were well covered. A Playwright suite now walks seven flows: sign in, create, upload, change settings, meet a tier gate, open an invite link, and delete. The old browser suite had silently run nothing for months because it clicked a button that no longer exists. The suite never accepts a tier prompt, since that would pollute the pricing signal, and it costs about a cent per run, so it only runs by hand. It also found that the dev site was reporting to the production analytics account.",
+    "category": "devops",
+    "tags": [
+      "testing",
+      "playwright",
+      "smoke-tests",
+      "beta-launch",
+      "analytics"
+    ],
+    "significance": "moderate"
+  },
+  "203": {
+    "summary": "Deleted projects stopped leaking public thumbnails, and merges now have to pass tests first",
+    "detail": "Three copies of the delete code had drifted, so deleting a project left its photos, clips, search data and share links behind. One shared version now handles all of it. Cloud Run's video thumbnails sat in a public bucket the backend could not clean, leaving 234 frames from deleted prod projects readable; a narrow permission and a cleanup script brought both stages to zero. A new CI check runs tests before a merge rather than only before a deploy. That exposed a frontend suite failing about half its runs from timers firing after tests ended, which was fixed across 14 components, and 324 skipped tests were deleted.",
+    "category": "infrastructure",
+    "tags": [
+      "privacy",
+      "data-deletion",
+      "ci",
+      "flaky-tests",
+      "gcs"
+    ],
+    "significance": "major"
+  },
+  "204": {
+    "summary": "Queued jobs no longer retry forever after their project is deleted, and a second public leak closed",
+    "detail": "Checking the thumbnail fix on prod found two video-analysis tasks retrying for over a day against a deleted project, at attempts 42 and 43 of 100, paying for 85 analyses that could never succeed. The worker now checks the source still exists and reports the job as obsolete, and the queues now allow 3 attempts instead of 100. The frames sweep had always looked in the wrong bucket, so every deleted project's frames stayed public; the code was fixed and 636 prod objects removed. The backend role also gained the permissions it needed to list and delete stored files.",
+    "category": "infrastructure",
+    "tags": [
+      "cost",
+      "cloud-tasks",
+      "privacy",
+      "data-deletion",
+      "reliability"
+    ],
+    "significance": "moderate"
+  },
+  "205": {
+    "summary": "Closed the last three parking-lot items: public bucket listing, an 8K memory crash, and orphaned data",
+    "detail": "The public file buckets could be listed by anyone; they now allow only fetching a known file, checked step by step on dev and prod. The suspected memory leak was really an 8K video, so clips are now capped at 4K with limited threads, using 64% less memory and running 3.9 times faster. Orphaned project data turned out to be wider than search rows: 7,715 leftover rows on dev and 785 on prod were removed. The cleanup refused to run when it found test debris in the dev table, and that check was kept strict.",
+    "category": "infrastructure",
+    "tags": [
+      "parking-lot",
+      "privacy",
+      "memory",
+      "data-cleanup",
+      "ffmpeg"
+    ],
+    "significance": "moderate"
+  },
+  "206": {
+    "summary": "Fixed modals updating after they close, and added two working rules: own every bug, and write plainly",
+    "detail": "The pre-push check caught an error from a modal that saved, closed, and then updated itself. Nine such cases across five files were fixed, while one lookalike was checked and left alone. Two new CLAUDE.md rules shaped the AI-assisted workflow: \"You Wrote All Of This Code\" forbids calling a bug someone else's or pre-existing, and \"Write Plainly\" asks for ordinary words and short sentences. The beta tracker closed the testing bucket after the smoke suite passed 11 of 11 against prod, and the target launch moved to the end of September 2026.",
+    "category": "docs",
+    "tags": [
+      "claude-md",
+      "process",
+      "flaky-tests",
+      "beta-launch",
+      "writing"
+    ],
+    "significance": "moderate"
+  },
+  "207": {
+    "summary": "Fixes from a watched session with tester Joe: section cards made optional, rebuild limit checked earlier",
+    "detail": "Eight items from watching one tester use the app closed bucket 1 of the launch tracker. The rebuild limit used to be checked only after a full analysis had already run and wiped the Not Included column; it is now checked first and shown in the UI. Videos can now skip section title cards, with the music timeline adjusted so it does not count cards that are not there. A new shared constants file feeds the backend, frontend and renderer from one place. Cover tiles that looked broken were dev clips pointing at the prod image host, and they now say \"No preview\" instead of showing a broken image.",
+    "category": "frontend",
+    "tags": [
+      "user-testing",
+      "section-cards",
+      "timeline",
+      "beta-launch",
+      "ux"
+    ],
+    "significance": "moderate"
+  },
+  "208": {
+    "summary": "Large projects can make videos again: the render job moved to S3, and project deletes run in the background",
+    "detail": "A new user with 327 photos pressed Make video eight times, and each attempt failed silently because the job was too big for one database record, which fails somewhere between 277 and 361 items. The job now lives in S3 and the record holds only a pointer, proven on dev with a 450-item, 418MB render. Deletes of big projects had been timing out halfway, so they now return at once and finish in a background worker. The same run showed the renderer had never been allowed to detect faces. Earlier recons found about 30 strangers arriving since late August, apparently through ChatGPT, and showed which of them were blocked by errors they could not see.",
+    "category": "backend",
+    "tags": [
+      "renderer",
+      "s3",
+      "scalability",
+      "strangers",
+      "reliability"
+    ],
+    "significance": "major"
+  },
+  "209": {
+    "summary": "Releases now deploy the renderer before the backend",
+    "detail": "The renderer reads what the backend writes, so it has to be updated first, but the release workflow did the opposite and any render started in the gap failed. Twice the prod renderer had to be deployed by hand ahead of a release. The workflow now deploys the renderer first, with a guard so a manual run that skips the renderer still deploys the backend. Releases are slower, and dev merges still race, which was recorded as a known gap.",
+    "category": "devops",
+    "tags": [
+      "ci",
+      "deployment",
+      "renderer",
+      "release"
+    ],
+    "significance": "minor"
+  },
+  "210": {
+    "summary": "The cover photo shows up on a phone again, and the phone preview now picks the same fallback cover the video uses",
+    "detail": "A user on a phone saw no cover photo and no way to set one, though the project had one and the video used it. The mobile timeline passed only one of the five props the Create Video dialog needs for its Cover Photo section, so the whole section silently never rendered. While fixing it, a second bug turned up: mobile had its own copy of the cover logic that fell back to the first photo, while the renderer falls back to the last photo of the last section. The copy was deleted in favour of the shared helper, and a new test checks the props at the boundary, with four of its five assertions failing on the old code. FRONTEND.md now warns that desktop and mobile are two separate implementations of the same dialog and has drifted twice.",
+    "category": "frontend",
+    "tags": [
+      "mobile",
+      "cover-photo",
+      "create-video",
+      "bug-fix",
+      "drift"
+    ],
+    "significance": "minor"
+  },
+  "211": {
+    "summary": "The Create button in Choose Video Length stays on screen on phones, and dev deploys now run renderer first, like prod",
+    "detail": "On a phone the Create button in the length picker sat under the bottom navigation and could not be scrolled into view. Three layout faults caused it: the overlay ran under the nav, the panel height ignored the nav, and the scroll box grew instead of scrolling. All three now match the other dialogs, and the button is pinned to the bottom of the scroll area, checked by measuring in Chrome at a 375px width. The PR also corrected the previous PR's claim that Chrome could not render a phone width: a 2x screenshot had been misread. Separately, a new deploy-dev workflow now owns the merge trigger and deploys the renderer before the backend, because the faster backend deploy had been winning the race on almost every merge.",
+    "category": "devops",
+    "tags": [
+      "mobile",
+      "layout",
+      "ci",
+      "deploy-order",
+      "github-actions"
+    ],
+    "significance": "moderate"
+  },
+  "212": {
+    "summary": "Every deploy workflow now runs one at a time per target, after two runs nearly broke the dev renderer",
+    "detail": "Merging the previous PR fired two push events for the same commit 31 seconds apart, and both runs began copying renderer code onto the same EC2 machine at once. The duplicate was cancelled and the machine survived only because the right run finished its copy last, by seventeen seconds. Every deploy workflow now has its own concurrency group, so a second run waits instead of overlapping. Unlike CI checks, deploys are never cancelled midway, since that would leave half-copied files on a live machine. The called workflows got separate group names so a manual renderer redeploy is also covered without deadlocking the caller.",
+    "category": "devops",
+    "tags": [
+      "ci",
+      "concurrency",
+      "github-actions",
+      "renderer",
+      "incident"
+    ],
+    "significance": "minor"
+  },
+  "213": {
+    "summary": "The new project delete worker actually runs, and a worker that dies before starting now emails the founder",
+    "detail": "The background worker that deletes projects shipped and never completed a single delete: it crashed on load because a face-service import pulled in an image library the worker did not have. The library now loads only inside the one function that uses it, and a new test walks every Lambda's imports and fails if one without that library can reach it. A new failure handler runs outside the failing worker and emails the founder when a background job dies before its own error handling can run. The fix also found that the delete never removed per-user preference rows, now part of the cascade. Only two internal test projects had been stuck, and prod ended with 83 projects and zero orphaned rows. The PR also added the customer-emails skill describing how the founder writes to users.",
+    "category": "backend",
+    "tags": [
+      "project-deletion",
+      "lambda",
+      "monitoring",
+      "regression-test",
+      "data-cleanup"
+    ],
+    "significance": "moderate"
+  },
+  "214": {
+    "summary": "Vertical phone clips are cropped to fill the frame instead of appearing as a thin strip",
+    "detail": "In finished videos, many vertical clips showed as a 9:16 strip using 32% of the width. Phone video is usually stored landscape with a flag that says to rotate it, and the app recorded the raw landscape size, so the renderer thought the clip was not vertical and skipped the crop. The renderer now measures the downloaded file itself and swaps width and height when it is rotated a quarter turn, which fixes every existing clip on its next render with no backfill. The same wrong size meant the clip analysis never asked where the action was in rotated video, so only 18 of 400 sampled clips had a crop centre. On the real prod video the strip went from 32% of the width to a 56% square, which is deliberate so cropping does not throw away what people want to see.",
+    "category": "processing",
+    "tags": [
+      "video-clips",
+      "rotation",
+      "cropping",
+      "renderer",
+      "ffmpeg"
+    ],
+    "significance": "moderate"
+  },
+  "215": {
+    "summary": "An outreach log records every email sent to users, so the next wave never contacts someone twice",
+    "detail": "Twenty-one emails went to real beta users on Sep 15 in two waves, all sent by hand, and the only record of who got what was one ignored local file. A new outreach record, the mirror of user feedback, stores each email sent, with an admin page and a last-contacted column on the users list. It keeps the Gmail thread id so replies could be read later, and a channel field so sending from the app can be decided later without changing records. Sending and automatic reply detection were left out on purpose, because the feedback inbox had shown that more screens do not get things read. A Gmail labelling rule was written down, and the backfill of all 21 emails ran on both stages.",
+    "category": "backend",
+    "tags": [
+      "outreach",
+      "admin",
+      "beta-users",
+      "data-model",
+      "customer-contact"
+    ],
+    "significance": "moderate"
+  },
+  "216": {
+    "summary": "Public pages are prerendered so search engines and AI crawlers can read them for the first time",
+    "detail": "Strangers had been finding the site since late August, yet every public URL served the same empty shell with 37 characters of visible text, and robots.txt, sitemap.xml and llms.txt all returned that shell too. Public routes are now prerendered at build time with a headless browser, the landing page went from 37 to about 5,200 characters of visible text, and the three crawler files exist as real files. Pages use trailing-slash addresses to avoid a redirect, and each prerendered page carries a small guard so deep links into the app do not flash the landing page. Two workflow fixes came with it: a one-year cache rule would have frozen the new pages, and CI had to install a browser to build. A check script now fails if a page stops being readable.",
+    "category": "frontend",
+    "tags": [
+      "seo",
+      "prerendering",
+      "crawlability",
+      "organic-acquisition",
+      "sitemap"
+    ],
+    "significance": "major"
+  },
+  "217": {
+    "summary": "A shared video link previews an image from the reel instead of the site logo, and uses the user's own story",
+    "detail": "Sampling four live share pages, three showed the generic site card instead of anything from the video. Covers were often unset, clip covers resolved to nothing, and using the original photo would have been too large for link previews, which cap images near 5MB. The preview image is now chosen once when the share is created, in the same order the app uses for covers, and stored on the share so each crawler visit costs one read. A backfill stamped the links already sent to families: 23 of 24 on prod. The description now falls back to the story the user wrote, since none of 21 shared projects had a subtitle. The PR also added tagged signup links and made the social preview image generated from a template rather than baked pixels.",
+    "category": "backend",
+    "tags": [
+      "sharing",
+      "link-previews",
+      "open-graph",
+      "backfill",
+      "signup-attribution"
+    ],
+    "significance": "moderate"
+  },
+  "218": {
+    "summary": "Docs record what the v0.1.26 release did, including API throttling that finally took effect in prod",
+    "detail": "The prod API had run without throttling since March even though the config defined it, and the v0.1.26 release applied it, closing an operations issue nobody was working on. Two facts about releasing were recorded: a release tag deploys the prod renderer even when no renderer code changed, and the release script can be driven without a person at the keyboard by piping in the confirmation. The changelog entry notes the landing page at 5,218 characters of visible text and 23 of 24 share pages showing the real video. A Search Console warning was recorded as a lagging status page, not a failure.",
+    "category": "docs",
+    "tags": [
+      "release",
+      "throttling",
+      "deployment",
+      "changelog"
+    ],
+    "significance": "minor"
+  },
+  "219": {
+    "summary": "The funnel now measures whether anyone played, finished, downloaded or rewatched a reel",
+    "detail": "The funnel stopped at sharing, a high bar for personal videos that almost nobody cleared, so nothing showed whether people liked what they got. Counters on the video record and the share record now track plays, watch-through milestones, downloads and repeat views, written as simple atomic adds rather than a new event log. Watched means 90% of the reel itself, not counting the credits. Repeat views on public links need no viewer id: the browser remembers on its own whether it has played before. Three numbers worked at once from existing data, such as 5 of 19 finished dev reels put on YouTube, and a per-video drill-down explains odd figures. Testing found two bugs before merge, including one that would have stuck the repeat marker forever.",
+    "category": "backend",
+    "tags": [
+      "analytics",
+      "engagement",
+      "funnel",
+      "admin",
+      "privacy"
+    ],
+    "significance": "moderate"
+  },
+  "220": {
+    "summary": "The per-video engagement table reports when a reel was last played instead of always showing nothing",
+    "detail": "The last-played time was written correctly but never included in the list of fields the funnel read requests, so the drill-down showed null for every video. A missing field in that list throws no error, so the fix came with a test that checks the requested fields against the counter config and the funnel stages. Checking on dev also gave the first end-to-end proof of the previous PR: a full watch fired all four milestones and a half watch fired two. The same check found that a video whose file has expired fails silently in the player, which was parked.",
+    "category": "backend",
+    "tags": [
+      "analytics",
+      "engagement",
+      "dynamodb",
+      "regression-test"
+    ],
+    "significance": "minor"
+  },
+  "221": {
+    "summary": "The admin Recompute button works for the first time on a deployed stage, and a flaky test stops blocking pushes",
+    "detail": "Recompute on the admin funnel page had returned an error on both stages since July, because the API role was never allowed to call the snapshot function. It hid for two months: the nightly schedule calls that function by another route, and local dev runs the snapshot in-process. The error banner was also unreadable in the light theme, pale pink on pale pink, and now uses the theme colours. A second fix stopped a voice-memory test that finished its upload after the test ended, which had failed about one full run in three; it passed ten of ten after.",
+    "category": "backend",
+    "tags": [
+      "admin",
+      "iam",
+      "funnel",
+      "flaky-test",
+      "theming"
+    ],
+    "significance": "minor"
+  },
+  "222": {
+    "summary": "Six sessions of timeline-quality work: better picks, correct dates, clips judged like photos, easier editing",
+    "detail": "About 30 strangers found the site from late August, and hand-reviewing the 23 timelines they made showed the pipeline choosing the wrong items and too many of them. One curator now runs for every video length, photo scores carry a decimal so they stop tying, weak photos are dropped by a rule in code, and video clips get the same judgements and gates as photos. Sideways video is now detected at import by asking only whether a picture is upright, which also cut per-photo upload cost from $0.00359 to $0.00134. Dates got fixed at the root: the capture time inside every video had never been read, and six sort orders became one. The cover photo is chosen as an opening shot, one call picks how the video opens and ends, and removing items and seeing why something was left out got easier. A check for photos and clips of the same moment was built and switched off, and the length picker now says 'up to' instead of promising a count.",
+    "category": "ai",
+    "tags": [
+      "timeline-quality",
+      "curation",
+      "video-clips",
+      "dates",
+      "evaluation",
+      "timeline-editor"
+    ],
+    "significance": "major"
+  },
+  "223": {
+    "summary": "Two outdated smoke test checks were fixed, and the gap one exposed stops edits recreating deleted photos",
+    "detail": "The browser smoke test against dev failed two of eleven steps, and both were tests expecting old behaviour: a trailing slash on About, and a project delete that is now done in the background. Chasing the second found that three routes kept serving a project already being deleted. One of them was risky: editing a photo after the delete had removed it would write the row back with no project. One shared check now treats a project being deleted as gone on all of them, while photo deletes stay allowed on purpose. A modal test that finished saving after the test ended was also fixed.",
+    "category": "backend",
+    "tags": [
+      "smoke-tests",
+      "project-deletion",
+      "e2e",
+      "flaky-test",
+      "api"
+    ],
+    "significance": "minor"
+  },
+  "224": {
+    "summary": "Tier 1 security pass: face consent, true privacy terms, scoped share links, no hijacked accounts",
+    "detail": "With strangers using the app since August 22, every open parking lot item was re-checked against the code and cloud and rewritten into one list sorted into seven risk tiers. Tier 1 meant protecting people already using it. Tribute face matching now asks for consent before any face template is made, and the privacy policy and terms were rewritten to describe what the product actually does. Share links can now do only what their kind allows, a password signup on a Google account's email is refused, and a failed Google refresh no longer writes the user's token into the logs. Analytics no longer receives share codes, a failed Create Timeline emails the founder, and the renderer stops re-running renders it already failed. Each fix was built separately and reviewed by an independent agent.",
+    "category": "backend",
+    "tags": [
+      "security",
+      "privacy",
+      "launch-readiness",
+      "consent",
+      "parking-lot",
+      "auth"
+    ],
+    "significance": "major"
+  },
+  "225": {
+    "summary": "Tier 1 part 2: users can delete their account, admins see whole projects, and monitoring is prepared",
+    "detail": "A new Account page lets a user delete everything after typing DELETE: projects, media, face templates, music, Google connections revoked at Google, then the sign-in itself, followed by a confirmation email. Admin delete uses the same background path, so it no longer times out on large accounts. Fixes include an email containing a quote that could change what an account lookup matched, and a renderer retry limit that could never trigger because the queue gave up first. The rest was groundwork applied later by hand: signed per-job tokens for video callbacks, a deep health check that reads the database, 16 prod alarms for about $2.50 a month, and narrower renderer permissions. Every piece was built separately and independently reviewed.",
+    "category": "backend",
+    "tags": [
+      "account-deletion",
+      "security",
+      "monitoring",
+      "launch-readiness",
+      "admin"
+    ],
+    "significance": "major"
+  },
+  "226": {
+    "summary": "Stored Google Photos and YouTube tokens are encrypted, and disconnecting now really revokes access",
+    "detail": "Google tokens that reach a user's photos and channel were stored as plain text on the user record. They are now encrypted with a per-stage key before storage, tied to the user, provider and field so a copied value will not decrypt. The user record no longer carries tokens at all, and one reader decrypts them when needed. Disconnect now revokes with the long-lived token; before, Google refused the usually expired one and the grant stayed live. Merging with account deletion exposed a quiet break, deletion would have stopped revoking Google access, which was fixed and tested. A dry-run migration found 3 connections to encrypt on dev.",
+    "category": "infrastructure",
+    "tags": [
+      "security",
+      "encryption",
+      "oauth",
+      "google-photos",
+      "youtube"
+    ],
+    "significance": "moderate"
+  },
+  "227": {
+    "summary": "Section title cards are off by default, and post-credits photos stay after the credits without them",
+    "detail": "Videos now play as one continuous slideshow unless the owner turns on the short cards that name each section, and the setting explains what they add. Before flipping the default, a bug had to go: the renderer found post-credits items by looking for the title card, so with cards off those photos would have played before the credits. Now an item is post-credits when its own section is, through one shared function. With cards off, the music mix also kept each section's volume settings, and a crossfade no longer runs across the credits. With cards on, an independent review got identical timelines on main and the branch, to the millisecond.",
+    "category": "processing",
+    "tags": [
+      "renderer",
+      "section-cards",
+      "post-credits",
+      "defaults",
+      "music"
+    ],
+    "significance": "moderate"
+  },
+  "228": {
+    "summary": "The renderer deploys without SSH, and CI signs in to AWS with short-lived credentials instead of the founder's key",
+    "detail": "CI had been signing in to AWS with the founder's personal administrator key and copying renderer code over SSH, which kept a remote-login port open to the whole internet. One deploy script, used from the laptop and CI alike, now packages the renderer, uploads it, and installs it through AWS's remote command service, so no port is needed. It restarts the service, fixing an old laptop deploy that did nothing to a running renderer, and it checks the stage against the machine's tags. CI now gets one short-lived role per stage, with policies checked against two days of real CI activity. The dev rehearsal passed first time.",
+    "category": "devops",
+    "tags": [
+      "security",
+      "ci",
+      "deployment",
+      "renderer",
+      "launch-readiness"
+    ],
+    "significance": "major"
+  },
+  "229": {
+    "summary": "Adding a section opens a New Section dialog and creates nothing until you press Create",
+    "detail": "Add Section and Add Post-Credits Section used to create the section on the server first and then open an editor for it. So Create stayed greyed out until a field changed, and Cancel left an empty section behind. The dialog now opens in a create mode with the default title filled in, Create is enabled whenever there is a title, and Cancel creates nothing. A failed create keeps the dialog open with what was typed. The hints now say titles show only when title cards are turned on.",
+    "category": "frontend",
+    "tags": [
+      "timeline-editor",
+      "sections",
+      "dialog",
+      "ux"
+    ],
+    "significance": "minor"
+  },
+  "230": {
+    "summary": "Four agent definitions formalize the working style: recon, builder, reviewer and integrator",
+    "detail": "The orchestrator way of working that produced the tier 1 security branches got written down as four subagent definitions. Recon investigates without changing anything and writes reports. Builder makes one change in its own isolated copy of the repo, runs the full checklist and commits. Reviewer gives an independent verdict, and integrator combines branches and resolves conflicts. None of them may push, deploy or change cloud state.",
+    "category": "docs",
+    "tags": [
+      "claude-code",
+      "agents",
+      "workflow",
+      "process"
+    ],
+    "significance": "moderate"
+  },
+  "231": {
+    "summary": "The old SSH renderer deploy is deleted now that remote login is closed and the old keys are gone",
+    "detail": "With the renderer deploying only through the new remote command path, port 22 was closed on both renderer machines and the SSH key and personal AWS key secrets were removed from GitHub. The old SSH deploy script could no longer reach either machine, so it was deleted. Rolling back a renderer now means running the same deploy from an earlier checkout. The personal AWS key was rotated, and several new issues found along the way were parked, including old music tracks with no length.",
+    "category": "devops",
+    "tags": [
+      "security",
+      "deployment",
+      "cleanup",
+      "renderer",
+      "parking-lot"
+    ],
+    "significance": "minor"
+  },
+  "232": {
+    "summary": "The dev renderer runs on its own narrow role, with one permission added so deploy logs land",
+    "detail": "The dev renderer was moved onto its own small permission set instead of a broad shared one. Its first check found one gap: the deploy agent lists log groups before writing, and gives up when that is denied, so deploy output never reached the log. Deploys still worked, only the saved copy was lost. One list permission was added to both stage roles, and the runbook records the workaround AWS needed when it refused the documented role swap.",
+    "category": "infrastructure",
+    "tags": [
+      "iam",
+      "least-privilege",
+      "renderer",
+      "logging"
+    ],
+    "significance": "minor"
+  },
+  "233": {
+    "summary": "A refused Create Video shows the real reason, and old user music tracks can get their length back",
+    "detail": "When the backend refused to start a video, the timeline still said 'Video generation started' and then nothing appeared, because the error was caught and treated as success. One shared hook now shows exactly one message: the backend's own reason with the dialog left open, or 'started' with it closed. Many user music tracks uploaded before June had no stored length, 14 of 29 on prod, which made the pickers warn of silence and the render refuse. The pickers now say the length is unknown, and a new script reads each missing length from the file, not yet run on either stage. A related renderer bug that drops such tracks was parked separately.",
+    "category": "frontend",
+    "tags": [
+      "create-video",
+      "error-handling",
+      "music",
+      "backfill",
+      "ux"
+    ],
+    "significance": "minor"
+  },
+  "234": {
+    "summary": "Uploaded songs stop vanishing from the middle of a music chain",
+    "detail": "When a section had two songs in a row, an uploaded song that was not the last one disappeared from the video. The renderer only read a track's length from the field library songs use, while uploaded songs store theirs differently, so the length came out as zero and the mixer skipped the song without a word. One helper now reads either field, and a track with no recorded length is measured from the downloaded file. The measuring step was hardened so an unreadable song drops only itself, never the whole render. 327 processing tests pass, and the new ones fail on the old code.",
+    "category": "processing",
+    "tags": [
+      "music",
+      "renderer",
+      "bug-fix",
+      "audio",
+      "parking-lot"
+    ],
+    "significance": "minor"
+  },
+  "235": {
+    "summary": "Crashed timeline builds now email the founder, and the backend's cloud roles get a hard permissions ceiling",
+    "detail": "A Create Timeline run that timed out, ran out of memory or crashed on start used to leave only a bare error with no project id. The worker now sends a 'Background job crashed' email naming the project and step, and AWS no longer retries it, because a rerun would replay up to 15 minutes of paid analysis calls that almost always fail the same way. The same PR put a per-stage permissions boundary on both of the backend's Lambda roles: a ceiling that allows exactly what the live roles use and narrows four grants that could reach the other stage. A test fails CI if the deploy config ever grants something outside that ceiling. The boundary policies were created by hand before the merge, following a step-by-step runbook.",
+    "category": "infrastructure",
+    "tags": [
+      "security",
+      "iam",
+      "monitoring",
+      "lambda",
+      "alerts"
+    ],
+    "significance": "moderate"
+  },
+  "236": {
+    "summary": "The landing page gets 'The Loom', a 20-second animated reel showing how a video is made",
+    "detail": "The landing page's 'how it works' animation was replaced by a 20-second reel built with Remotion and played in the page. Uploads fly in from three phones, duplicates merge, blurry shots shatter, the keepers line up in story order and each contributor's thread stitches through their shots before the row turns into a film strip over a beat track. It ends with a projector run-off, a montage cut on the beat and the reel's title card, and a chapter bar lets visitors jump to any step. Every value is computed from the frame number, so it seeks exactly. The player loads lazily in its own bundle and starts muted, because the audio clock otherwise stayed frozen on frame 0.",
+    "category": "design",
+    "tags": [
+      "landing-page",
+      "animation",
+      "remotion",
+      "hero",
+      "marketing"
+    ],
+    "significance": "major"
+  },
+  "237": {
+    "summary": "Videos now end on an animated Weave logo with music playing under the credits",
+    "detail": "Finished videos used to end on a still 'Thanks for watching' card in about 14 seconds of silence, because the music stopped with the last photo. Now the credits open on the film's real last frame, fade to the theme's color, and the Kindred Reels mark draws itself as two lines that glide together and link before the usual card fades up. The last song keeps playing and fades out once over the final 3 seconds. Dimitri chose this ending from five prototypes, and it is rendered frame by frame with the renderer's existing browser, so nothing new was installed. Credits shorter than 8 seconds, or any failure, fall back to the old still card, and a frozen browser or encoder can no longer hang a render. The default credits length also dropped from 15 to 10 seconds, read from one shared constant.",
+    "category": "processing",
+    "tags": [
+      "video-ending",
+      "credits",
+      "animation",
+      "music",
+      "branding"
+    ],
+    "significance": "major"
+  },
+  "238": {
+    "summary": "The parking lot gains a 'Where we left off' box and eleven new animation findings",
+    "detail": "The parking lot, the project's list of open issues, now opens with a 'Where we left off' box that is rewritten at every stopping point so work can resume cleanly. That evening's box recorded release v0.1.31 going to prod with the new permissions boundary on both prod roles, plus the Loom hero and the Weave ending shipping the same day. Three read-only reports on animation and motion were checked against the code and parked as items #118 to #128. They include the app ignoring 'reduce motion', caption fades that never worked, and beat sync that never actually put cuts on the beat.",
+    "category": "docs",
+    "tags": [
+      "parking-lot",
+      "planning",
+      "accessibility",
+      "animation",
+      "release"
+    ],
+    "significance": "minor"
+  },
+  "239": {
+    "summary": "Security tier 1 is nearly done: six items closed with evidence and an unused face-service trial removed",
+    "detail": "A docs pass brought the reference docs and runbooks in line with what was actually applied in the cloud, every claim checked read-only against live AWS and Google Cloud. Six parking lot items were closed with the evidence behind each, and three new ones parked, including text-message invites that would fail on prod. The infrastructure doc had wrongly said prod had no API throttling and called monitoring and signing keys 'planned' when they all existed. The source for an abandoned trial of a self-hosted face recognition service was deleted, since nothing used it and its cloud service was already gone. No app behavior changed.",
+    "category": "docs",
+    "tags": [
+      "security",
+      "documentation",
+      "cleanup",
+      "parking-lot",
+      "audit"
+    ],
+    "significance": "minor"
+  },
+  "240": {
+    "summary": "The repo's deploy policies now match the tightened ones live in the cloud",
+    "detail": "Both GitHub deploy roles had been tightened so they could only write backend roles that carry the new permissions boundary. This PR moved those tightened policy files over the old ones in the repo and removed the temporary helper policies, so the repo matches what is applied. The boundary test now reads only the applied files, and the deployment doc gained a rule: a new Lambda permission needs the live boundary updated by hand before the merge. The item stayed open until the next release deployed under the tightened prod role.",
+    "category": "infrastructure",
+    "tags": [
+      "security",
+      "iam",
+      "ci",
+      "deploy-policy",
+      "documentation"
+    ],
+    "significance": "minor"
+  },
+  "241": {
+    "summary": "Dev Cloud Run deploys sign in to Google Cloud without a stored key",
+    "detail": "The video analyzer's CI deploy used a never-expiring key for an account that could deploy anything in the Google Cloud project. The dev workflow now uses federation instead: GitHub hands the job a short-lived token, and Google trades it for one-hour credentials of a small per-stage deploy account, the same pattern the AWS jobs already used. A guard step refuses to deploy a service that is not already running as its own dedicated account, so a prod dispatch could not change prod's account early. The pool, provider and deploy accounts were created by hand, recorded in a new runbook with a check and rollback for each remaining step.",
+    "category": "devops",
+    "tags": [
+      "security",
+      "ci",
+      "google-cloud",
+      "workload-identity",
+      "cloud-run"
+    ],
+    "significance": "moderate"
+  },
+  "242": {
+    "summary": "Releases deploy Cloud Run without the stored Google key, and tier 1 cloud steps are recorded",
+    "detail": "The release workflow's Cloud Run job now signs in the same keyless way the dev workflow does, deploys the pushed image by its exact digest, and runs prod as its own dedicated account. After this, no workflow read the old long-lived key, which was kept only as a rollback. The docs recorded what had been applied and proven between Sep 28 and Oct 2: the prod video analyzer on its own account, the prod renderer on its own AWS role (checked with a real prod render), and an old security group and old personal AWS key deleted. One gap was parked: both renderers still shared a Google Cloud key that could reach both stages.",
+    "category": "devops",
+    "tags": [
+      "security",
+      "ci",
+      "google-cloud",
+      "release",
+      "workload-identity"
+    ],
+    "significance": "moderate"
+  },
+  "243": {
+    "summary": "Video callbacks accept only per-job tokens, and deleted videos stop coming back as ghosts",
+    "detail": "The renderer and the clip analyzer report back to the backend through callbacks that used to accept either a per-job signed token or an old shared password. Both stages had run on tokens alone for over 72 quiet hours, so the password was removed. The one stray password use in that window exposed a real bug: a user deleted a video 4 seconds after queueing it, the renderer retried, and a database write quietly recreated the deleted record and emailed a failure for a video that no longer existed. Seven such ghost records were found. Now every update to a video record, on both the renderer and backend side, only lands if the record still exists, so a deleted video gets no write, no email and no retry.",
+    "category": "backend",
+    "tags": [
+      "security",
+      "callbacks",
+      "data-integrity",
+      "renderer",
+      "bug-fix"
+    ],
+    "significance": "moderate"
+  },
+  "244": {
+    "summary": "Security tier 1 ships to prod in v0.1.32 and two long-running items close",
+    "detail": "Release v0.1.32 carried tier 1's last code to prod, and this docs-only PR recorded what followed. The permissions boundary item closed once the prod backend deployed under the tightened deploy role. The callback item closed with the old shared callback secrets scheduled for deletion. The keyless Google Cloud release check passed and the old stored key was disabled. The 'Where we left off' box was rewritten for a break.",
+    "category": "docs",
+    "tags": [
+      "security",
+      "release",
+      "parking-lot",
+      "milestone",
+      "secrets"
+    ],
+    "significance": "minor"
+  },
+  "245": {
+    "summary": "A photo pace setting (Relaxed, Normal, Fast), and photo changes that finally land on the beat",
+    "detail": "A user wrote in on Oct 1 that photos stayed on screen too long and asked for about one second per photo, and there was no way to change it. Each project now has a photo pace, picked in the Create Video dialog or Settings, with a length estimate for each option. Making the paces line up with music meant rewriting how the renderer times photos: the old beat sync spaced photos like the music but never actually put the changes on the beat. Now every photo lasts a whole number of beats or bars, cuts are placed on the beat grid even after clips and song handovers, and on five test tracks cuts land within 17 ms of a beat. If a faster or slower pace leaves a section short of music, a same-mood track is added and named on screen. The work also fixed four timing bugs nobody had logged, including a fade that never played and cuts drifting up to 6 seconds late over a long section.",
+    "category": "processing",
+    "tags": [
+      "photo-pace",
+      "beat-sync",
+      "music",
+      "renderer",
+      "user-feedback",
+      "settings"
+    ],
+    "significance": "major"
+  },
+  "246": {
+    "summary": "Photos get real camera moves: zoom in, pull back or pan, chosen from what is in each one",
+    "detail": "Almost every photo in a video zoomed in by a faint 5% and barely moved, because the suggested camera moves from photo analysis had not reached the renderer since February and panning had been removed in 2025. One new camera module now picks a move for every photo from its faces and subject: one or two people zoom in, groups and small faces start close and pull back, and photos with no people pan toward the subject. A face is never cut off, and no three zooms in a row go the same way. The rules came from side-by-side test renders of a real project that Dimitri picked from. The module replaced three copies that had drifted apart and gained 52 tests where there were none.",
+    "category": "processing",
+    "tags": [
+      "camera-motion",
+      "ken-burns",
+      "renderer",
+      "faces",
+      "video-craft"
+    ],
+    "significance": "major"
+  },
+  "247": {
+    "summary": "Voice recordings in videos lose the static they had picked up",
+    "detail": "Every voice recording in a rendered video had audible static. The renderer added a second of silence before each recording by joining a silent clip to the voice, and on the newer FFmpeg that silent clip was 8-bit, so joining them cut the whole voice down to 8 bits. It was saved as 16-bit again afterwards, which hid the problem until the audio was measured step by step. The fix delays the voice by a second instead, so there is only one input and nothing to convert. High-frequency noise dropped back from -39 dB to -75 dB relative to the voice, and a full render of the tribute sample was checked by ear.",
+    "category": "processing",
+    "tags": [
+      "audio",
+      "voice-recordings",
+      "ffmpeg",
+      "bug-fix",
+      "renderer"
+    ],
+    "significance": "moderate"
+  },
+  "248": {
+    "summary": "Gentler photo zooms: no racing on portrait photos, real movement on close-ups",
+    "detail": "A render of the tribute sample showed two problems with the new camera. Portrait photos with a small face near the top slid up to 27% of the frame while zooming, and photos full of faces barely moved at all. Dimitri compared test renders and picked a version that caps how far the crop's centre can travel at 6% of the frame, sets a 6% minimum zoom, and lets the close crop trim a little off the face box. Short photos at Fast pace keep a smaller zoom with a proportionally smaller travel cap. Recomputed for all 23 photos of the approved render, every zoom matched.",
+    "category": "processing",
+    "tags": [
+      "camera-motion",
+      "ken-burns",
+      "renderer",
+      "video-craft",
+      "tuning"
+    ],
+    "significance": "minor"
+  },
+  "249": {
+    "summary": "Dead clip-audio code removed so the static bug cannot return; memory-group issues parked",
+    "detail": "A function that built a separate audio track for clips had not been called since March, when clips started carrying their own audio. It also contained the same 8-bit silence join that had put static on voice recordings, so deleting it kept that bug from coming back. Its unused parameter in the music mix went with it, with no change to any video. The parking lot gained an item on memory groups falling apart outside the timeline, and the 'Where we left off' box noted that v0.1.34 had shipped photo motion to prod.",
+    "category": "processing",
+    "tags": [
+      "cleanup",
+      "audio",
+      "dead-code",
+      "parking-lot"
+    ],
+    "significance": "minor"
+  },
+  "250": {
+    "summary": "The landing page's tribute card plays a real video: Dimitri's parents' 70th birthday reel",
+    "detail": "The tribute card on the landing page had been a placeholder with a stock photo. It now plays the 70th birthday video Dimitri made for his parents, shown with the family's permission and rendered after the voice and camera fixes. The same pass corrected copy that no longer matched the product: the Alps sample's blurb now matches its stock photos of one couple, the FAQ's timing answer uses measured prod times, 'early access' became 'beta' everywhere, and claims like 'broadcast quality' were removed. The privacy FAQ was brought in line with the privacy policy.",
+    "category": "frontend",
+    "tags": [
+      "landing-page",
+      "sample-videos",
+      "copywriting",
+      "tribute",
+      "marketing"
+    ],
+    "significance": "moderate"
+  },
+  "251": {
+    "summary": "Landing page finished: three final sample videos, a 'How it's built' page, and Lighthouse accessibility at 100",
+    "detail": "This closed the landing page work. All three sample videos became final, each in a different theme: an Alps road trip, a new 50th anniversary built from free stock footage, and the tribute re-cut. A new public page, 'How it's built', walks through what happens under the hood with illustrations, including tribute face matching shown on Dimitri's father's real photos with the family's permission, and every claim was checked against the code. Both pages scored 100 on Lighthouse accessibility, best practices and SEO after contrast, labeling and zoom fixes. A renderer bug found while making the samples was fixed too: the animated credits could flash a photo from the middle of the film for about a second, because the last frame was picked before the pieces were sorted into film order.",
+    "category": "frontend",
+    "tags": [
+      "landing-page",
+      "accessibility",
+      "sample-videos",
+      "how-its-built",
+      "credits"
+    ],
+    "significance": "major"
+  },
+  "252": {
+    "summary": "Inviting someone to record a voice memory now correctly requires the Tribute tier",
+    "detail": "Testing a voice memory on dev showed that a Premium project could make a recording invite link, but the link opened on 'This project is not collecting voice memories right now'. Voice memories are a Tribute-tier feature, yet every route that handed out a recording link checked only the collaborators feature, which Premium has, and one route checked nothing at all. One shared check now requires both, guarding all four routes, and the app's upgrade prompt offers Tribute instead of Premium. Links already made on a Premium project start working once the project moves to Tribute. Eight new backend tests cover it.",
+    "category": "backend",
+    "tags": [
+      "pricing-tiers",
+      "voice-memories",
+      "entitlements",
+      "bug-fix"
+    ],
+    "significance": "minor"
+  },
+  "253": {
+    "summary": "Pre-launch security and capacity fixes: verified-email account linking, email sending limits, and no more whole-table reads",
+    "detail": "Pre-launch reviews turned up several gaps, each fixed on its own branch, reviewed, then combined. A first Google sign-in now links only to an account whose email is verified, closing a way to take over a stranger's account by putting their email on your own. Photo and recording routes that could read the whole database table to find one item now require a project id and look it up directly. Invitation emails got limits per account, per project and 300 a day for the whole stage, because one abuser could get the shared email account paused and stop every new signup. Only the owner can now record onto a draft memory, every deploy turns on deletion protection for the user pools, photo processing is capped at 50 at a time, and prod's API keeps 200 Lambda slots of its own.",
+    "category": "backend",
+    "tags": [
+      "security",
+      "launch-readiness",
+      "rate-limiting",
+      "authentication",
+      "capacity"
+    ],
+    "significance": "major"
+  },
+  "254": {
+    "summary": "Create Video moves to Google Cloud Run Jobs, one job per video, with the EC2 box as a fallback",
+    "detail": "Rendering moved off the single EC2 box to Google Cloud Run Jobs, which start one job per video, with finished videos stored in a new Google Cloud Storage bucket. Every place that reads a video, from playback and download to the share page, YouTube upload and deletes, now handles both the old and new storage, so all existing videos keep working. A per-stage switch flips a stage between Cloud Run and EC2 in seconds without a deploy, and the stuck-render sweep now re-sends a lost dispatch once and restarts a stopped box. The renderer stopped calling Rekognition, relying on face data from upload analysis instead, which now uses a fixed answer format plus a repair step for malformed face boxes, and a backfill filled 238 of 238 photos that had lost theirs on dev. The PR also made every email and alert finish sending before a Lambda replies, after two dev renders reached the send but only one email went out.",
+    "category": "infrastructure",
+    "tags": [
+      "cloud-run",
+      "rendering",
+      "google-cloud",
+      "migration",
+      "face-data",
+      "reliability"
+    ],
+    "significance": "major"
+  },
+  "255": {
+    "summary": "Big phone photos, one 50 MB upload limit, a Cancel button for renders, and brand colors on every email",
+    "detail": "Six fixes rode together into the same day's prod release. Photos from 200 megapixel phone cameras had been failing completely, 32 of them on prod in one day, and are now accepted up to 268 MP and decoded at reduced size to stay within memory. Uploads got one 50 MB limit everywhere instead of three different ones, and a refused photo's file no longer lingers in storage. A video still being made can be cancelled from the Videos list, which stops the cloud job and uploads nothing. A Google Photos import cut short by the project limit now says how many items came in and why, full-size restoration copies of people's photos are deleted with their photo or project, and all 13 emails moved from black and blue to the app's brown and cream on one shared layout.",
+    "category": "backend",
+    "tags": [
+      "uploads",
+      "large-photos",
+      "cancel-render",
+      "email-branding",
+      "privacy",
+      "imports"
+    ],
+    "significance": "moderate"
+  },
+  "256": {
+    "summary": "Test fix unblocks the dev deploy of the previous day's bundle",
+    "detail": "The dev deploy of the six-fix bundle stopped at the renderer image check. Four new tests had let the render's download step create a temp folder inside the checkout, which the image check mounts read-only. They passed on the laptop and in CI, where the folder is writable, so the frontend deployed but the renderer job, EC2 box and backend were held back. The tests now use their own temp folder, and the full suite of 1,465 tests passed inside the image the same way the deploy runs it.",
+    "category": "devops",
+    "tags": [
+      "ci",
+      "tests",
+      "deploy",
+      "renderer"
+    ],
+    "significance": "minor"
+  },
+  "257": {
+    "summary": "Title slide themes redesigned into 12 distinct looks, with titles that stay off people's faces",
+    "detail": "The theme picker now offers 12 themes that look clearly different from each other. Cinematic is new, three themes were reworked and renamed (Postcard, Linen and Soft Light), and two were retired, with projects that used them moved to the closest remaining theme. Title slides now lay themselves out: the photo is cropped around the faces, titles size to their space, and full-photo themes place the words where they touch no face, falling back to a side-panel layout. The renderer passes face boxes to the title slide, and the picker preview runs the same layout script on the same data, so what users see is what renders.",
+    "category": "design",
+    "tags": [
+      "themes",
+      "title-slides",
+      "faces",
+      "design",
+      "video-craft"
+    ],
+    "significance": "major"
+  }
+}
